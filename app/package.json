@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build && vite-node scripts/compress-build.ts",
+    "build": "react-router build && vite-node scripts/generate-sitemap.ts && vite-node scripts/compress-build.ts",
     "build-compress": "vite-node scripts/compress-build.ts",
     "dev": "VITE_BACKEND_HOST=http://localhost:8080 react-router dev --host 0.0.0.0",
     "start": "react-router-serve ./build/server/index.js",
