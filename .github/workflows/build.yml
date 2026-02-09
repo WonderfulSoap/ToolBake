@@ -7,6 +7,10 @@ on:
     branches:
       - "release/**"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,20 +24,32 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "25"
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
-          go-version: "1.25"
-          cache-dependency-path: backend/go.sum
+          go-version-file: backend/go.mod
+          cache: true
+          cache-dependency-path: |
+            backend/go.mod
+            backend/go.sum
 
       - name: Install frontend dependencies
         working-directory: app
-        run: npm install
+        run: npm ci
 
       - name: Build frontend
         working-directory: app
         run: npm run build
+
+      - name: Install Go tools and generate
+        working-directory: backend
+        run: |
+          go install github.com/go-task/task/v3/cmd/task@latest
+          task install-tools
+          task generate
 
       - name: Build backend binaries
         working-directory: backend
