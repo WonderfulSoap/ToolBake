@@ -8,5 +8,7 @@ export default [
     route("t/new", "routes/new-tool-page.tsx"),
     route("t/:toolId", "routes/tool-useage-page.tsx"),
     route("t/:toolId/edit", "routes/tool-edit-page.tsx"),
+    route("privacy-policy", "routes/privacy-policy-page.tsx"),
+    route("terms-of-service", "routes/terms-of-service-page.tsx"),
   ]),
 ] satisfies RouteConfig;

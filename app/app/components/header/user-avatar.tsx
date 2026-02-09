@@ -125,6 +125,11 @@ export function UserAvatar({ onOpenLoginDialog, onOpenProfileSettings, onReportE
             </div>
             <Switch id="debug-tool-execution-guest" checked={isDebugToolExecutionEnabled} onCheckedChange={handleDebugToolExecutionCheckedChange} />
           </div>
+          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+            <button type="button" className="hover:text-foreground transition-colors" onClick={() => { setIsGuestMenuOpen(false); void navigate("/terms-of-service"); }}>Terms</button>
+            <span>&middot;</span>
+            <button type="button" className="hover:text-foreground transition-colors" onClick={() => { setIsGuestMenuOpen(false); void navigate("/privacy-policy"); }}>Privacy</button>
+          </div>
           <Button className="w-full gap-2" onClick={handleOpenLogin}>
             <LogIn className="h-4 w-4" />
             Login
@@ -179,6 +184,11 @@ export function UserAvatar({ onOpenLoginDialog, onOpenProfileSettings, onReportE
             <span className="text-[11px] text-muted-foreground">Enable extra console logs for tool runs.</span>
           </div>
           <Switch id="debug-tool-execution-user" checked={isDebugToolExecutionEnabled} onCheckedChange={handleDebugToolExecutionCheckedChange} />
+        </div>
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+          <button type="button" className="hover:text-foreground transition-colors" onClick={() => { setIsUserMenuOpen(false); void navigate("/terms-of-service"); }}>Terms</button>
+          <span>&middot;</span>
+          <button type="button" className="hover:text-foreground transition-colors" onClick={() => { setIsUserMenuOpen(false); void navigate("/privacy-policy"); }}>Privacy</button>
         </div>
         <Button variant="outline" className="w-full gap-2" onClick={() => { void handleLogout(); }} disabled={logoutMutation.isPending}>
           <LogOut className="h-4 w-4" />
