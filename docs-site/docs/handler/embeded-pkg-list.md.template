@@ -1,0 +1,11 @@
+---
+sidebar_position: 99
+---
+
+# Embedded Package List
+
+ToolBake ships with a large number of built-in packages to help implement various functionalities. You can load and use these built-in packages in the handler via `await requirePackage('package-name')`.
+
+Below is the full list of supported built-in packages:
+
+{{{{embedded package list}}}}

@@ -1,0 +1,21 @@
+---
+sidebar_position: 1
+---
+
+# UI Component List
+
+## Viewing Components via the `uiWidgets` Tab in Edit Mode
+
+This is the simplest method. In the `uiWidgets` tab of edit mode, you can browse the UI component list in the middle panel to preview each component's appearance and its corresponding sample object in real time.
+
+See [Edit Mode UI Walkthrough](../tutorial/edit-modeui.md) for details.
+
+
+## uiWidgets reference
+
+Below is a list of all UI components supported by ToolBake. This content is auto-generated for easy reference.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+{{{{uiWidgets reference}}}}

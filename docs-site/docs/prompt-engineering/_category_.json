@@ -1,0 +1,9 @@
+{
+  "label": "Prompt Engineering",
+  "position": 50,
+  "link": {
+    "type": "generated-index",
+    "description": "Lenan more about prompt engineering in ToolBake"
+  },
+  "collapsed": false
+}
