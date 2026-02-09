@@ -182,6 +182,8 @@ export default {
 
     const urls: string[] = [
       "/", // Home page
+      "/privacy-policy",
+      "/terms-of-service",
     ];
 
     // Generate URLs for all official tools using lightweight meta

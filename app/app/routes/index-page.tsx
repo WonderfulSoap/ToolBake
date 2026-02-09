@@ -175,8 +175,13 @@ export default function HomePage() {
 
       {/* Footer - full width */}
       <footer className="w-full border-t bg-muted/30 py-8">
-        <div className="mx-auto w-full max-w-7xl px-6 text-center text-sm text-muted-foreground lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 flex items-center justify-between text-sm text-muted-foreground">
           <p>ToolBake - Developer Tool Platform</p>
+          <div className="flex items-center gap-1 text-xs">
+            <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</Link>
+            <span>&middot;</span>
+            <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+          </div>
         </div>
       </footer>
     </div>
