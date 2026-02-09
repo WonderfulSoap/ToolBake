@@ -21,7 +21,7 @@ async function handler(inputWidgets, changedWidgetIds, callback) {
   console.log("inputWidgets: ", JSON.stringify(inputWidgets));
   console.log("changedWidgetIds: ", changedWidgetIds);
 
-  const inputValue = inputWidgets.user_input_text;
+  const inputValue = inputWidgets.user_input_text || "";
   const processedValue = inputValue.split("").join("😊");
 
   return {

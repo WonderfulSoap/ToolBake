@@ -13,6 +13,8 @@ import { MonacoCodeEditor } from "~/components/creator/monaco-code-editor";
 import { useGlobalScript, useSaveGlobalScript } from "~/hooks/use-global-script";
 import { ToolLogProvider } from "~/components/tool/log-context";
 import { LogPanel, type LogPanelHandle } from "~/components/tool/log-panel";
+import { type ExecutionIndicatorHandle } from "~/components/tool/execution-indicator";
+import { type PackageLoadingIndicatorHandle } from "~/components/tool/package-loading-indicator";
 import { generateToolWidgets } from "../input-widgets/input-types";
 import { cn } from "~/lib/utils";
 
@@ -91,6 +93,8 @@ export function PreviewPanel({ tool, uiWidgets, uiSchemaError, isActive = true, 
   // Default to collapsed preview on small screens to prioritize editor space.
   const [isMobilePreviewOpen, setIsMobilePreviewOpen] = useState(getDefaultPreviewOpen);
   const logPanelRef = useRef<LogPanelHandle>(null!);
+  const executionIndicatorRef = useRef<ExecutionIndicatorHandle>(null!);
+  const packageLoadingIndicatorRef = useRef<PackageLoadingIndicatorHandle>(null!);
 
   // Internal runtime error state (from ErrorBoundary or ToolUIArea)
   const [runtimeError, setRuntimeError] = useState<string | null>(null);
@@ -274,13 +278,15 @@ export function PreviewPanel({ tool, uiWidgets, uiSchemaError, isActive = true, 
                     ) : (
                       <PreviewErrorBoundary resetKey={previewKey} onError={handleRuntimeError}>
                         <ToolInteractionProvider>
-                          <PackageLoadingIndicator />
+                          <PackageLoadingIndicator ref={packageLoadingIndicatorRef} />
                           <ToolUIArea
                             key={`preview-${previewTool.id}-${previewKey}`}
                             tool={previewTool}
                             uiWidgets={generatedWidgets}
                             onError={handleRuntimeError}
                             logPanelRef={logPanelRef}
+                            executionIndicatorRef={executionIndicatorRef}
+                            packageLoadingIndicatorRef={packageLoadingIndicatorRef}
                           />
                         </ToolInteractionProvider>
                       </PreviewErrorBoundary>
