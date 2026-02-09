@@ -1,12 +1,12 @@
 <h1 align="center">
-  <img width="96" src="app/public/logo.svg" alt="ToolBake"><br>
+  <img width="96" src="app/public/assets/logo.svg" alt="ToolBake"><br>
   ToolBake
 </h1>
 
 <p align="center"><b>A Platform for Creating Your Own Tools.</b></p>
 
 <p align="center">
-  <img width="800" src="app/public/social-card.svg" />
+  <img width="800" src="app/public/assets/social-card.svg" />
 </p>
 
 ---
