@@ -46,7 +46,7 @@ type Config struct {
 	ENABLE_PASSWORD_LOGIN bool `env:"ENABLE_PASSWORD_LOGIN" envDefault:"false"`
 
 	// WebAuthn Configuration
-	WebAuthnRPName       string `env:"WEBAUTHN_RP_NAME" envDefault:"ToolBake"`
+	WebAuthnRPName       string `env:"WEBAUTHN_RP_NAME" envDefault:"ToolBake-localhost"`
 	WebAuthnRPID         string `env:"WEBAUTHN_RP_ID" envDefault:"localhost"`
 	WebAuthnRPOrigin     string `env:"WEBAUTHN_RP_ORIGIN" envDefault:"http://localhost:8080"`
 	WebAuthnChallengeTTL int    `env:"WEBAUTHN_CHALLENGE_TTL" envDefault:"300"` // seconds

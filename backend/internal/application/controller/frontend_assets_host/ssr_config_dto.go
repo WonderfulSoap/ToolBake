@@ -13,7 +13,7 @@ type ssrConfigDTO struct {
 			RedirectURI string `json:"redirect_uri"`
 		} `json:"google"`
 	} `json:"sso"`
-	EnablePasswordLogin bool `json:"enable_password_login"`
+	EnablePasswordLogin bool `json:"password_login"`
 }
 
 func (d *ssrConfigDTO) FromEntity(cfg entity.FrontendRuntimeConfigEntity) {

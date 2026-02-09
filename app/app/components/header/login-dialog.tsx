@@ -42,7 +42,7 @@ function readGoogleSsoConfig() {
 /** Read password_login flag from runtime config. Returns true if not explicitly set to false. */
 function isPasswordLoginEnabled() {
   const config = (globalThis as any)?.__SSR_CONFIG__ as { password_login?: boolean } | undefined;
-  return config?.password_login !== false;
+  return config?.password_login === true;
 }
 
 /** Convert ArrayBuffer to base64url string for WebAuthn credential encoding. */
