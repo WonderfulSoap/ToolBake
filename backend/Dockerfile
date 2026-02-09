@@ -4,7 +4,7 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
 
-RUN addgroup -S toolbake && adduser -S -G toolbake -h /app -s /sbin/nologin toolbake
+RUN addgroup -g 1000 -S toolbake && adduser -u 1000 -S -G toolbake -h /app -s /sbin/nologin toolbake
 
 WORKDIR /app
 
