@@ -1,0 +1,261 @@
+[
+  [
+    {
+      "id": "input-images",
+      "type": "FilesUploadInput",
+      "title": "Upload Images",
+      "mode": "input",
+      "props": {
+        "description": "Upload one or more image files to adjust colors. First image will be used for live preview.",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "preview-label",
+      "type": "LabelInput",
+      "title": "Live Preview",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground leading-relaxed'>Upload images to see live preview with adjusted colors. Adjustments are applied to the first uploaded image for preview.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-command",
+      "type": "LabelInput",
+      "title": "ImageMagick Commands",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Commands will appear here after processing</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "filter-preset",
+      "type": "RadioGroupInput",
+      "title": "Filter Preset",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None",
+            "description": "No filter"
+          },
+          {
+            "value": "grayscale",
+            "label": "Grayscale",
+            "description": "Black & white"
+          },
+          {
+            "value": "sepia",
+            "label": "Sepia",
+            "description": "Vintage tone"
+          },
+          {
+            "value": "negate",
+            "label": "Negative",
+            "description": "Invert colors"
+          },
+          {
+            "value": "normalize",
+            "label": "Normalize",
+            "description": "Auto contrast"
+          },
+          {
+            "value": "autolevel",
+            "label": "Auto Level",
+            "description": "Auto levels"
+          },
+          {
+            "value": "autogamma",
+            "label": "Auto Gamma",
+            "description": "Auto gamma"
+          },
+          {
+            "value": "charcoal",
+            "label": "Charcoal",
+            "description": "Sketch effect"
+          },
+          {
+            "value": "oilpaint",
+            "label": "Oil Paint",
+            "description": "Painting effect"
+          },
+          {
+            "value": "solarize",
+            "label": "Solarize",
+            "description": "Inverted highlights"
+          },
+          {
+            "value": "wave",
+            "label": "Wave",
+            "description": "Wave distortion"
+          },
+          {
+            "value": "addnoise",
+            "label": "Add Noise",
+            "description": "Film grain"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "brightness",
+      "type": "SliderInput",
+      "title": "Brightness",
+      "mode": "input",
+      "props": {
+        "defaultValue": 100,
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    },
+    {
+      "id": "contrast",
+      "type": "SliderInput",
+      "title": "Contrast",
+      "mode": "input",
+      "props": {
+        "defaultValue": 100,
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "saturation",
+      "type": "SliderInput",
+      "title": "Saturation",
+      "mode": "input",
+      "props": {
+        "defaultValue": 100,
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    },
+    {
+      "id": "hue",
+      "type": "SliderInput",
+      "title": "Hue Rotation",
+      "mode": "input",
+      "props": {
+        "defaultValue": 100,
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "gamma",
+      "type": "SliderInput",
+      "title": "Gamma",
+      "mode": "input",
+      "props": {
+        "defaultValue": 1.0,
+        "min": 0.1,
+        "max": 3.0,
+        "step": 0.1,
+        "valueSuffix": ""
+      }
+    },
+    {
+      "id": "sharpen",
+      "type": "SliderInput",
+      "title": "Sharpen",
+      "mode": "input",
+      "props": {
+        "defaultValue": 0,
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "valueSuffix": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "blur",
+      "type": "SliderInput",
+      "title": "Blur",
+      "mode": "input",
+      "props": {
+        "defaultValue": 0,
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "valueSuffix": "px"
+      }
+    },
+    {
+      "id": "vignette",
+      "type": "SliderInput",
+      "title": "Vignette",
+      "mode": "input",
+      "props": {
+        "defaultValue": 0,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convert-btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Process All Images",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to apply color adjustments to all uploaded images"
+      }
+    },
+    {
+      "id": "preview-images-toggle",
+      "type": "ToggleInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Show Preview",
+        "description": "Show image previews in results"
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-results",
+      "type": "LabelInput",
+      "title": "Processed Images",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Processed images will appear here for download</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

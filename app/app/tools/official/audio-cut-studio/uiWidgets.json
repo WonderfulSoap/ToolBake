@@ -1,0 +1,17 @@
+[
+  [
+    {
+      "id": "waveform-input",
+      "type": "WaveformPlaylistInput",
+      "title": "Waveform Playlist",
+      "mode": "input",
+      "props": {
+        "description": "Upload an audio file to visualize the waveform, play it, and save the track.",
+        "accept": "audio/*",
+        "waveHeight": 140,
+        "samplesPerPixel": 512,
+        "showControls": true
+      }
+    }
+  ]
+]

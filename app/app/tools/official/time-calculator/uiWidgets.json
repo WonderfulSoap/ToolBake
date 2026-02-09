@@ -1,0 +1,97 @@
+[
+  [
+    {
+      "id": "in_time",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Time",
+        "prefixLabelSize": "",
+        "placeholder": "Put date string here",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "guide-divider-input",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "width": "2em",
+        "label": "",
+        "variant": "solid",
+        "gap": 8,
+        "hidden": true
+      }
+    },
+    {
+      "id": "in_delta",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Delta",
+        "prefixLabelSize": "",
+        "placeholder": "ex: +1y1d",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "guide-divider-input",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Result",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_time",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Datetime",
+        "prefixLabelSize": "",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_time2",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "ISO 8601",
+        "prefixLabelSize": "",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "diff-guide",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2 text-sm leading-relaxed text-muted-foreground'><div><p class='font-semibold text-foreground'>Duration String Format</p><p class='text-sm'>Optional sign (<code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>+</code> or <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>-</code>) followed by one or more <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>&lt;number&gt;&lt;unit&gt;</code> segments with no separators.</p></div><div><p class='font-semibold text-foreground'>Examples</p><ul class='list-disc pl-4 space-y-1 text-sm'><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>1h30m</code> - 1 hour 30 minutes</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>-2d4h</code> - minus 2 days 4 hours</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>+500ms</code> - plus 500 milliseconds</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>1M2w3d</code> - 1 month 2 weeks 3 days</li></ul></div><div><p class='font-semibold text-foreground'>Supported Units</p><div class='text-xs space-y-1'><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>ms</code><span>millisecond</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>s</code><span>second</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>m</code><span>minute</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>h</code><span>hour</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>d</code><span>day</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>w</code><span>week</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>M</code><span>month</span></div><div class='flex items-center gap-2'><code class='rounded bg-muted px-1.5 py-0.5 font-mono'>y</code><span>year</span></div></div></div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

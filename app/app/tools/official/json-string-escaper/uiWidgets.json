@@ -1,0 +1,29 @@
+[
+  [
+    {
+      "id": "input-text",
+      "type": "TextareaInput",
+      "title": "Input Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter any text to be escaped as JSON...",
+        "rows": 8,
+        "defaultValue": "Hello\n\"World\"!",
+        "highlight": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-result",
+      "type": "TextareaInput",
+      "title": "JSON Escaped Result",
+      "mode": "output",
+      "props": {
+        "placeholder": "Escaped JSON result will appear here...",
+        "rows": 8,
+        "highlight": "highlight:json"
+      }
+    }
+  ]
+]

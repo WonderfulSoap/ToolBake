@@ -1,0 +1,110 @@
+[
+  [
+    {
+      "id": "scan-btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Scan ImageMagick Features",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to scan all available ImageMagick WASM features"
+      }
+    }
+  ],
+  [
+    {
+      "id": "scan-progress",
+      "type": "ProgressBarInput",
+      "title": "Scan Progress",
+      "mode": "output",
+      "props": {
+        "label": "Idle",
+        "hint": "Click scan button to start",
+        "defaultValue": 0,
+        "defaultTotal": 100,
+        "color": "#3b82f6"
+      }
+    }
+  ],
+  [
+    {
+      "id": "summary",
+      "type": "LabelInput",
+      "title": "Feature Summary",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Click the scan button to analyze ImageMagick WASM features.</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "image-methods",
+      "type": "LabelInput",
+      "title": "MagickImage Methods",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Waiting for scan...</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "image-properties",
+      "type": "LabelInput",
+      "title": "MagickImage Properties",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Waiting for scan...</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "formats",
+      "type": "LabelInput",
+      "title": "Supported Formats",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Waiting for scan...</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "enums",
+      "type": "LabelInput",
+      "title": "Available Enums & Constants",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Waiting for scan...</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "raw-output",
+      "type": "LabelInput",
+      "title": "Raw Analysis Data",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Waiting for scan...</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]
+

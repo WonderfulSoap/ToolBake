@@ -1,0 +1,15 @@
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PayR8xKZNVtz
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: PayR8xKZNVtz
+    ports:
+      - "3306:3306"
+    volumes:
+        - ./db-data:/var/lib/mysql
+        # - ./my.cnf:/etc/mysql/conf.d/my.cnf:ro

@@ -1,0 +1,90 @@
+[
+  [
+    {
+      "id": "scanProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "FFmpeg scan",
+        "hint": "Loading filter list",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "summary",
+      "type": "LabelInput",
+      "title": "Summary",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "audioFilters",
+      "type": "LabelInput",
+      "title": "Audio Filters",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "videoFilters",
+      "type": "LabelInput",
+      "title": "Video Filters",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "sourceFilters",
+      "type": "LabelInput",
+      "title": "Source & Sink Filters",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "otherFilters",
+      "type": "LabelInput",
+      "title": "Other Filters",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rawOutput",
+      "type": "LabelInput",
+      "title": "Raw ffmpeg -filters",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

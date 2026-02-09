@@ -1,0 +1,301 @@
+[
+  [
+    {
+      "id": "exchange_info",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-1 text-sm leading-relaxed text-muted-foreground'><div class='text-sm font-semibold text-foreground'>Exchange Rate Converter</div><div>Enter a value in any currency field to update the rest using the cached rate snapshot.</div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rate_provider",
+      "type": "SelectListInput",
+      "title": "Rate API",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick an API",
+        "defaultValue": "open-er-api",
+        "options": [
+          {
+            "value": "open-er-api",
+            "label": "open.er-api.com (free)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "refresh_rates",
+      "type": "ButtonInput",
+      "title": "Refresh",
+      "mode": "input",
+      "props": {
+        "label": "Update rates",
+        "variant": "default",
+        "size": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "currency_usd",
+      "type": "TextInput",
+      "title": "🇺🇸 US Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ USD",
+        "prefixLabelSize": "4em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_eur",
+      "type": "TextInput",
+      "title": "🇪🇺 Euro",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "€ EUR",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_cny",
+      "type": "TextInput",
+      "title": "🇨🇳 Chinese Yuan",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "¥ CNY",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_jpy",
+      "type": "TextInput",
+      "title": "🇯🇵 Japanese Yen",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "¥ JPY",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "currency_gbp",
+      "type": "TextInput",
+      "title": "🇬🇧 British Pound",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "£ GBP",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_aud",
+      "type": "TextInput",
+      "title": "🇦🇺 Australian Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ AUD",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_cad",
+      "type": "TextInput",
+      "title": "🇨🇦 Canadian Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ CAD",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_chf",
+      "type": "TextInput",
+      "title": "🇨🇭 Swiss Franc",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "CHF",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "currency_hkd",
+      "type": "TextInput",
+      "title": "🇭🇰 Hong Kong Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ HKD",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_sgd",
+      "type": "TextInput",
+      "title": "🇸🇬 Singapore Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ SGD",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_krw",
+      "type": "TextInput",
+      "title": "🇰🇷 South Korean Won",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "₩ KRW",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_inr",
+      "type": "TextInput",
+      "title": "🇮🇳 Indian Rupee",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "₹ INR",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "currency_nzd",
+      "type": "TextInput",
+      "title": "🇳🇿 New Zealand Dollar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ NZD",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_sek",
+      "type": "TextInput",
+      "title": "🇸🇪 Swedish Krona",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kr SEK",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_nok",
+      "type": "TextInput",
+      "title": "🇳🇴 Norwegian Krone",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kr NOK",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_dkk",
+      "type": "TextInput",
+      "title": "🇩🇰 Danish Krone",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kr DKK",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "currency_brl",
+      "type": "TextInput",
+      "title": "🇧🇷 Brazilian Real",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ BRL",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_mxn",
+      "type": "TextInput",
+      "title": "🇲🇽 Mexican Peso",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "$ MXN",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_zar",
+      "type": "TextInput",
+      "title": "🇿🇦 South African Rand",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "R ZAR",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "currency_aed",
+      "type": "TextInput",
+      "title": "🇦🇪 UAE Dirham",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "د.إ AED",
+        "prefixLabelSize": "4em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status_note",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rate_cache",
+      "type": "TextareaInput",
+      "title": "Rate Cache (auto)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Cached rates JSON will appear here...",
+        "rows": 6,
+        "highlight": "highlight:json"
+      }
+    }
+  ]
+]

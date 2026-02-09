@@ -1,0 +1,108 @@
+[
+  [
+    {
+      "id": "original-text",
+      "type": "TextareaInput",
+      "title": "Original Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter text (e.g., Hello, \u4e16\u754c)",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "guide-divider-input",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Unicode Formats",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "unicode-code-point",
+      "type": "TextareaInput",
+      "title": "Unicode Code Points (U+XXXX)",
+      "mode": "input",
+      "props": {
+        "placeholder": "U+0048 U+0065 U+006C U+006C U+006F",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "html-decimal",
+      "type": "TextareaInput",
+      "title": "HTML Numeric Reference (Decimal)",
+      "mode": "input",
+      "props": {
+        "placeholder": "&#72;&#101;&#108;&#108;&#111;",
+        "rows": 3
+      }
+    },
+    {
+      "id": "html-decimal-padded",
+      "type": "TextareaInput",
+      "title": "HTML Numeric Reference (Decimal, Zero-padded)",
+      "mode": "output",
+      "props": {
+        "placeholder": "&#0072;&#0101;&#0108;&#0108;&#0111;",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "html-hex",
+      "type": "TextareaInput",
+      "title": "HTML Numeric Reference (Hex)",
+      "mode": "input",
+      "props": {
+        "placeholder": "&#x48;&#x65;&#x6C;&#x6C;&#x6F;",
+        "rows": 3
+      }
+    },
+    {
+      "id": "html-hex-padded",
+      "type": "TextareaInput",
+      "title": "HTML Numeric Reference (Hex, Zero-padded)",
+      "mode": "output",
+      "props": {
+        "placeholder": "&#x0048;&#x0065;&#x006C;&#x006C;&#x006F;",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "unicode-escape-braced",
+      "type": "TextareaInput",
+      "title": "<div class='space-y-1'><div>Unicode Escape (\\\\u{...})</div><div class='text-[11px] text-muted-foreground'>Common in JavaScript/TypeScript, Rust, and Swift.</div></div>",
+      "mode": "input",
+      "props": {
+        "placeholder": "\\u{48}\\u{65}\\u{6C}\\u{6C}\\u{6F}",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "unicode-escape-16",
+      "type": "TextareaInput",
+      "title": "<div class='space-y-1'><div>Unicode Escape (\\\\u....)</div><div class='text-[11px] text-muted-foreground'>Common in Java, C#, and JSON.</div></div>",
+      "mode": "input",
+      "props": {
+        "placeholder": "\\u0048\\u0065\\u006C\\u006C\\u006F",
+        "rows": 3
+      }
+    }
+  ]
+]

@@ -1,0 +1,77 @@
+[
+  [
+    {
+      "id": "tetris-theme",
+      "type": "SelectListInput",
+      "title": "Theme",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick theme",
+        "defaultValue": "retro",
+        "options": [
+          { "value": "custom", "label": "Custom" },
+          { "value": "candy", "label": "Candy" },
+          { "value": "modern", "label": "Modern" },
+          { "value": "retro", "label": "Retro" },
+          { "value": "vim", "label": "Vim" },
+          { "value": "monochrome", "label": "Monochrome" },
+          { "value": "gameboy", "label": "Game Boy" },
+          { "value": "aerolab", "label": "Aerolab" }
+        ]
+      }
+    },
+    {
+      "id": "tetris-autoplay",
+      "type": "ToggleInput",
+      "title": "Autoplay",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Let the bot play continuously"
+      }
+    }
+  ],
+  [
+    {
+      "id": "tetris-difficulty",
+      "type": "SelectListInput",
+      "title": "Difficulty",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick difficulty",
+        "defaultValue": "normal",
+        "options": [
+          { "value": "nice", "label": "Nice" },
+          { "value": "normal", "label": "Normal" },
+          { "value": "evil", "label": "Evil" }
+        ]
+      }
+    },
+    {
+      "id": "tetris-speed",
+      "type": "NumberInput",
+      "title": "Speed",
+      "mode": "input",
+      "props": {
+        "defaultValue": 20,
+        "min": 5,
+        "max": 40,
+        "step": 1,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "tetris-stage",
+      "type": "RawHtmlInput",
+      "title": "Blockrain Arena",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Loading Blockrain...</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

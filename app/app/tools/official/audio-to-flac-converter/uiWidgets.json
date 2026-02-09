@@ -1,0 +1,109 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple audio files to convert into FLAC using ffmpeg.wasm."
+      }
+    }
+  ],
+  [
+    {
+      "id": "compressionLevel",
+      "type": "SliderInput",
+      "title": "Compression Level",
+      "mode": "input",
+      "props": {
+        "defaultValue": 5,
+        "max": 12,
+        "step": 1,
+        "valueSuffix": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertTrigger",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert to FLAC",
+        "variant": "default",
+        "size": "default",
+        "width": "180px",
+        "description": "Run conversion with FLAC output"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertOutput",
+      "type": "LabelInput",
+      "title": "Converted FLAC Files",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertError",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertLog",
+      "type": "LabelInput",
+      "title": "FFmpeg Log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

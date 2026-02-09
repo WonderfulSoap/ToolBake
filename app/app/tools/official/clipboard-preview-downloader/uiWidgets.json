@@ -1,0 +1,57 @@
+[
+  [
+    {
+      "id": "clipboardNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='flex items-center gap-2 p-2 rounded-sm bg-yellow-500/10 border border-yellow-500/20 text-[11px] text-yellow-600 dark:text-yellow-500 leading-relaxed'><div>No file size limit is enforced in the browser. Very large files may cause slowdowns or crashes.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "fileInput",
+      "type": "FileUploadInput",
+      "title": "Paste or Upload",
+      "mode": "input",
+      "props": {
+        "description": "Click to upload, drag and drop, or paste from clipboard"
+      }
+    }
+  ],
+  [
+    {
+      "id": "fileNameInput",
+      "type": "TextInput",
+      "title": "File Name",
+      "mode": "input",
+      "props": {
+        "placeholder": "clipboard"
+      }
+    },
+    {
+      "id": "fileExtInput",
+      "type": "TextInput",
+      "title": "Extension",
+      "mode": "input",
+      "props": {
+        "placeholder": "txt"
+      }
+    }
+  ],
+  [
+    {
+      "id": "previewOutput",
+      "type": "LabelInput",
+      "title": "Preview & Download",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Awaiting file...</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

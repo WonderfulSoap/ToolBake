@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm leading-relaxed text-muted-foreground'>Upload an <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>.ico</code> file and extract every embedded icon size as standalone PNG files.</div><div class='text-xs text-muted-foreground'>Powered by ImageMagick WASM. Useful for favicon packs, Windows app icons, and design workflows.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "icoFile",
+      "type": "FileUploadInput",
+      "title": "ICO File",
+      "mode": "input",
+      "props": {
+        "description": "Upload one .ico file to extract all icon sizes"
+      }
+    }
+  ],
+  [
+    {
+      "id": "showPreview",
+      "type": "ToggleInput",
+      "title": "Show Preview",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Enabled",
+        "description": "Render preview thumbnails for extracted PNG files"
+      }
+    },
+    {
+      "id": "extractBtn",
+      "type": "ButtonInput",
+      "title": "Extract",
+      "mode": "input",
+      "props": {
+        "label": "Extract PNG Layers",
+        "variant": "default",
+        "size": "default",
+        "description": "Extract all sizes from the ICO file"
+      }
+    }
+  ],
+  [
+    {
+      "id": "statusLabel",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Upload an ICO file and click Extract PNG Layers.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadOutput",
+      "type": "LabelInput",
+      "title": "Extracted PNG",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground py-2'>Extracted PNG files will appear here.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

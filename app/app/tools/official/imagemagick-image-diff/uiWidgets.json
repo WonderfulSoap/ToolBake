@@ -1,0 +1,116 @@
+[
+  [
+    {
+      "id": "image-diff-intro",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><p class='text-sm font-semibold text-foreground'>Image Diff Compare</p><div class='text-sm leading-relaxed text-muted-foreground'>Upload two images, preview them side-by-side, then click <span class='font-medium text-foreground'>Compare Diff</span> to generate a difference image and distortion report using ImageMagick WASM.</div><div class='text-xs text-muted-foreground'>Images must share the same dimensions for accurate comparison.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "image-a-upload",
+      "type": "FileUploadInput",
+      "title": "Image A",
+      "mode": "input",
+      "props": {
+        "description": "Upload the first image",
+        "mini": false
+      }
+    },
+    {
+      "id": "image-b-upload",
+      "type": "FileUploadInput",
+      "title": "Image B",
+      "mode": "input",
+      "props": {
+        "description": "Upload the second image",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "image-a-preview",
+      "type": "LabelInput",
+      "title": "Preview A",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>No image selected.</div>",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "image-b-preview",
+      "type": "LabelInput",
+      "title": "Preview B",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>No image selected.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "highlight-color",
+      "type": "ColorInput",
+      "title": "Highlight Color",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#000000"
+      }
+    },
+    {
+      "id": "lowlight-color",
+      "type": "ColorInput",
+      "title": "Lowlight Color",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#ffffff"
+      }
+    }
+  ],
+  [
+    {
+      "id": "compare-diff-btn",
+      "type": "ButtonInput",
+      "title": "Compare Diff",
+      "mode": "input",
+      "props": {
+        "label": "Compare Diff",
+        "variant": "default",
+        "size": "default",
+        "description": "Generate a diff image and report"
+      }
+    }
+  ],
+  [
+    {
+      "id": "diff-image",
+      "type": "LabelInput",
+      "title": "Diff Image",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>No diff generated yet.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "diff-report",
+      "type": "LabelInput",
+      "title": "Diff Report",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Upload two images and click Compare Diff to see the report.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

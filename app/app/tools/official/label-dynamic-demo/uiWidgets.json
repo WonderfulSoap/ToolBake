@@ -1,0 +1,40 @@
+[
+  [
+    {
+      "id": "counter-label",
+      "type": "LabelInput",
+      "title": "Interactive Counter",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Loading counter...</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "reset-btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Count",
+        "variant": "outline",
+        "size": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true,
+        "tone": "muted"
+      }
+    }
+  ]
+]

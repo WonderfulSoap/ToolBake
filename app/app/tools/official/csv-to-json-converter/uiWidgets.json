@@ -1,0 +1,123 @@
+[
+  [
+    {
+      "id": "csv_layout",
+      "type": "SelectListInput",
+      "title": "CSV Layout",
+      "mode": "input",
+      "props": {
+        "defaultValue": "row",
+        "options": [
+          {
+            "value": "row",
+            "label": "Rows as items"
+          },
+          {
+            "value": "column",
+            "label": "Columns as items"
+          }
+        ]
+      }
+    },
+    {
+      "id": "csv_has_header",
+      "type": "ToggleInput",
+      "title": "Include CSV Header",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Header",
+        "description": ""
+      }
+    },
+    {
+      "id": "csv_delimiter",
+      "type": "TextInput",
+      "title": "CSV Delimiter (use word 'tab' for tab)",
+      "mode": "input",
+      "props": {
+        "defaultValue": ",",
+        "placeholder": ",",
+        "prefixLabel": "Delimiter",
+        "prefixLabelSize": "6em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "json_format",
+      "type": "SelectListInput",
+      "title": "JSON Format",
+      "mode": "input",
+      "props": {
+        "defaultValue": "auto",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "array_objects",
+            "label": "Items with headers"
+          },
+          {
+            "value": "array_arrays",
+            "label": "Items as arrays"
+          },
+          {
+            "value": "object_columns",
+            "label": "Columns as object"
+          }
+        ]
+      }
+    },
+    {
+      "id": "json_path",
+      "type": "TextInput",
+      "title": "Filter JSON Result by JSONPath",
+      "mode": "input",
+      "props": {
+        "placeholder": "$.items[*]",
+        "prefixLabel": "Path",
+        "prefixLabelSize": "4em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "json_download",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "csv_input",
+      "type": "TextareaInput",
+      "title": "CSV",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste CSV data here...",
+        "defaultValue": "name,age,city\nAlice,30,Paris\nBob,28,Berlin",
+        "rows": 20
+      }
+    },
+    {
+      "id": "json_output",
+      "type": "TextareaInput",
+      "title": "JSON",
+      "mode": "output",
+      "props": {
+        "placeholder": "JSON output will appear here...",
+        "highlight": "highlight:json",
+        "rows": 20
+      }
+    }
+  ]
+]

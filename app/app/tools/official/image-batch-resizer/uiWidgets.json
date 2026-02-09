@@ -1,0 +1,163 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-1'><div class='text-sm leading-relaxed text-muted-foreground'>Upload one or more images and batch resize them to a target <b>pixel size</b> or <b>scale percentage</b>. Aspect ratio can be locked to the first image and applied to all.</div><div class='text-xs text-muted-foreground'>Powered by Canvas API. Works entirely in your browser.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "imageFiles",
+      "type": "FilesUploadInput",
+      "title": "Images",
+      "mode": "input",
+      "props": {
+        "description": "Upload one or more images (drag & drop supported)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "imageInfo",
+      "type": "LabelInput",
+      "title": "Image Info",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Upload images to see dimensions.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Resize Settings",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeMode",
+      "type": "RadioGroupInput",
+      "title": "Resize Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "pixel",
+        "options": [
+          { "value": "pixel", "label": "Pixel Size", "description": "Specify width & height in pixels" },
+          { "value": "scale", "label": "Scale %", "description": "Scale by percentage" }
+        ]
+      }
+    },
+    {
+      "id": "keepAspect",
+      "type": "ToggleInput",
+      "title": "Keep Aspect Ratio",
+      "mode": "input",
+      "props": {
+        "defaultChecked": true,
+        "onLabel": "Locked",
+        "description": "Lock ratio based on the first image"
+      }
+    }
+  ],
+  [
+    {
+      "id": "targetWidth",
+      "type": "TextInput",
+      "title": "Width",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Width",
+        "prefixLabelSize": "4em",
+        "placeholder": "e.g. 800",
+        "size": "mini",
+        "delayTrigger": true
+      }
+    },
+    {
+      "id": "targetHeight",
+      "type": "TextInput",
+      "title": "Height",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Height",
+        "prefixLabelSize": "4em",
+        "placeholder": "e.g. 600",
+        "size": "mini",
+        "delayTrigger": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputFormat",
+      "type": "SelectListInput",
+      "title": "Output Format",
+      "mode": "input",
+      "props": {
+        "defaultValue": "keep",
+        "options": [
+          { "value": "keep", "label": "Keep Original" },
+          { "value": "png", "label": "PNG" },
+          { "value": "jpeg", "label": "JPEG" },
+          { "value": "webp", "label": "WebP" },
+          { "value": "gif", "label": "GIF" },
+          { "value": "bmp", "label": "BMP" },
+          { "value": "tiff", "label": "TIFF" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "runResize",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Resize All Images",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to start batch resizing"
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Resize progress",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "resultOutput",
+      "type": "LabelInput",
+      "title": "Results",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground py-2'>Click <b>Resize All Images</b> to generate resized outputs.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,68 @@
+[
+  [
+    {
+      "id": "scanProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "FFmpeg scan",
+        "hint": "Loading codec list",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "summary",
+      "type": "LabelInput",
+      "title": "Summary",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "videoCodecs",
+      "type": "LabelInput",
+      "title": "Video Codecs",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "audioCodecs",
+      "type": "LabelInput",
+      "title": "Audio Codecs",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rawOutput",
+      "type": "LabelInput",
+      "title": "Raw ffmpeg -codecs",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

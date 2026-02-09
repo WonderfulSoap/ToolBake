@@ -1,0 +1,595 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Source audio files",
+      "mode": "input",
+      "props": {
+        "description": "Upload one or more audio files to apply filters.",
+        "allowDirectory": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "filterNotes",
+      "type": "LabelInput",
+      "title": "Filter notes",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"space-y-1 text-sm text-muted-foreground\"><div>Filters run in order: compressor -> bass -> treble -> echo -> loudnorm/dynaudnorm -> volume.</div><div>Loudnorm and Dynaudnorm cannot be enabled together.</div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "filtersDivider",
+      "type": "DividerInput",
+      "title": "Filters",
+      "mode": "output",
+      "props": {
+        "label": "Filter chain",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "volumeEnabled",
+      "type": "ToggleInput",
+      "title": "Volume trim",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Final gain adjustment (Gain -20 to 20 dB)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "volumeGain",
+      "type": "NumberInput",
+      "title": "Gain (dB)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Gain",
+        "min": -20,
+        "max": 20,
+        "step": 0.5,
+        "defaultValue": 0,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "volumeDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Compressor",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "compressorEnabled",
+      "type": "ToggleInput",
+      "title": "Compressor",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Smooth peaks and even out dynamics (Threshold -60 to 0 dB, Ratio 1 to 20, Attack 0.1 to 200 ms, Release 1 to 1000 ms)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "compressorThreshold",
+      "type": "NumberInput",
+      "title": "Threshold (dB)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Thresh",
+        "min": -60,
+        "max": 0,
+        "step": 1,
+        "defaultValue": -18,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "compressorRatio",
+      "type": "NumberInput",
+      "title": "Ratio",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Ratio",
+        "min": 1,
+        "max": 20,
+        "step": 0.5,
+        "defaultValue": 4,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "compressorAttack",
+      "type": "NumberInput",
+      "title": "Attack (ms)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Attack",
+        "min": 0.1,
+        "max": 200,
+        "step": 0.1,
+        "defaultValue": 20,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "compressorRelease",
+      "type": "NumberInput",
+      "title": "Release (ms)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Release",
+        "min": 1,
+        "max": 1000,
+        "step": 1,
+        "defaultValue": 250,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "compressorDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Bass",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "bassEnabled",
+      "type": "ToggleInput",
+      "title": "Bass boost",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Boost low-end body (Gain -20 to 20 dB, Freq 20 to 200 Hz)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "bassGain",
+      "type": "NumberInput",
+      "title": "Gain (dB)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Gain",
+        "min": -20,
+        "max": 20,
+        "step": 0.5,
+        "defaultValue": 4,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "bassFreq",
+      "type": "NumberInput",
+      "title": "Freq (Hz)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Freq",
+        "min": 20,
+        "max": 200,
+        "step": 1,
+        "defaultValue": 100,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "bassDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Treble",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "trebleEnabled",
+      "type": "ToggleInput",
+      "title": "Treble boost",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Add clarity to high frequencies (Gain -20 to 20 dB, Freq 2000 to 12000 Hz)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "trebleGain",
+      "type": "NumberInput",
+      "title": "Gain (dB)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Gain",
+        "min": -20,
+        "max": 20,
+        "step": 0.5,
+        "defaultValue": 3,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "trebleFreq",
+      "type": "NumberInput",
+      "title": "Freq (Hz)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Freq",
+        "min": 2000,
+        "max": 12000,
+        "step": 50,
+        "defaultValue": 4500,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "trebleDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Echo",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "echoEnabled",
+      "type": "ToggleInput",
+      "title": "Echo",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Add a subtle echo tail (In 0 to 1, Out 0 to 1, Delay 10 to 2000 ms, Decay 0 to 1)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "echoInGain",
+      "type": "NumberInput",
+      "title": "In gain",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "In",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "defaultValue": 0.8,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "echoOutGain",
+      "type": "NumberInput",
+      "title": "Out gain",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Out",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "defaultValue": 0.9,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "echoDelay",
+      "type": "NumberInput",
+      "title": "Delay (ms)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Delay",
+        "min": 10,
+        "max": 2000,
+        "step": 10,
+        "defaultValue": 600,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "echoDecay",
+      "type": "NumberInput",
+      "title": "Decay",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Decay",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "defaultValue": 0.4,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "echoDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Loudnorm",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "loudnormEnabled",
+      "type": "ToggleInput",
+      "title": "Loudnorm",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "EBU R128 loudness normalization (I -30 to -5 LUFS, LRA 1 to 20, TP -9 to 0 dB)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "loudnormI",
+      "type": "NumberInput",
+      "title": "Target I (LUFS)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "I",
+        "min": -30,
+        "max": -5,
+        "step": 1,
+        "defaultValue": -16,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "loudnormLra",
+      "type": "NumberInput",
+      "title": "LRA",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "LRA",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "defaultValue": 11,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "loudnormTp",
+      "type": "NumberInput",
+      "title": "True peak (dB)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "TP",
+        "min": -9,
+        "max": 0,
+        "step": 0.5,
+        "defaultValue": -1.5,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "loudnormDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Dynaudnorm",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "dynaudnormEnabled",
+      "type": "ToggleInput",
+      "title": "Dynaudnorm",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "On",
+        "description": "Dynamic loudness leveling (Frame 50 to 5000 ms, Gain 0 to 30, Peak 0.5 to 1)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "dynaudnormFrame",
+      "type": "NumberInput",
+      "title": "Frame (ms)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Frame",
+        "min": 50,
+        "max": 5000,
+        "step": 50,
+        "defaultValue": 500,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "dynaudnormGain",
+      "type": "NumberInput",
+      "title": "Max gain",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Gain",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "defaultValue": 10,
+        "size": "mini"
+      }
+    },
+    {
+      "id": "dynaudnormPeak",
+      "type": "NumberInput",
+      "title": "Peak",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Peak",
+        "min": 0.5,
+        "max": 1,
+        "step": 0.01,
+        "defaultValue": 0.95,
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "dynaudnormDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputFormat",
+      "type": "SelectListInput",
+      "title": "Output format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Choose format",
+        "defaultValue": "wav",
+        "options": [
+          { "value": "wav", "label": "WAV" },
+          { "value": "mp3", "label": "MP3" },
+          { "value": "flac", "label": "FLAC" },
+          { "value": "ogg", "label": "OGG" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "applyFilters",
+      "type": "ButtonInput",
+      "title": "Apply filters",
+      "mode": "input",
+      "props": {
+        "label": "Run FFmpeg",
+        "variant": "default",
+        "size": "default",
+        "description": "Run FFmpeg with the selected filters"
+      }
+    }
+  ],
+  [
+    {
+      "id": "applyProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "FFmpeg job",
+        "hint": "Waiting",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "applyStatus",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "applyOutput",
+      "type": "LabelInput",
+      "title": "Filtered audio",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "applyLog",
+      "type": "LabelInput",
+      "title": "FFmpeg log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,79 @@
+[
+  [
+    {
+      "id": "raw-text",
+      "type": "TextareaInput",
+      "title": "Raw Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter the original text...",
+        "rows": 6,
+        "defaultValue": "<div>Hello & goodbye</div>",
+        "highlight": "highlight:html"
+      }
+    }
+  ],
+  [
+    {
+      "id": "escaped-text",
+      "type": "TextareaInput",
+      "title": "Escaped Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter escaped HTML text...",
+        "rows": 6,
+        "highlight": "highlight:html"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider-options",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Additional Escape Options",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "escape-space",
+      "type": "ToggleInput",
+      "title": "Escape Spaces",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Escape spaces",
+        "description": ""
+      }
+    },
+    {
+      "id": "escape-slash",
+      "type": "ToggleInput",
+      "title": "Escape Forward Slash",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Escape /",
+        "description": ""
+      }
+    },
+    {
+      "id": "escape-backtick",
+      "type": "ToggleInput",
+      "title": "Escape Backtick",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Escape `",
+        "description": ""
+      }
+    }
+  ]
+]
+

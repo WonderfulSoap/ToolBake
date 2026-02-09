@@ -1,0 +1,217 @@
+[
+  [
+    {
+      "id": "audioFiles",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload one or more audio files to inspect metadata and embedded artwork"
+      }
+    }
+  ],
+  [
+    {
+      "id": "artworkNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Artwork preview shows the first matched image across selected files.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "artworkFront",
+      "type": "LabelInput",
+      "title": "Front Cover",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>No artwork loaded.</div>",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "artworkBack",
+      "type": "LabelInput",
+      "title": "Back Cover",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>No artwork loaded.</div>",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "artworkDisc",
+      "type": "LabelInput",
+      "title": "Disc",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>No artwork loaded.</div>",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "artworkArtist",
+      "type": "LabelInput",
+      "title": "Artist",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>No artwork loaded.</div>",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "artworkIcon",
+      "type": "LabelInput",
+      "title": "Icon",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>No artwork loaded.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "artworkFrontFile",
+      "type": "FileUploadInput",
+      "title": "Front Cover File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single image for the front cover",
+        "mini": true
+      }
+    },
+    {
+      "id": "artworkBackFile",
+      "type": "FileUploadInput",
+      "title": "Back Cover File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single image for the back cover",
+        "mini": true
+      }
+    },
+    {
+      "id": "artworkDiscFile",
+      "type": "FileUploadInput",
+      "title": "Disc Artwork File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single image for the disc artwork",
+        "mini": true
+      }
+    },
+    {
+      "id": "artworkArtistFile",
+      "type": "FileUploadInput",
+      "title": "Artist Image File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single image for the artist",
+        "mini": true
+      }
+    },
+    {
+      "id": "artworkIconFile",
+      "type": "FileUploadInput",
+      "title": "Icon File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single icon image",
+        "mini": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "metadataCore",
+      "type": "MultiTextInput",
+      "title": "Core Metadata",
+      "mode": "input",
+      "props": {
+        "gap": "0",
+        "items": [
+          { "id": "album", "title": "", "prefixLabel": "ALBUM", "prefixLabelSize": "10em" },
+          { "id": "albumArtist", "title": "", "prefixLabel": "ALBUM_ARTS", "prefixLabelSize": "10em" },
+          { "id": "artist", "title": "", "prefixLabel": "ARTIST", "prefixLabelSize": "10em" },
+          { "id": "comment", "title": "", "prefixLabel": "COMMENT", "prefixLabelSize": "10em" },
+          { "id": "composer", "title": "", "prefixLabel": "COMPOSER", "prefixLabelSize": "10em" },
+          { "id": "date", "title": "", "prefixLabel": "DATE", "prefixLabelSize": "10em" },
+          { "id": "genre", "title": "", "prefixLabel": "GENRE", "prefixLabelSize": "10em" },
+          { "id": "performer", "title": "", "prefixLabel": "PERFORMER", "prefixLabelSize": "10em" },
+          { "id": "title", "title": "", "prefixLabel": "TITLE", "prefixLabelSize": "10em" },
+          { "id": "track", "title": "", "prefixLabel": "TRACK", "prefixLabelSize": "10em" },
+          { "id": "trackTotal", "title": "", "prefixLabel": "TRACKTOTAL", "prefixLabelSize": "10em" },
+          { "id": "disc", "title": "", "prefixLabel": "DISC", "prefixLabelSize": "10em" },
+          { "id": "discTotal", "title": "", "prefixLabel": "DISCTOTAL", "prefixLabelSize": "10em" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "metadataOutput",
+      "type": "TextareaInput",
+      "title": "Other Metadata (KEY: VALUE)",
+      "mode": "input",
+      "props": {
+        "rows": 12,
+        "placeholder": "Metadata will appear here..."
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputNameTemplateNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-1 text-xs text-muted-foreground leading-relaxed'><div>Build output names with <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{token}</code> placeholders. Tokens are lowercased before matching.</div><ul class='list-disc pl-4 space-y-1'><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{filename}</code> keeps the original file name.</li><li>Core metadata tokens map to the original audio tags, for example <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{album}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{album_artist}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{title}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{track}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{disc}</code>.</li><li>Unknown tokens stay as literal text, so you can mix static text freely.</li></ul><div>Example: <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{artist}-{album}-{track}</code></div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputNameTemplate",
+      "type": "TextInput",
+      "title": "Output Filename Template",
+      "mode": "input",
+      "props": {
+        "placeholder": "{filename}-edited",
+        "description": "<div class='text-xs text-muted-foreground leading-relaxed'>Use lowercased tokens like <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{filename}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{album}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{album_artist}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{album_artists}</code>, <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{title}</code>. Unknown tokens stay as literals.</div>"
+      }
+    }
+  ],
+  [
+    {
+      "id": "editTrigger",
+      "type": "ButtonInput",
+      "title": "Apply Changes",
+      "mode": "input",
+      "props": {
+        "label": "Apply Metadata Updates",
+        "variant": "default",
+        "size": "default",
+        "description": "Apply metadata and artwork updates to all selected audio files"
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadOutput",
+      "type": "LabelInput",
+      "title": "Edited Files",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Click Apply Edits to generate downloadable files.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,202 @@
+[
+  [
+    {
+      "id": "in_string",
+      "type": "TextInput",
+      "title": "Input Date or Datetime String",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "7em",
+        "placeholder": "Put date string here",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "in_timestamp_s",
+      "type": "TextInput",
+      "title": "Input timestamp in S",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    },
+    {
+      "id": "in_timestamp_ms",
+      "type": "TextInput",
+      "title": "Input timestamp in MS",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_timestamp",
+      "type": "TextInput",
+      "title": "Timestamp in S",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    },
+    {
+      "id": "out_timestamp_ms",
+      "type": "TextInput",
+      "title": "Timestamp in MS",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_date",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Date",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    },
+    {
+      "id": "out_time",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Time",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_datetime",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Datetime",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_from_now",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "From",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_iso8601",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "ISO 8601",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_iso8601_tz",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "ISO 8601",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_js_date",
+      "type": "TextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "JS Date",
+        "prefixLabelSize": "7em",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "solid",
+        "gap": 0
+      }
+    }
+  ],
+  [
+    {
+      "id": "in_custom_format",
+      "type": "TextInput",
+      "title": "Custom Format, support <a target='_blank' href='https://day.js.org/docs/en/display/format'>Dayjs format</a>",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "7em",
+        "placeholder": "Put date string here",
+        "defaultValue": "YYYY-MM-DDTHH:mm:ss.SSSZ"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out_custom_format",
+      "type": "TextInput",
+      "title": "Custom Fromat Result",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "",
+        "placeholder": "",
+        "defaultValue": ""
+      }
+    }
+  ]
+]

@@ -1,0 +1,102 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple audio files in the same format (e.g. all .flac).",
+        "allowDirectory": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "audioOrder",
+      "type": "SortableListInput",
+      "title": "Track Order",
+      "mode": "input",
+      "props": {
+        "placeholder": "Upload audio files to build the list."
+      }
+    }
+  ],
+  [
+    {
+      "id": "gapMs",
+      "type": "NumberInput",
+      "title": "Silence Gap (ms)",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ms",
+        "min": 0,
+        "step": 50,
+        "defaultValue": 0
+      }
+    },
+    {
+      "id": "outputFileName",
+      "type": "TextInput",
+      "title": "Output File Name",
+      "mode": "input",
+      "props": {
+        "placeholder": "audio-merged.flac"
+      }
+    }
+  ],
+  [
+    {
+      "id": "concatTrigger",
+      "type": "ButtonInput",
+      "title": "Merge",
+      "mode": "input",
+      "props": {
+        "label": "Merge Now",
+        "variant": "default",
+        "size": "default",
+        "description": "Run ffmpeg concat with re-encoding."
+      }
+    }
+  ],
+  [
+    {
+      "id": "concatProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Concatenation progress",
+        "hint": "Waiting for input",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "concatStatus",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Upload audio files to begin.</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "concatOutput",
+      "type": "LabelInput",
+      "title": "Result",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Merged output will appear here.</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

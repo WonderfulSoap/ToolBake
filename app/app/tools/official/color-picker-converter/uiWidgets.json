@@ -1,0 +1,111 @@
+[
+  [
+    {
+      "id": "color_picker",
+      "type": "ColorPickerInput",
+      "title": "Pick a Color",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#0EA5E9",
+        "showHex": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "color_text",
+      "type": "TextInput",
+      "title": "Manual Input / Parser <a href='https://colorjs.io/docs/the-color-object' target='_blank' class='ml-1 inline-flex items-center rounded-sm bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-primary underline underline-offset-2'>Suported Format</a>",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Value",
+        "placeholder": "Enter hex, rgb, lch, oklch, or name...",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "format_divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Conversion Results",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "conversions",
+      "type": "MultiTextInput",
+      "title": "Color Formats",
+      "mode": "input",
+      "props": {
+        "items": [
+          {
+            "id": "hex",
+            "title": "HEX",
+            "prefixLabel": "HEX",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "hexa",
+            "title": "HEXA",
+            "prefixLabel": "HEXA",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "rgb_int",
+            "title": "RGB (Int)",
+            "prefixLabel": "RGB Int",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "rgba_int",
+            "title": "RGBA (Int)",
+            "prefixLabel": "RGBA Int",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "rgb_pct",
+            "title": "RGB (%)",
+            "prefixLabel": "RGB %",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "rgba_pct",
+            "title": "RGBA (%)",
+            "prefixLabel": "RGBA %",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "hsl",
+            "title": "HSL",
+            "prefixLabel": "HSL",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "oklch",
+            "title": "OKLCH",
+            "prefixLabel": "OKLCH",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "lab",
+            "title": "Lab",
+            "prefixLabel": "Lab",
+            "prefixLabelSize": "8em"
+          },
+          {
+            "id": "p3",
+            "title": "Display P3",
+            "prefixLabel": "P3",
+            "prefixLabelSize": "8em"
+          }
+        ]
+      }
+    }
+  ]
+]

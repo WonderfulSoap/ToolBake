@@ -1,0 +1,126 @@
+[
+  [
+    {
+      "id": "bin",
+      "type": "TextInput",
+      "title": "Binary",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Bin (2)",
+        "prefixLabelSize": "100px",
+        "placeholder": "e.g. 1010",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "oct",
+      "type": "TextInput",
+      "title": "Octal",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Oct (8)",
+        "prefixLabelSize": "100px",
+        "placeholder": "e.g. 12",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "dec",
+      "type": "TextInput",
+      "title": "Decimal",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Dec (10)",
+        "prefixLabelSize": "100px",
+        "placeholder": "e.g. 10",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "hex",
+      "type": "TextInput",
+      "title": "Hexadecimal",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Hex (16)",
+        "prefixLabelSize": "100px",
+        "placeholder": "e.g. af3",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "base62",
+      "type": "TextInput",
+      "title": "Base 62",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "B62 (62)",
+        "prefixLabelSize": "100px",
+        "placeholder": "Case sensitive",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Custom Base Settings",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "customBase",
+      "type": "NumberInput",
+      "title": "Target Base",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Base Number",
+        "prefixLabelSize": "100px",
+        "min": 2,
+        "max": 62,
+        "step": 1,
+        "defaultValue": 32
+      }
+    }
+  ],
+  [
+    {
+      "id": "customValue",
+      "type": "TextInput",
+      "title": "Custom Result",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Result Value",
+        "prefixLabelSize": "100px",
+        "placeholder": "Value in custom base",
+        "defaultValue": "0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "<span style='color: #10b981;'>Ready</span>",
+        "tone": "default"
+      }
+    }
+  ]
+]

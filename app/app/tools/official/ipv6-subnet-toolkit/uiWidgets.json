@@ -1,0 +1,177 @@
+[
+  [
+    {
+      "id": "cidr_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "CIDR",
+        "prefixLabelSize": "10em",
+        "placeholder": "2001:db8:abcd::/48",
+        "defaultValue": "2001:db8::/32"
+      }
+    }
+  ],
+  [
+    {
+      "id": "or-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Or use prefix length",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "ip_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "IP Address",
+        "prefixLabelSize": "10em",
+        "placeholder": "2001:db8:abcd::1"
+      }
+    },
+    {
+      "id": "prefix_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Prefix length",
+        "prefixLabelSize": "10em",
+        "placeholder": "64"
+      }
+    }
+  ],
+  [
+    {
+      "id": "result-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Result",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "result_values",
+      "type": "MultiTextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "gap": "0",
+        "items": [
+          {
+            "id": "netmask",
+            "title": "",
+            "prefixLabel": "CIDR",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "network_address",
+            "title": "",
+            "prefixLabel": "Network address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "cidr_notation",
+            "title": "",
+            "prefixLabel": "CIDR notation",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "network_size",
+            "title": "",
+            "prefixLabel": "Network size",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "first_address",
+            "title": "",
+            "prefixLabel": "First address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "last_address",
+            "title": "",
+            "prefixLabel": "Last address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "ip_type",
+            "title": "",
+            "prefixLabel": "IP type",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "scope",
+            "title": "",
+            "prefixLabel": "Scope",
+            "prefixLabelSize": "12em"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "cidr_binary",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "test-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "IP in CIDR",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "test_ip_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "IP Address",
+        "prefixLabelSize": "10em",
+        "placeholder": "2001:db8:abcd::1234"
+      }
+    }
+  ],
+  [
+    {
+      "id": "test_ip_result",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<span class='text-xs text-muted-foreground'>Enter an IP address to check membership.</span>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

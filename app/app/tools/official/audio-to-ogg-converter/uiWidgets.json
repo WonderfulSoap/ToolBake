@@ -1,0 +1,149 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple audio files to convert into OGG (Vorbis) using ffmpeg.wasm."
+      }
+    }
+  ],
+  [
+    {
+      "id": "qualityMode",
+      "type": "RadioGroupInput",
+      "title": "Encoding Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "quality",
+        "options": [
+          {
+            "value": "quality",
+            "label": "Quality",
+            "description": "Vorbis VBR quality"
+          },
+          {
+            "value": "bitrate",
+            "label": "Bitrate",
+            "description": "Target bitrate"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "vorbisQuality",
+      "type": "NumberInput",
+      "title": "Vorbis Quality",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Q",
+        "prefixLabelSize": "6em",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "defaultValue": 6
+      }
+    },
+    {
+      "id": "targetBitrate",
+      "type": "NumberInput",
+      "title": "Target Bitrate",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kbps",
+        "prefixLabelSize": "6em",
+        "min": 64,
+        "max": 500,
+        "step": 16,
+        "defaultValue": 192
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertTrigger",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert to OGG",
+        "variant": "default",
+        "size": "default",
+        "width": "180px",
+        "description": "Run conversion with OGG output"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertOutput",
+      "type": "LabelInput",
+      "title": "Converted OGG Files",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertError",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertLog",
+      "type": "LabelInput",
+      "title": "FFmpeg Log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

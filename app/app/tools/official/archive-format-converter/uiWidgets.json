@@ -1,0 +1,125 @@
+[
+  [
+    {
+      "id": "archiveFile",
+      "type": "FileUploadInput",
+      "title": "Archive file",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single archive to convert (.zip, .7z, .rar, .tar, ...)",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputFormat",
+      "type": "SelectListInput",
+      "title": "Output format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Select format",
+        "defaultValue": "zip",
+        "options": [
+          {
+            "value": "zip",
+            "label": "ZIP"
+          },
+          {
+            "value": "7z",
+            "label": "7Z"
+          },
+          {
+            "value": "tar",
+            "label": "TAR"
+          },
+          {
+            "value": "gz",
+            "label": "GZ"
+          },
+          {
+            "value": "bz2",
+            "label": "BZ2"
+          },
+          {
+            "value": "xz",
+            "label": "XZ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "archivePassword",
+      "type": "TextInput",
+      "title": "Password",
+      "mode": "input",
+      "props": {
+        "placeholder": "Optional: password for encrypted archives"
+      }
+    },
+    {
+      "id": "convertButton",
+      "type": "ButtonInput",
+      "title": "Run",
+      "mode": "input",
+      "props": {
+        "label": "Convert archive",
+        "variant": "default",
+        "size": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "progress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Awaiting conversion.",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "download",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rawOutput",
+      "type": "LabelInput",
+      "title": "7-Zip log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

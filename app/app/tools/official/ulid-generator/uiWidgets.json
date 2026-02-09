@@ -1,0 +1,81 @@
+[
+  [
+    {
+      "id": "seed",
+      "type": "NumberInput",
+      "title": "Time seed",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Numbers",
+        "min": 1,
+        "step": 1,
+        "defaultValue": 0
+      }
+    }
+  ],
+  [
+    {
+      "id": "multi_num",
+      "type": "NumberInput",
+      "title": "Batch generation",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Numbers",
+        "min": 1,
+        "max": 999,
+        "step": 1,
+        "defaultValue": 1
+      }
+    },
+    {
+      "id": "batch_format",
+      "type": "SelectListInput",
+      "title": "Batch Format",
+      "mode": "input",
+      "props": {
+        "placeholder": "",
+        "defaultValue": "lines",
+        "options": [
+          {
+            "value": "lines",
+            "label": "lines"
+          },
+          {
+            "value": "json",
+            "label": "json"
+          },
+          {
+            "value": "csv",
+            "label": "csv"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "multi-result",
+      "type": "TextareaInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "placeholder": "",
+        "rows": 6
+      }
+    }
+  ],
+  [
+    {
+      "id": "regenerate",
+      "type": "ButtonInput",
+      "title": "Regenerate",
+      "mode": "input",
+      "props": {
+        "label": "Run",
+        "variant": "default",
+        "size": "default",
+        "description": ""
+      }
+    }
+  ]
+]

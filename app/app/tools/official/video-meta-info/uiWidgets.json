@@ -1,0 +1,80 @@
+[
+  [
+    {
+      "id": "sourceVideo",
+      "type": "FileUploadInput",
+      "title": "Video File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a video to inspect with ffprobe (keep under 120MB for smoother analysis)."
+      }
+    }
+  ],
+  [
+    {
+      "id": "probeProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "FFprobe stages",
+        "hint": "Shows the current inspection stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "resultDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Metadata Overview",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "summary",
+      "type": "LabelInput",
+      "title": "Summary",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "streamDetails",
+      "type": "LabelInput",
+      "title": "Streams",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rawJson",
+      "type": "LabelInput",
+      "title": "Raw JSON",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

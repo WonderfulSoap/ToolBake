@@ -1,0 +1,178 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm leading-relaxed text-muted-foreground'>Upload an SVG file and convert it to PNG, JPEG, WebP, or other raster formats. You can customize the output size or use the SVG's original dimensions.</div><div class='text-xs text-muted-foreground'>Uses browser Canvas API for high-quality rendering. SVG can be scaled to any size without quality loss.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "svgFile",
+      "type": "FileUploadInput",
+      "title": "SVG File",
+      "mode": "input",
+      "props": {
+        "description": "Upload an SVG file to convert (.svg only)",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "statusLabel",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "formatDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output Settings",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "targetFormat",
+      "type": "SelectListInput",
+      "title": "Target Format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Select format",
+        "defaultValue": "png",
+        "options": [
+          { "value": "png", "label": "PNG (.png)" },
+          { "value": "jpg", "label": "JPEG (.jpg)" },
+          { "value": "webp", "label": "WebP (.webp)" },
+          { "value": "bmp", "label": "BMP (.bmp)" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "sizeMode",
+      "type": "RadioGroupInput",
+      "title": "Size Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "original",
+        "options": [
+          { "value": "original", "label": "Original", "description": "Use SVG's original size" },
+          { "value": "custom", "label": "Custom", "description": "Specify custom dimensions" },
+          { "value": "scale", "label": "Scale", "description": "Scale by percentage" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "sizeOptions",
+      "type": "LabelInput",
+      "title": "Size Settings",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Upload an SVG to see size options.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "jpegQuality",
+      "type": "SliderInput",
+      "title": "JPEG Quality",
+      "mode": "input",
+      "props": {
+        "defaultValue": 92,
+        "max": 100,
+        "min": 1,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "backgroundColor",
+      "type": "ColorPickerInput",
+      "title": "Background Color",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#FFFFFF00",
+        "presetColors": [
+          "#FFFFFF",
+          "#000000",
+          "#F5F5F5",
+          { "color": "#00000000", "title": "Transparent" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "actionDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Convert",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertBtn",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert SVG",
+        "variant": "default",
+        "size": "default",
+        "description": "Convert SVG to selected format"
+      }
+    },
+    {
+      "id": "showPreview",
+      "type": "ToggleInput",
+      "title": "Show Preview",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Enabled",
+        "description": "Show image preview"
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadOutput",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground py-2'>Converted image will appear here for download.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,1266 @@
+[
+  [
+    {
+      "id": "weight_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Weight</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "weight_mg",
+      "type": "TextInput",
+      "title": "Milligrams",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mg",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_g",
+      "type": "TextInput",
+      "title": "Grams",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "g",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_kg",
+      "type": "TextInput",
+      "title": "Kilograms",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kg",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_t",
+      "type": "TextInput",
+      "title": "Metric Tons",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "t",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "weight_oz",
+      "type": "TextInput",
+      "title": "Ounces",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "oz",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_lb",
+      "type": "TextInput",
+      "title": "Pounds",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "lb",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_st",
+      "type": "TextInput",
+      "title": "Stones",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "st",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "weight_ct",
+      "type": "TextInput",
+      "title": "Carats",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ct",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_weight_length",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "length_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Length</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "length_nm",
+      "type": "TextInput",
+      "title": "Nanometers",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "nm",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_um",
+      "type": "TextInput",
+      "title": "Micrometers",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u03bcm",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_mm",
+      "type": "TextInput",
+      "title": "Millimeters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mm",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "length_cm",
+      "type": "TextInput",
+      "title": "Centimeters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cm",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_m",
+      "type": "TextInput",
+      "title": "Meters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "m",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_km",
+      "type": "TextInput",
+      "title": "Kilometers",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "km",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "length_in",
+      "type": "TextInput",
+      "title": "Inches",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "in",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_ft",
+      "type": "TextInput",
+      "title": "Feet",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ft",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_yd",
+      "type": "TextInput",
+      "title": "Yards",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "yd",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_mi",
+      "type": "TextInput",
+      "title": "Miles",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mi",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "length_nmi",
+      "type": "TextInput",
+      "title": "Nautical Miles",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "nmi",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_length_volume",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "volume_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Volume</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "volume_ml",
+      "type": "TextInput",
+      "title": "Milliliters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mL",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_cm3",
+      "type": "TextInput",
+      "title": "Cubic Centimeters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cm\u00b3",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_l",
+      "type": "TextInput",
+      "title": "Liters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "L",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_m3",
+      "type": "TextInput",
+      "title": "Cubic Meters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "m\u00b3",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "volume_cup",
+      "type": "TextInput",
+      "title": "Cups",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cup",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_floz",
+      "type": "TextInput",
+      "title": "Fluid Ounces",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "fl oz",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_pt",
+      "type": "TextInput",
+      "title": "Pints",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "pt",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_qt",
+      "type": "TextInput",
+      "title": "Quarts",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "qt",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_gal",
+      "type": "TextInput",
+      "title": "US Gallons",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "gal",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "volume_in3",
+      "type": "TextInput",
+      "title": "Cubic Inches",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "in\u00b3",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "volume_ft3",
+      "type": "TextInput",
+      "title": "Cubic Feet",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ft\u00b3",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_volume_area",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "area_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Area</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "area_mm2",
+      "type": "TextInput",
+      "title": "Square Millimeters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mm\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_cm2",
+      "type": "TextInput",
+      "title": "Square Centimeters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cm\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_m2",
+      "type": "TextInput",
+      "title": "Square Meters",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "m\u00b2",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_km2",
+      "type": "TextInput",
+      "title": "Square Kilometers",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "km\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "area_in2",
+      "type": "TextInput",
+      "title": "Square Inches",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "in\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_ft2",
+      "type": "TextInput",
+      "title": "Square Feet",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ft\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_mi2",
+      "type": "TextInput",
+      "title": "Square Miles",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mi\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_yd2",
+      "type": "TextInput",
+      "title": "Square Yards",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "yd\u00b2",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "area_ha",
+      "type": "TextInput",
+      "title": "Hectares",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ha",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_ac",
+      "type": "TextInput",
+      "title": "Acres",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ac",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_tsubo",
+      "type": "TextInput",
+      "title": "Tsubo",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "tsubo",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "area_tatami_kyoma",
+      "type": "TextInput",
+      "title": "Kyoma",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u7573",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_tatami_chukyoma",
+      "type": "TextInput",
+      "title": "Chukyoma",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u7573",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_tatami_edoma",
+      "type": "TextInput",
+      "title": "Edoma",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u7573",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "area_tatami_danchima",
+      "type": "TextInput",
+      "title": "Danchima",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u7573",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_area_speed",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "speed_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Speed</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "speed_cms",
+      "type": "TextInput",
+      "title": "cm/s",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cm/s",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_ms",
+      "type": "TextInput",
+      "title": "m/s",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "m/s",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_kms",
+      "type": "TextInput",
+      "title": "km/s",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "km/s",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "speed_cmh",
+      "type": "TextInput",
+      "title": "cm/h",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cm/h",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_mh",
+      "type": "TextInput",
+      "title": "m/h",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "m/h",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_kmh",
+      "type": "TextInput",
+      "title": "km/h",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "km/h",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "speed_pace",
+      "type": "TextInput",
+      "title": "Pace",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "min/km",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_knot",
+      "type": "TextInput",
+      "title": "Kn",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kn",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "speed_mach",
+      "type": "TextInput",
+      "title": "Mach",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Ma",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_speed_temperature",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "temperature_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Temperature</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "temperature_c",
+      "type": "TextInput",
+      "title": "Celsius",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u00b0C",
+        "prefixLabelSize": "5em",
+        "defaultValue": "0",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "temperature_f",
+      "type": "TextInput",
+      "title": "Fahrenheit",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u00b0F",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "temperature_k",
+      "type": "TextInput",
+      "title": "Kelvin",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "K",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "temperature_r",
+      "type": "TextInput",
+      "title": "Rankine",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u00b0R",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_temperature_energy",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "energy_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Energy</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "energy_cal",
+      "type": "TextInput",
+      "title": "Calories",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "cal",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "energy_kcal",
+      "type": "TextInput",
+      "title": "Kilocalories",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kcal",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "energy_j",
+      "type": "TextInput",
+      "title": "Joules",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "J",
+        "prefixLabelSize": "5em",
+        "defaultValue": "1000",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "energy_kj",
+      "type": "TextInput",
+      "title": "Kilojoules",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kJ",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "energy_wh",
+      "type": "TextInput",
+      "title": "Watt Hours",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Wh",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_energy_time",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "time_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Time</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "time_ns",
+      "type": "TextInput",
+      "title": "Nanoseconds",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ns",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_us",
+      "type": "TextInput",
+      "title": "Microseconds",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "\u03bcs",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_ms",
+      "type": "TextInput",
+      "title": "Milliseconds",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "ms",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_s",
+      "type": "TextInput",
+      "title": "Seconds",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "s",
+        "prefixLabelSize": "5em",
+        "size": "mini",
+        "defaultValue": "1"
+      }
+    }
+  ],
+  [
+    {
+      "id": "time_min",
+      "type": "TextInput",
+      "title": "Minutes",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "min",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_h",
+      "type": "TextInput",
+      "title": "Hours",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "h",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_d",
+      "type": "TextInput",
+      "title": "Days",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "d",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_w",
+      "type": "TextInput",
+      "title": "Weeks",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "wk",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "time_y",
+      "type": "TextInput",
+      "title": "Years",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "yr",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_time_data",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "data_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Data Size</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "data_bit",
+      "type": "TextInput",
+      "title": "Bits",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "bit",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_byte",
+      "type": "TextInput",
+      "title": "Bytes",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "B",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "data_kib",
+      "type": "TextInput",
+      "title": "KiB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "KiB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_mib",
+      "type": "TextInput",
+      "title": "MiB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "MiB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_gib",
+      "type": "TextInput",
+      "title": "GiB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "GiB",
+        "prefixLabelSize": "5em",
+        "size": "mini",
+        "defaultValue": "1"
+      }
+    },
+    {
+      "id": "data_tib",
+      "type": "TextInput",
+      "title": "TiB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "TiB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_pib",
+      "type": "TextInput",
+      "title": "PiB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "PiB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "data_kb",
+      "type": "TextInput",
+      "title": "KB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "KB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_mb",
+      "type": "TextInput",
+      "title": "MB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "MB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_gb",
+      "type": "TextInput",
+      "title": "GB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "GB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_tb",
+      "type": "TextInput",
+      "title": "TB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "TB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "data_pb",
+      "type": "TextInput",
+      "title": "PB",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "PB",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider_data_pressure",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "pressure_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm font-semibold text-foreground text-center'>Pressure</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "pressure_atm",
+      "type": "TextInput",
+      "title": "Atmospheres",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "atm",
+        "prefixLabelSize": "5em",
+        "size": "mini",
+        "defaultValue": "1"
+      }
+    },
+    {
+      "id": "pressure_bar",
+      "type": "TextInput",
+      "title": "Bar",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "bar",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "pressure_mmhg",
+      "type": "TextInput",
+      "title": "Millimeters of Mercury",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "mmHg",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "pressure_pa",
+      "type": "TextInput",
+      "title": "Pascals",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Pa",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "pressure_kpa",
+      "type": "TextInput",
+      "title": "Kilopascals",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kPa",
+        "prefixLabelSize": "5em",
+        "size": "mini"
+      }
+    }
+  ]
+]

@@ -1,0 +1,67 @@
+version: '3'
+
+vars:
+  BINARY_NAME: app
+  BUILD_DIR: bin
+  TEMP_DIR: tmp
+
+tasks:
+  install-tools:
+    desc: Install development tools
+    cmds:
+      - go install github.com/go-task/task/v3/cmd/task@latest
+      - go install github.com/air-verse/air@latest
+      - go install github.com/swaggo/swag/cmd/swag@latest
+      - go install github.com/golang/mock/mockgen@v1.6.0
+
+  generate:
+    desc: run go generate, it wll generate relative files and swagger docs
+    cmds:
+      - go generate ./...
+
+  swag-fmt:
+    desc: fmt all swagger description
+    cmds:
+      - swag fmt -d ./
+
+  swag-generate:
+    desc: generate swagger
+    cmds:
+      - swag init -d . -o ../docs/swagger --requiredByDefault -ot json,yaml
+
+  dev:
+    desc: Run the application in development mode with hot-reload
+    cmds:
+      - task generate
+      - air
+
+  run:
+    desc: Run the application
+    cmds:
+      - APP_ENV=local go run main.go
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test -v ./...
+
+  migration:
+    desc: Run database migration
+    cmds:
+      - go run cmd/migration/main.go
+  
+  create-admin-user:
+    desc: Create an initial admin user
+    cmds:
+      - go run cmd/create_admin_user/main.go -u admin -p password
+
+  build:
+    desc: build the application
+    cmds:
+      - task generate
+      - ./build/build.sh
+
+  default:
+    desc: Display help information
+    cmds:
+      - task --list

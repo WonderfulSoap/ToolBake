@@ -1,0 +1,348 @@
+/**
+ * Some tips:
+ * - Hover mouse on 'InputUIWidgets' and 'ChangedUIWidget' in the jsdoc to see the generated types
+ * - Use 'inputWidgets["widgetId"]' or 'inputWidgets.widgetId' to access the value of a specific input widget value
+ * - Use 'changedWidgetIds' to know which input widget triggered the execution
+ * - Checks the 'uiWidgets' tab to check and modify the input/output UI widgets of this tool
+ * - The 'handler.d.ts' tab shows the full auto generated type definitions for the handler function
+ * 
+ * !! The jsdoc comment below describes the handler function signature, and provides type information for the editor. Don't remove it.
+ *
+ * @param {InputUIWidgets} inputWidgets When tool is executed, this object contains all the input widget values.
+ * @param {ChangedUIWidget} changedWidgetIds When tool is executed, this string value tells you which input widget triggered the execution.
+ * @param {HandlerCallback} callback Callback method to update ui inside handler. Useful for a long time task.
+ * @returns {Promise<HandlerReturnWidgets>}
+ */
+async function handler(inputWidgets, changedWidgetIds, callback) {
+  const audioFiles = normalizeInputFiles(inputWidgets.sourceAudios);
+  const shouldRun = changedWidgetIds === "convertTrigger";
+  const sampleFormat = resolveSampleFormat(inputWidgets.sampleFormat);
+
+  if (changedWidgetIds && !shouldRun) {
+    revokeObjectUrls();
+    return buildIdleResponse(audioFiles.length, sampleFormat);
+  }
+
+  if (!audioFiles.length) {
+    revokeObjectUrls();
+    return buildEmptyResponse();
+  }
+
+  if (!shouldRun) return buildIdleResponse(audioFiles.length, sampleFormat);
+
+  if (!FFmpegModule) FFmpegModule = await requirePackage("ffmpeg");
+  if (!ffmpeg) {
+    ffmpeg = new FFmpegModule.FFmpeg();
+    await ffmpeg.load_ffmpeg();
+  }
+
+  revokeObjectUrls();
+  callback({ convertProgress: buildProgressValue(0, "Starting", "Preparing ffmpeg") });
+
+  const logBuffer = createLogBuffer(80);
+  const logHandler = buildLogHandler(logBuffer, callback);
+  if (typeof ffmpeg.on === "function") ffmpeg.on("log", logHandler);
+
+  const outputs = [];
+  const usedNames = Object.create(null);
+  for (let index = 0; index < audioFiles.length; index += 1) {
+    const file = audioFiles[index];
+    const inputName = buildInputName(file.name, index);
+    const outputName = resolveOutputName(file.name, index, usedNames);
+    const stageLabel = `Converting ${index + 1}/${audioFiles.length}`;
+    const args = buildFfmpegArgs(inputName, outputName, sampleFormat);
+
+    await ffmpeg.writeFile(inputName, new Uint8Array(await file.arrayBuffer()));
+    await runCommandWithProgress(ffmpeg, args, index, audioFiles.length, stageLabel, "Target .pcm", callback);
+    const outputBuffer = await ffmpeg.readFile(outputName);
+    await ffmpeg.deleteFile(inputName);
+    await ffmpeg.deleteFile(outputName);
+
+    outputs.push(buildDownloadEntry(outputName, outputBuffer));
+  }
+
+  if (typeof ffmpeg.off === "function") ffmpeg.off("log", logHandler);
+  return {
+    convertOutput  : buildOutputHtml(outputs),
+    convertError   : buildStatusHtml("Conversion complete."),
+    convertProgress: buildProgressValue(100, "Done", "Conversion completed"),
+  };
+}
+
+// Cache the ffmpeg module and instance to avoid repeated wasm initialization.
+let FFmpegModule;
+let ffmpeg;
+
+// Track object URLs for cleanup between runs.
+let outputUrls = [];
+
+// Normalize FilesUploadInput payloads to a stable array.
+function normalizeInputFiles(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value.filter((item) => item instanceof Blob);
+  if (value instanceof Blob) return [value];
+  return [];
+}
+
+// Resolve PCM sample format selection.
+function resolveSampleFormat(value) {
+  const key = String(value || "s16le").toLowerCase();
+  if (key === "s24le") return "s24le";
+  if (key === "s32le") return "s32le";
+  if (key === "f32le") return "f32le";
+  return "s16le";
+}
+
+// Build a unique ffmpeg input name for each file.
+function buildInputName(name, index) {
+  const safeName = sanitizeFileName(name, `audio-${index + 1}`);
+  return `input-${index + 1}-${safeName}`;
+}
+
+// Sanitize file names for ffmpeg virtual FS usage.
+function sanitizeFileName(value, fallback) {
+  const raw = String(value || "").split(/[\\/]/).pop() || "";
+  const cleaned = raw.replace(/\s+/g, " ").replace(/["']/g, "").trim();
+  return cleaned || fallback;
+}
+
+// Split a filename into base name and extension.
+function splitFileName(name) {
+  const match = String(name || "").match(/^(.*?)(?:\.([^.]+))?$/);
+  if (!match) return { baseName: "output", ext: "" };
+  const base = match[1] || "output";
+  const ext = match[2] ? `.${match[2]}` : "";
+  return { baseName: base, ext };
+}
+
+// Resolve the output PCM file name, ensuring uniqueness when duplicates exist.
+function resolveOutputName(name, index, usedNames) {
+  const parts = splitFileName(sanitizeFileName(name, `audio-${index + 1}`));
+  const base = parts.baseName || `audio-${index + 1}`;
+  const ext = "pcm";
+  let candidate = `${base}.${ext}`;
+  if (!usedNames[candidate]) {
+    usedNames[candidate] = 1;
+    return candidate;
+  }
+  let suffix = 2;
+  while (usedNames[`${base}-${suffix}.${ext}`]) suffix += 1;
+  candidate = `${base}-${suffix}.${ext}`;
+  usedNames[candidate] = 1;
+  return candidate;
+}
+
+// Build ffmpeg arguments for PCM conversion based on user settings.
+function buildFfmpegArgs(inputName, outputName, sampleFormat) {
+  const args = [
+    "-y",
+    "-i",
+    inputName,
+    "-map",
+    "0:a",
+    "-map_metadata",
+    "0",
+    "-map_chapters",
+    "0",
+    "-vn",
+    "-c:a",
+    "pcm_" + sampleFormat,
+    "-f",
+    sampleFormat,
+  ];
+  args.push(outputName);
+  return args;
+}
+
+// Build an idle response when inputs change but conversion is not requested yet.
+function buildIdleResponse(fileCount, sampleFormat) {
+  const label = fileCount ? `Ready to convert ${fileCount} audio file(s) to .pcm (${sampleFormat}).` : "Upload audio files to begin.";
+  return {
+    convertOutput  : buildPlaceholderHtml(label),
+    convertError   : "",
+    convertProgress: buildProgressValue(0, "Idle", "Waiting for conversion"),
+  };
+}
+
+// Build an empty response for the initial load.
+function buildEmptyResponse() {
+  return {
+    convertOutput  : buildPlaceholderHtml("Upload audio files to generate PCM downloads."),
+    convertError   : "",
+    convertProgress: buildProgressValue(0, "Idle", "Waiting for audio"),
+  };
+}
+
+// Build the progress bar payload with normalized values.
+function buildProgressValue(percent, label, hint) {
+  const safePercent = clampPercent(percent);
+  return {
+    current: safePercent,
+    total  : 100,
+    percent: safePercent,
+    label  : label || "",
+    hint   : hint || "",
+  };
+}
+
+// Clamp a percent value between 0 and 100.
+function clampPercent(value) {
+  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) return 0;
+  return Math.min(100, Math.max(0, Math.round(value)));
+}
+
+// Spread stages evenly across the progress bar.
+function percentForStage(stageIndex, totalStages, localPercent) {
+  const span = 100 / Math.max(1, totalStages);
+  return Math.min(99.9, stageIndex * span + (span * clampPercent(localPercent)) / 100);
+}
+
+// Run a single ffmpeg command while emitting progress updates.
+function runCommandWithProgress(ffmpegInstance, args, stageIndex, totalStages, label, hint, callback) {
+  return new Promise((resolve, reject) => {
+    const update = (localPercent) => {
+      const overall = percentForStage(stageIndex, totalStages, localPercent);
+      callback({ convertProgress: buildProgressValue(overall, label, hint) });
+    };
+    update(0);
+    const handleProgress = ({ progress }) => {
+      const percent = Math.round((progress || 0) * 100);
+      update(percent);
+    };
+    if (typeof ffmpegInstance.on === "function") ffmpegInstance.on("progress", handleProgress);
+    ffmpegInstance.exec(args).then(resolve, reject).finally(() => {
+      if (typeof ffmpegInstance.off === "function") ffmpegInstance.off("progress", handleProgress);
+    });
+  });
+}
+
+// Build a download entry payload for a converted audio file.
+function buildDownloadEntry(fileName, buffer) {
+  return {
+    fileName,
+    buffer,
+    mime: "audio/pcm",
+  };
+}
+
+// Build HTML output for all converted entries.
+function buildOutputHtml(entries) {
+  if (!entries.length) return buildPlaceholderHtml("No converted audio yet.");
+  const blocks = entries.map((entry) => buildDownloadBlock(entry)).join("");
+  return `
+    <div class="space-y-3" data-download-container="true">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-muted-foreground">Generated files</span>
+        <a
+          class="text-sm font-semibold text-primary underline underline-offset-2"
+          href="#"
+          onclick="(function(el){var root=el.closest(&quot;[data-download-container]&quot;);if(!root)return false;var links=root.querySelectorAll(&quot;a[data-download-file]&quot;);links.forEach(function(link,index){setTimeout(function(){link.click();},index*150);});return false;})(this)"
+        >
+          Download All
+        </a>
+      </div>
+      ${blocks}
+    </div>
+  `;
+}
+
+// Build an HTML placeholder for empty states.
+function buildPlaceholderHtml(text) {
+  return `<div class="text-sm text-muted-foreground">${escapeHtml(text)}</div>`;
+}
+
+// Build a success status message.
+function buildStatusHtml(text) {
+  if (!text) return "";
+  return `<div class="text-sm text-muted-foreground">${escapeHtml(text)}</div>`;
+}
+
+// Create a bounded log buffer for ffmpeg log output.
+function createLogBuffer(limit) {
+  return {
+    limit: Math.max(5, Number(limit) || 0),
+    items: [],
+  };
+}
+
+// Build a log handler that streams ffmpeg log output into the log UI.
+function buildLogHandler(logBuffer, callback) {
+  return function handleFfmpegLog(event) {
+    if (!event) return;
+    const type = event.type ? String(event.type) : "";
+    const message = event.message ? String(event.message) : "";
+    if (!message) return;
+    logBuffer.items.push(type ? `[${type}] ${message}` : message);
+    if (logBuffer.items.length > logBuffer.limit) logBuffer.items.splice(0, logBuffer.items.length - logBuffer.limit);
+    callback({ convertLog: buildLogStatusHtml(logBuffer.items) });
+  };
+}
+
+// Build a streaming log status block for the UI.
+function buildLogStatusHtml(lines) {
+  if (!lines || !lines.length) return "";
+  const content = lines.map((line) => `<div class="font-mono text-[12px]">${escapeHtml(line)}</div>`).join("");
+  return `
+    <div class="space-y-1 text-sm">
+      <div class="font-semibold text-foreground">FFmpeg Log</div>
+      <div class="rounded-sm border border-border/60 bg-muted/40 px-3 py-2">${content}</div>
+    </div>
+  `;
+}
+
+// Build a single download block with preview and metadata.
+function buildDownloadBlock(entry) {
+  const url = buildObjectUrl(entry.buffer, entry.mime);
+  const sizeLabel = formatBytes(entry.buffer.length || 0);
+  return `
+    <div class="flex flex-col gap-2 px-3 py-2 rounded-sm bg-muted/40 border border-border/60">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex flex-col min-w-0">
+          <div class="text-sm font-semibold text-foreground truncate" title="${escapeHtml(entry.fileName)}">${escapeHtml(entry.fileName)}</div>
+          <div class="flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
+            <span class="inline-flex items-center gap-1 rounded-sm bg-muted px-1.5 py-0.5 uppercase tracking-wide">${escapeHtml(entry.mime)}</span>
+            <span>${escapeHtml(sizeLabel)}</span>
+          </div>
+        </div>
+        <a class="text-sm font-semibold text-primary underline underline-offset-4 decoration-primary/30 hover:decoration-primary transition-colors whitespace-nowrap" href="${url}" download="${escapeHtml(entry.fileName)}" data-download-file="true">
+          Download
+        </a>
+      </div>
+      <audio controls src="${url}" class="w-full"></audio>
+    </div>
+  `;
+}
+
+// Create an object URL and track it for cleanup.
+function buildObjectUrl(fileContent, mime) {
+  const blob = new Blob([fileContent], { type: mime });
+  const url = URL.createObjectURL(blob);
+  outputUrls.push(url);
+  return url;
+}
+
+// Clear previously created object URLs to avoid leaks.
+function revokeObjectUrls() {
+  if (!outputUrls.length) return;
+  outputUrls.forEach((url) => URL.revokeObjectURL(url));
+  outputUrls = [];
+}
+
+// Format byte sizes into human-readable labels.
+function formatBytes(value) {
+  const units = ["B", "KB", "MB", "GB"];
+  if (!Number.isFinite(value) || value <= 0) return "0 B";
+  const index = Math.min(units.length - 1, Math.floor(Math.log(value) / Math.log(1024)));
+  const scaled = value / Math.pow(1024, index);
+  return `${scaled.toFixed(scaled >= 10 || index === 0 ? 0 : 1)} ${units[index]}`;
+}
+
+// Escape HTML to avoid injecting unsafe content.
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}

@@ -1,0 +1,136 @@
+[
+  [
+    {
+      "id": "sourceVideo",
+      "type": "FileUploadInput",
+      "title": "Source Video",
+      "mode": "input",
+      "props": {
+        "description": "Upload the main video. All existing tracks will stay in the final output."
+      }
+    }
+  ],
+  [
+    {
+      "id": "extraAudio",
+      "type": "FilesUploadInput",
+      "title": "Extra Audio Tracks",
+      "mode": "input",
+      "props": {
+        "description": "Add additional audio files to mux into the output."
+      }
+    },
+    {
+      "id": "extraSubtitles",
+      "type": "FilesUploadInput",
+      "title": "Subtitle Files",
+      "mode": "input",
+      "props": {
+        "description": "Add subtitle files (SRT, VTT, ASS, SSA, SUB)."
+      }
+    },
+    {
+      "id": "extraAttachments",
+      "type": "FilesUploadInput",
+      "title": "Attachments",
+      "mode": "input",
+      "props": {
+        "description": "Fonts or assets to embed (TTF, OTF, WOFF, PNG, JPG)."
+      }
+    }
+  ],
+  [
+    {
+      "id": "trackSummary",
+      "type": "LabelInput",
+      "title": "Track Summary",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+        {
+      "id": "outputFileName",
+      "type": "TextInput",
+      "title": "Output File Name",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Output",
+        "prefixLabelSize": "6em",
+        "placeholder": "video-merged.mp4"
+      }
+    }
+  ],
+  [
+    {
+      "id": "mergeTrigger",
+      "type": "ButtonInput",
+      "title": "Merge Tracks",
+      "mode": "input",
+      "props": {
+        "label": "Merge Now",
+        "variant": "default",
+        "size": "default",
+        "width": "160px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "ffmpegCommand",
+      "type": "TextareaInput",
+      "title": "FFmpeg Command",
+      "mode": "input",
+      "props": {
+        "placeholder": "ffmpeg\n-y\n-i \"input.mp4\"\n-map 0\n-c copy\n\"output.mp4\"",
+        "rows": 6,
+        "highlight": "highlight:shell"
+      }
+    }
+  ],
+  [
+    {
+      "id": "mergeProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Merge progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "mergeDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "mergeOutput",
+      "type": "LabelInput",
+      "title": "Merged Video",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

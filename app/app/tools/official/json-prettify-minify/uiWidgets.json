@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "id": "mode",
+      "type": "RadioGroupInput",
+      "title": "Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "prettify",
+        "options": [
+          {
+            "value": "prettify",
+            "label": "Prettify",
+            "description": ""
+          },
+          {
+            "value": "minify",
+            "label": "Minify",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "indent-type",
+      "type": "RadioGroupInput",
+      "title": "Indent",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "spaces",
+        "options": [
+          {
+            "value": "spaces",
+            "label": "Spaces"
+          },
+          {
+            "value": "tab",
+            "label": "Tab"
+          }
+        ]
+      }
+    },
+    {
+      "id": "indent-size",
+      "type": "NumberInput",
+      "title": "Indent Size",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Spaces",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "defaultValue": 2
+      }
+    }
+  ],
+  [
+    {
+      "id": "json-input",
+      "type": "TextareaInput",
+      "title": "JSON Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste JSON here...",
+        "rows": 10,
+        "defaultValue": "{\n  \"name\": \"ToolBake\",\n  \"version\": 1,\n  \"features\": [\"prettify\", \"minify\"]\n}",
+        "highlight": "highlight:json"
+      }
+    }
+  ],
+  [
+    {
+      "id": "json-output",
+      "type": "TextareaInput",
+      "title": "Result",
+      "mode": "output",
+      "props": {
+        "placeholder": "Formatted JSON will appear here...",
+        "rows": 10,
+        "highlight": "highlight:json"
+      }
+    }
+  ]
+]

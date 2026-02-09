@@ -1,0 +1,61 @@
+[
+  [
+    {
+      "id": "intro-note",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='flex items-start gap-2 rounded-sm border border-border/60 bg-muted/30 p-2 text-xs leading-relaxed text-muted-foreground'><span class='text-[11px] uppercase tracking-wide text-muted-foreground'>Info</span><div><div class='text-foreground font-medium'>Upload an RSA private key in PEM format to generate the corresponding public key.</div><div class='mt-1'>Encrypted keys are not supported in the browser.</div></div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "private-key-file",
+      "type": "FileUploadInput",
+      "title": "Private Key File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a .pem/.key file (unencrypted RSA private key)."
+      }
+    }
+  ],
+  [
+    {
+      "id": "key-info",
+      "type": "LabelInput",
+      "title": "Key Info",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Awaiting private key...</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "public-key-pem",
+      "type": "TextareaInput",
+      "title": "Public Key (PEM)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Generated public key PEM will appear here...",
+        "rows": 10
+      }
+    }
+  ],
+  [
+    {
+      "id": "download-link",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ]
+]

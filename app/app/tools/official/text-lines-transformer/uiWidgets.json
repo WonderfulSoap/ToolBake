@@ -1,0 +1,186 @@
+[
+  [
+    {
+      "id": "input-text",
+      "type": "TextareaInput",
+      "title": "Input Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste lines here...",
+        "rows": 8,
+        "defaultValue": "apple\nbanana\nBanana\n  carrot  "
+      }
+    },
+    {
+      "id": "output-text",
+      "type": "TextareaInput",
+      "title": "Output Text",
+      "mode": "output",
+      "props": {
+        "placeholder": "Transformed output will appear here...",
+        "rows": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider1",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Options",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "join-enabled",
+      "type": "ToggleInput",
+      "title": "Join Lines",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Join",
+        "description": ""
+      }
+    },
+    {
+      "id": "join-delimiter",
+      "type": "TextInput",
+      "title": "Join Delimiter",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Delimiter",
+        "prefixLabelSize": "7em",
+        "placeholder": "e.g. ,",
+        "defaultValue": ","
+      }
+    }
+  ],
+  [
+    {
+      "id": "trim-lines",
+      "type": "ToggleInput",
+      "title": "Trim Lines",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Trim"
+      }
+    },
+    {
+      "id": "remove-duplicates",
+      "type": "ToggleInput",
+      "title": "Remove Duplicates",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Unique"
+      }
+    }
+  ],
+  [
+    {
+      "id": "case-mode",
+      "type": "SelectListInput",
+      "title": "Case",
+      "mode": "input",
+      "props": {
+        "placeholder": "No change",
+        "defaultValue": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "No change"
+          },
+          {
+            "value": "lower",
+            "label": "lowercase"
+          },
+          {
+            "value": "upper",
+            "label": "UPPERCASE"
+          },
+          {
+            "value": "title",
+            "label": "Title Case"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-order",
+      "type": "SelectListInput",
+      "title": "Sort Order",
+      "mode": "input",
+      "props": {
+        "placeholder": "No sorting",
+        "defaultValue": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "No sorting"
+          },
+          {
+            "value": "asc",
+            "label": "Ascending"
+          },
+          {
+            "value": "desc",
+            "label": "Descending"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "line-prefix",
+      "type": "TextInput",
+      "title": "Line Prefix",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "6em",
+        "placeholder": "e.g. \" "
+      }
+    },
+    {
+      "id": "line-suffix",
+      "type": "TextInput",
+      "title": "Line Suffix",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "6em",
+        "placeholder": "e.g. \""
+      }
+    },
+    {
+      "id": "output-prefix",
+      "type": "TextInput",
+      "title": "Output Prefix",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "6em",
+        "placeholder": "e.g. ["
+      }
+    },
+    {
+      "id": "output-suffix",
+      "type": "TextInput",
+      "title": "Output Suffix",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "",
+        "prefixLabelSize": "6em",
+        "placeholder": "e.g. ]"
+      }
+    }
+  ]
+]

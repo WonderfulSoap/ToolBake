@@ -1,0 +1,90 @@
+[
+  [
+    {
+      "id": "A_Z",
+      "type": "ToggleInput",
+      "title": "A-Z",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "enable A-Z",
+        "description": ""
+      }
+    },
+    {
+      "id": "a_z",
+      "type": "ToggleInput",
+      "title": "a-z",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "enable a-z",
+        "description": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "number",
+      "type": "ToggleInput",
+      "title": "Number",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "enable Number",
+        "description": ""
+      }
+    },
+    {
+      "id": "symb",
+      "type": "ToggleInput",
+      "title": "Symbols",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "enable !@#$%^&*",
+        "description": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "len",
+      "type": "SliderInput",
+      "title": "Random string length",
+      "mode": "input",
+      "props": {
+        "defaultValue": 30,
+        "max": 512,
+        "step": 1,
+        "valueSuffix": " char"
+      }
+    }
+  ],
+  [
+    {
+      "id": "result",
+      "type": "TextareaInput",
+      "title": "Random String",
+      "mode": "output",
+      "props": {
+        "placeholder": "Random string will generated at here ...",
+        "rows": 4
+      }
+    }
+  ],
+  [
+    {
+      "id": "re—generate",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Refresh",
+        "variant": "default",
+        "size": "default",
+        "description": ""
+      }
+    }
+  ]
+]

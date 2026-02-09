@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "id": "mode",
+      "type": "RadioGroupInput",
+      "title": "Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "prettify",
+        "options": [
+          {
+            "value": "prettify",
+            "label": "Prettify",
+            "description": ""
+          },
+          {
+            "value": "minify",
+            "label": "Minify",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "indent-type",
+      "type": "RadioGroupInput",
+      "title": "Indent",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "spaces",
+        "options": [
+          {
+            "value": "spaces",
+            "label": "Spaces"
+          },
+          {
+            "value": "tab",
+            "label": "Tab"
+          }
+        ]
+      }
+    },
+    {
+      "id": "indent-size",
+      "type": "NumberInput",
+      "title": "Indent Size",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Spaces",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "defaultValue": 2
+      }
+    }
+  ],
+  [
+    {
+      "id": "xml-input",
+      "type": "TextareaInput",
+      "title": "XML Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste XML here...",
+        "rows": 10,
+        "defaultValue": "<root>\n  <name>ToolBake</name>\n  <version>1</version>\n  <features>\n    <feature>prettify</feature>\n    <feature>minify</feature>\n  </features>\n</root>",
+        "highlight": "highlight:xml"
+      }
+    }
+  ],
+  [
+    {
+      "id": "xml-output",
+      "type": "TextareaInput",
+      "title": "Result",
+      "mode": "output",
+      "props": {
+        "placeholder": "Formatted XML will appear here...",
+        "rows": 10,
+        "highlight": "highlight:xml"
+      }
+    }
+  ]
+]

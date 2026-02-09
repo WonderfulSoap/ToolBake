@@ -1,0 +1,54 @@
+[
+  [
+    {
+      "id": "handlebars-guide",
+      "type": "LabelInput",
+      "title": "Quick Guide",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-1 text-sm leading-relaxed text-muted-foreground'><div>Provide JSON data and a Handlebars template to render structured text.</div><div>Uses the <a class='font-medium text-primary underline underline-offset-2' href='https://handlebarsjs.com/guide/' target='_blank'>Handlebars</a> templating library.</div><div>Use <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{{user.name}}</code> for fields and <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>{{#each items}}</code> to iterate.</div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "json-input",
+      "type": "TextareaInput",
+      "title": "JSON Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste JSON data here...",
+        "rows": 10,
+        "highlight": "highlight:json",
+        "defaultValue": "{\n  \"project\": \"Orion\",\n  \"version\": \"2.4.1\",\n  \"owner\": {\n    \"name\": \"Avery Chen\",\n    \"email\": \"avery@example.com\"\n  },\n  \"milestones\": [\n    { \"name\": \"Data Layer\", \"completed\": true },\n    { \"name\": \"UI Refresh\", \"completed\": false }\n  ],\n  \"notes\": [\n    \"Includes auth updates\",\n    \"Staged rollout enabled\"\n  ]\n}"
+      }
+    }
+  ],
+  [
+    {
+      "id": "template-input",
+      "type": "TextareaInput",
+      "title": "Handlebars Template",
+      "mode": "input",
+      "props": {
+        "placeholder": "Write a Handlebars template...",
+        "rows": 10,
+        "defaultValue": "{{project}} v{{version}} Release Brief\nOwner: {{owner.name}} <{{owner.email}}>\n\nNotes:\n{{#each notes}}- {{this}}\n{{/each}}\n\nMilestones:\n{{#each milestones}}\n- {{name}} {{#if completed}}(done){{else}}(in progress){{/if}}\n{{/each}}"
+      }
+    }
+  ],
+  [
+    {
+      "id": "rendered-output",
+      "type": "TextareaInput",
+      "title": "Rendered Output",
+      "mode": "output",
+      "props": {
+        "placeholder": "Rendered output will appear here...",
+        "rows": 10
+      }
+    }
+  ]
+]

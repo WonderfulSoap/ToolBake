@@ -1,0 +1,2129 @@
+basePath: /
+definitions:
+  auth.AuthenticatorSelectionCriteriaDto:
+    properties:
+      authenticatorAttachment:
+        example: platform
+        type: string
+      requireResidentKey:
+        type: boolean
+      residentKey:
+        example: preferred
+        type: string
+      userVerification:
+        example: preferred
+        type: string
+    type: object
+  auth.IssueAccessTokenRequestDto:
+    properties:
+      refresh_token:
+        example: refresh_token_a
+        type: string
+    required:
+    - refresh_token
+    type: object
+  auth.IssueAccessTokenResponseDto:
+    properties:
+      access_token:
+        example: access_token_a
+        type: string
+      expires_in:
+        example: "2024-12-31T23:59:59Z"
+        format: date-time
+        type: string
+    required:
+    - access_token
+    - expires_in
+    type: object
+  auth.LoginRequestDto:
+    properties:
+      password:
+        description: password length should be between 6 and 32 characters
+        example: password
+        maxLength: 32
+        type: string
+      username:
+        description: username length should be between 3 and 32 characters
+        example: username
+        maxLength: 32
+        minLength: 3
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  auth.LoginResponseDto:
+    properties:
+      access_token:
+        example: access_token_a
+        type: string
+      expires_in:
+        example: "2024-12-31T23:59:59Z"
+        format: date-time
+        type: string
+      refresh_token:
+        example: refresh_token_a
+        type: string
+      refresh_token_expires_in:
+        example: "2024-12-31T23:59:59Z"
+        format: date-time
+        type: string
+    required:
+    - access_token
+    - expires_in
+    - refresh_token
+    - refresh_token_expires_in
+    type: object
+  auth.PasskeyAssertionResponseDto:
+    properties:
+      authenticatorData:
+        example: base64url-encoded-authenticator-data
+        type: string
+      clientDataJSON:
+        example: base64url-encoded-client-data-json
+        type: string
+      signature:
+        example: base64url-encoded-signature
+        type: string
+      userHandle:
+        example: base64url-encoded-user-handle
+        type: string
+    required:
+    - authenticatorData
+    - clientDataJSON
+    - signature
+    type: object
+  auth.PasskeyAttestationResponseDto:
+    properties:
+      attestationObject:
+        example: base64url-encoded-attestation-object
+        type: string
+      clientDataJSON:
+        example: base64url-encoded-client-data-json
+        type: string
+      transports:
+        items:
+          type: string
+        type: array
+    required:
+    - attestationObject
+    - clientDataJSON
+    type: object
+  auth.PasskeyChallengeResponseDto:
+    properties:
+      publicKey:
+        $ref: '#/definitions/auth.PublicKeyCredentialCreationOptionsDto'
+    required:
+    - publicKey
+    type: object
+  auth.PasskeyDto:
+    properties:
+      backup_eligible:
+        type: boolean
+      backup_state:
+        type: boolean
+      created_at:
+        type: string
+      credential_id:
+        type: string
+      device_name:
+        type: string
+      id:
+        type: integer
+      last_used_at:
+        type: string
+    required:
+    - backup_eligible
+    - backup_state
+    - created_at
+    - credential_id
+    - device_name
+    - id
+    - last_used_at
+    type: object
+  auth.PasskeyGetResponseDto:
+    properties:
+      passkeys:
+        items:
+          $ref: '#/definitions/auth.PasskeyDto'
+        type: array
+    required:
+    - passkeys
+    type: object
+  auth.PasskeyLoginChallengeResponseDto:
+    properties:
+      publicKey:
+        $ref: '#/definitions/auth.PublicKeyCredentialRequestOptionsDto'
+    required:
+    - publicKey
+    type: object
+  auth.PasskeyLoginRequestDto:
+    properties:
+      authenticatorAttachment:
+        example: cross-platform
+        type: string
+      clientExtensionResults:
+        additionalProperties: {}
+        type: object
+      id:
+        example: base64url-encoded-credential-id
+        type: string
+      rawId:
+        example: base64url-encoded-raw-id
+        type: string
+      response:
+        $ref: '#/definitions/auth.PasskeyAssertionResponseDto'
+      type:
+        example: public-key
+        type: string
+    required:
+    - id
+    - rawId
+    - response
+    - type
+    type: object
+  auth.PasskeyRegisterRequestDto:
+    properties:
+      authenticatorAttachment:
+        example: platform
+        type: string
+      clientExtensionResults:
+        additionalProperties: {}
+        type: object
+      deviceName:
+        example: MacBook Pro
+        type: string
+      id:
+        example: base64url-encoded-credential-id
+        type: string
+      rawId:
+        example: base64url-encoded-raw-id
+        type: string
+      response:
+        $ref: '#/definitions/auth.PasskeyAttestationResponseDto'
+      type:
+        example: public-key
+        type: string
+    required:
+    - id
+    - rawId
+    - response
+    - type
+    type: object
+  auth.PubKeyCredParamDto:
+    properties:
+      alg:
+        example: -7
+        type: integer
+      type:
+        example: public-key
+        type: string
+    required:
+    - alg
+    - type
+    type: object
+  auth.PublicKeyCredentialCreationOptionsDto:
+    properties:
+      attestation:
+        example: none
+        type: string
+      authenticatorSelection:
+        $ref: '#/definitions/auth.AuthenticatorSelectionCriteriaDto'
+      challenge:
+        example: base64url-encoded-challenge
+        type: string
+      excludeCredentials:
+        items:
+          $ref: '#/definitions/auth.PublicKeyCredentialDescriptorDto'
+        type: array
+      pubKeyCredParams:
+        items:
+          $ref: '#/definitions/auth.PubKeyCredParamDto'
+        type: array
+      rp:
+        $ref: '#/definitions/auth.RelyingPartyDto'
+      timeout:
+        example: 300000
+        type: integer
+      user:
+        $ref: '#/definitions/auth.UserEntityDto'
+    required:
+    - attestation
+    - challenge
+    - pubKeyCredParams
+    - rp
+    - timeout
+    - user
+    type: object
+  auth.PublicKeyCredentialDescriptorDto:
+    properties:
+      id:
+        example: base64url-encoded-credential-id
+        type: string
+      transports:
+        items:
+          type: string
+        type: array
+      type:
+        example: public-key
+        type: string
+    required:
+    - id
+    - type
+    type: object
+  auth.PublicKeyCredentialRequestOptionsDto:
+    properties:
+      allowCredentials:
+        items:
+          $ref: '#/definitions/auth.PublicKeyCredentialDescriptorDto'
+        type: array
+      challenge:
+        example: base64url-encoded-challenge
+        type: string
+      rpId:
+        example: localhost
+        type: string
+      timeout:
+        example: 300000
+        type: integer
+      userVerification:
+        example: preferred
+        type: string
+    required:
+    - challenge
+    - rpId
+    - timeout
+    type: object
+  auth.RelyingPartyDto:
+    properties:
+      id:
+        example: localhost
+        type: string
+      name:
+        example: ToolBake
+        type: string
+    required:
+    - id
+    - name
+    type: object
+  auth.SSOBindingDeleteRequestDto:
+    properties:
+      provider:
+        type: string
+    required:
+    - provider
+    type: object
+  auth.SSOBindingDto:
+    properties:
+      created_at:
+        type: string
+      provider:
+        type: string
+      provider_email:
+        type: string
+      provider_user_id:
+        type: string
+      provider_username:
+        type: string
+    required:
+    - created_at
+    - provider
+    - provider_email
+    - provider_user_id
+    - provider_username
+    type: object
+  auth.SSOBindingGetResponseDto:
+    properties:
+      bindings:
+        items:
+          $ref: '#/definitions/auth.SSOBindingDto'
+        type: array
+    required:
+    - bindings
+    type: object
+  auth.SSOLoginRequestDto:
+    properties:
+      oauth_code:
+        description: username length should be between 3 and 32 characters
+        example: xxxxxxxxx
+        minLength: 1
+        type: string
+    required:
+    - oauth_code
+    type: object
+  auth.TwoFADeleteRequestDto:
+    properties:
+      code:
+        type: string
+      type:
+        type: string
+    required:
+    - code
+    - type
+    type: object
+  auth.TwoFAGetResponseDto:
+    properties:
+      two_fa_list:
+        items:
+          $ref: '#/definitions/auth.TwoFAInfoDto'
+        type: array
+    required:
+    - two_fa_list
+    type: object
+  auth.TwoFAInfoDto:
+    properties:
+      created_at:
+        type: string
+      enabled:
+        type: boolean
+      type:
+        type: string
+    required:
+    - created_at
+    - enabled
+    - type
+    type: object
+  auth.TwoFALoginRequestDto:
+    properties:
+      code:
+        description: 6-digit TOTP code from authenticator app
+        type: string
+      token:
+        description: token from login API when 2FA is required
+        type: string
+    required:
+    - code
+    - token
+    type: object
+  auth.TwoFALoginResponseDto:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+    required:
+    - access_token
+    - refresh_token
+    type: object
+  auth.TwoFARecoveryRequestDto:
+    properties:
+      recovery_code:
+        type: string
+      token:
+        type: string
+    required:
+    - recovery_code
+    - token
+    type: object
+  auth.TwoFARetrieveTOTPResponseDto:
+    properties:
+      qr_code:
+        description: base64 encoded PNG image
+        type: string
+      secret:
+        type: string
+      token:
+        description: token for verification
+        type: string
+      url:
+        type: string
+    required:
+    - qr_code
+    - secret
+    - token
+    - url
+    type: object
+  auth.TwoFATOTPAddRequestDto:
+    properties:
+      code:
+        description: 6-digit TOTP code from authenticator app
+        type: string
+      token:
+        description: token from retrieve TOTP API
+        type: string
+    required:
+    - code
+    - token
+    type: object
+  auth.TwoFATOTPAddResponseDto:
+    properties:
+      recovery_code:
+        type: string
+    required:
+    - recovery_code
+    type: object
+  auth.UserEntityDto:
+    properties:
+      displayName:
+        example: John Doe
+        type: string
+      id:
+        example: base64url-encoded-user-id
+        type: string
+      name:
+        example: user@example.com
+        type: string
+    required:
+    - displayName
+    - id
+    - name
+    type: object
+  error_code.ErrorCodeConst:
+    enum:
+    - CannotDeleteLastSSOBinding
+    - DirectoryNotFound
+    - FileAlreadyExists
+    - FileNotFound
+    - FileOperationFailed
+    - FileTooLarge
+    - Forbidden
+    - InternalServerError
+    - InvalidAccessToken
+    - InvalidCredentials
+    - InvalidFilePath
+    - InvalidFileType
+    - InvalidParameter
+    - InvalidParameters
+    - InvalidRecoveryCode
+    - InvalidRefreshToken
+    - InvalidTotpCode
+    - OauthTokenUnavailable
+    - PasswordLoginIsNotEnabled
+    - SSOProviderAccountAlreadyBinded
+    - StorageQuotaExceeded
+    - TokenNotFound
+    - TwoFaAlreadyEnabled
+    - TwoFaTotpIsRequiredForLogin
+    - Unauthorized
+    - UserAlreadyExists
+    - UserNotFound
+    type: string
+    x-enum-varnames:
+    - ErrorCodeCannotDeleteLastSSOBinding
+    - ErrorCodeDirectoryNotFound
+    - ErrorCodeFileAlreadyExists
+    - ErrorCodeFileNotFound
+    - ErrorCodeFileOperationFailed
+    - ErrorCodeFileTooLarge
+    - ErrorCodeForbidden
+    - ErrorCodeInternalServerError
+    - ErrorCodeInvalidAccessToken
+    - ErrorCodeInvalidCredentials
+    - ErrorCodeInvalidFilePath
+    - ErrorCodeInvalidFileType
+    - ErrorCodeInvalidParameter
+    - ErrorCodeInvalidParameters
+    - ErrorCodeInvalidRecoveryCode
+    - ErrorCodeInvalidRefreshToken
+    - ErrorCodeInvalidTotpCode
+    - ErrorCodeOauthTokenUnavailable
+    - ErrorCodePasswordLoginIsNotEnabled
+    - ErrorCodeSSOProviderAccountAlreadyBinded
+    - ErrorCodeStorageQuotaExceeded
+    - ErrorCodeTokenNotFound
+    - ErrorCodeTwoFaAlreadyEnabled
+    - ErrorCodeTwoFaTotpIsRequiredForLogin
+    - ErrorCodeUnauthorized
+    - ErrorCodeUserAlreadyExists
+    - ErrorCodeUserNotFound
+  global_script.GetGlobalScriptResponseDto:
+    properties:
+      global_script:
+        type: string
+      updated_at:
+        format: date-time
+        type: string
+    required:
+    - global_script
+    - updated_at
+    type: object
+  global_script.UpdateGlobalScriptRequestDto:
+    properties:
+      global_script:
+        type: string
+    required:
+    - global_script
+    type: object
+  global_script.UpdateGlobalScriptResponseDto:
+    type: object
+  swagger.BaseFailResponse:
+    properties:
+      error_code:
+        $ref: '#/definitions/error_code.ErrorCodeConst'
+      message:
+        example: Internal server error
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: error
+        type: string
+    required:
+    - error_code
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-any:
+    properties:
+      data: {}
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_IssueAccessTokenResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.IssueAccessTokenResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_LoginResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.LoginResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_PasskeyChallengeResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.PasskeyChallengeResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_PasskeyGetResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.PasskeyGetResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_PasskeyLoginChallengeResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.PasskeyLoginChallengeResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_SSOBindingGetResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.SSOBindingGetResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_TwoFAGetResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.TwoFAGetResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_TwoFALoginResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.TwoFALoginResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_TwoFARetrieveTOTPResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.TwoFARetrieveTOTPResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-auth_TwoFATOTPAddResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/auth.TwoFATOTPAddResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-global_script_GetGlobalScriptResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/global_script.GetGlobalScriptResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-global_script_UpdateGlobalScriptResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/global_script.UpdateGlobalScriptResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-tools_AllToolsResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/tools.AllToolsResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-tools_CreateToolResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/tools.CreateToolResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-tools_DeleteToolResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/tools.DeleteToolResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-tools_UpdateToolResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/tools.UpdateToolResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-user_CheckUsernameResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/user.CheckUsernameResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-user_CreateUserResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/user.CreateUserResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-user_DeleteUserResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/user.DeleteUserResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-user_UpdateUserResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/user.UpdateUserResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  swagger.BaseSuccessResponse-user_UserInfoResponseDto:
+    properties:
+      data:
+        $ref: '#/definitions/user.UserInfoResponseDto'
+      message:
+        example: ""
+        type: string
+      request_id:
+        example: 3c55e76b-21b0-41e9-9780-206283053886
+        type: string
+      status:
+        example: "1"
+        type: string
+    required:
+    - data
+    - message
+    - request_id
+    - status
+    type: object
+  tools.AllToolsResponseDto:
+    properties:
+      tools:
+        items:
+          $ref: '#/definitions/tools.ToolDto'
+        type: array
+      tools_last_update_at:
+        format: date-time
+        type: string
+    required:
+    - tools
+    - tools_last_update_at
+    type: object
+  tools.CreateToolRequestDto:
+    properties:
+      category:
+        example: analytics
+        maxLength: 255
+        type: string
+      description:
+        example: Describe the tool briefly
+        maxLength: 255
+        type: string
+      extra_info:
+        additionalProperties:
+          type: string
+        example:
+          '{"key"': '"value"}'
+        type: object
+      id:
+        example: tool-123
+        maxLength: 128
+        minLength: 1
+        type: string
+      is_activate:
+        example: true
+        type: boolean
+      name:
+        example: Sample Tool
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespace:
+        example: default
+        maxLength: 255
+        minLength: 1
+        type: string
+      realtime_execution:
+        example: false
+        type: boolean
+      source:
+        example: // source code
+        type: string
+      ui_widgets:
+        example: '[]'
+        type: string
+    required:
+    - category
+    - description
+    - extra_info
+    - id
+    - is_activate
+    - name
+    - namespace
+    - realtime_execution
+    - source
+    - ui_widgets
+    type: object
+  tools.CreateToolResponseDto:
+    type: object
+  tools.DeleteToolResponseDto:
+    type: object
+  tools.ToolDto:
+    properties:
+      category:
+        example: analytics
+        type: string
+      created_at:
+        example: "2024-01-01T00:00:00Z"
+        type: string
+      description:
+        example: Simple tool
+        type: string
+      extra_info:
+        additionalProperties:
+          type: string
+        example:
+          '{"key"': '"value"}'
+        type: object
+      is_activate:
+        example: true
+        type: boolean
+      name:
+        example: Sample Tool
+        type: string
+      namespace:
+        example: default
+        type: string
+      realtime_execution:
+        example: false
+        type: boolean
+      source:
+        example: // source code
+        type: string
+      tool_id:
+        example: tool-123
+        type: string
+      ui_widgets:
+        example: '[]'
+        type: string
+      uid:
+        example: tool-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+        type: string
+      updated_at:
+        example: "2024-01-01T00:00:00Z"
+        type: string
+    required:
+    - category
+    - created_at
+    - description
+    - extra_info
+    - is_activate
+    - name
+    - namespace
+    - realtime_execution
+    - source
+    - tool_id
+    - ui_widgets
+    - uid
+    - updated_at
+    type: object
+  tools.UpdateToolRequestDto:
+    properties:
+      category:
+        example: analytics
+        maxLength: 255
+        type: string
+      description:
+        example: Describe the tool briefly
+        type: string
+      extra_info:
+        additionalProperties:
+          type: string
+        example:
+          '{"key"': '"value"}'
+        type: object
+      id:
+        example: tool-123
+        maxLength: 128
+        minLength: 1
+        type: string
+      is_activate:
+        example: true
+        type: boolean
+      name:
+        example: Sample Tool
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespace:
+        example: default
+        maxLength: 255
+        minLength: 1
+        type: string
+      realtime_execution:
+        example: false
+        type: boolean
+      source:
+        example: // source code
+        type: string
+      ui_widgets:
+        example: '[]'
+        type: string
+    required:
+    - category
+    - description
+    - extra_info
+    - id
+    - is_activate
+    - name
+    - namespace
+    - realtime_execution
+    - source
+    - ui_widgets
+    type: object
+  tools.UpdateToolResponseDto:
+    type: object
+  user.CheckUsernameRequestDto:
+    properties:
+      username:
+        example: username
+        minLength: 1
+        type: string
+    required:
+    - username
+    type: object
+  user.CheckUsernameResponseDto:
+    properties:
+      exists:
+        example: true
+        type: boolean
+    required:
+    - exists
+    type: object
+  user.CreateUserRequestDto:
+    properties:
+      password:
+        example: password
+        maxLength: 32
+        type: string
+      username:
+        example: username
+        maxLength: 32
+        minLength: 3
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  user.CreateUserResponseDto:
+    type: object
+  user.DeleteUserResponseDto:
+    type: object
+  user.UpdateUserRequestDto:
+    properties:
+      username:
+        example: new_username
+        maxLength: 32
+        minLength: 3
+        type: string
+    type: object
+  user.UpdateUserResponseDto:
+    type: object
+  user.UserInfoResponseDto:
+    properties:
+      id:
+        example: user_id_a
+        type: string
+      mail:
+        example: user@example.com
+        type: string
+      name:
+        example: username
+        type: string
+    required:
+    - id
+    - name
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact:
+    name: WonderfulSoap
+  description: This is a sample server
+  termsOfService: http://swagger.io/terms/
+  title: My-Golang-Framework
+  version: "1.0"
+paths:
+  /api/v1/auth/2fa:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a specific 2FA method for the current user (requires verification
+        code)
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 2FA type and verification code
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.TwoFADeleteRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Delete 2FA
+      tags:
+      - Auth
+    get:
+      description: Get 2FA information for the current user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_TwoFAGetResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Get 2FA info
+      tags:
+      - Auth
+  /api/v1/auth/2fa/login:
+    post:
+      consumes:
+      - application/json
+      description: Complete login with 2FA verification
+      parameters:
+      - description: 2FA login request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.TwoFALoginRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_TwoFALoginResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: 2FA Login
+      tags:
+      - Auth
+  /api/v1/auth/2fa/recovery:
+    post:
+      consumes:
+      - application/json
+      description: Remove 2FA using recovery code. Use this when you've lost access
+        to your authenticator app.
+      parameters:
+      - description: 2FA recovery request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.TwoFARecoveryRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: 2FA Recovery
+      tags:
+      - Auth
+  /api/v1/auth/2fa/totp:
+    get:
+      description: Generate TOTP secret and QR code for 2FA setup
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_TwoFARetrieveTOTPResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Retrieve TOTP setup info
+      tags:
+      - Auth
+    post:
+      consumes:
+      - application/json
+      description: Verify TOTP code and enable 2FA for the user. Returns a recovery
+        code that can be used to disable 2FA.
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: TOTP verification request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.TwoFATOTPAddRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_TwoFATOTPAddResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Add TOTP 2FA
+      tags:
+      - Auth
+  /api/v1/auth/access-token:
+    post:
+      consumes:
+      - application/json
+      description: issue new access token by refresh token
+      parameters:
+      - description: Refresh token
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.IssueAccessTokenRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_IssueAccessTokenResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: issue new access token
+      tags:
+      - Auth
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: login and get refresh token, access token
+      parameters:
+      - description: Account information
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: login
+      tags:
+      - Auth
+  /api/v1/auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: invalidate tokens associated with the current access token
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: logout
+      tags:
+      - Auth
+  /api/v1/auth/passkey/login/challenge:
+    post:
+      description: Generate challenge for passkey login. Returns WebAuthn CredentialRequestOptions
+        for navigator.credentials.get()
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_PasskeyLoginChallengeResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Begin passkey login
+      tags:
+      - Auth
+  /api/v1/auth/passkey/login/verify:
+    post:
+      consumes:
+      - application/json
+      description: Verify the passkey credential from navigator.credentials.get()
+        and return tokens
+      parameters:
+      - description: Passkey credential assertion response
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.PasskeyLoginRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Finish passkey login
+      tags:
+      - Auth
+  /api/v1/auth/passkey/register/challenge:
+    post:
+      description: Generate challenge for passkey registration. Returns WebAuthn CredentialCreationOptions
+        for navigator.credentials.create()
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_PasskeyChallengeResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Begin passkey registration
+      tags:
+      - Auth
+  /api/v1/auth/passkey/register/verify:
+    post:
+      consumes:
+      - application/json
+      description: Verify and store the passkey credential created by navigator.credentials.create()
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Passkey credential response
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.PasskeyRegisterRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Finish passkey registration
+      tags:
+      - Auth
+  /api/v1/auth/passkeys:
+    get:
+      description: Get all passkeys for the current user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_PasskeyGetResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Get passkeys
+      tags:
+      - Auth
+  /api/v1/auth/passkeys/{passkey_id}:
+    delete:
+      description: Delete a passkey for the current user by passkey ID
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Passkey ID
+        format: int64
+        in: path
+        name: passkey_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Delete passkey
+      tags:
+      - Auth
+  /api/v1/auth/sso/{provider}:
+    post:
+      consumes:
+      - application/json
+      description: Login via SSO (github/google) and get refresh token, access token
+      parameters:
+      - description: SSO provider (github/google)
+        in: path
+        name: provider
+        required: true
+        type: string
+      - description: OAuth code
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.SSOLoginRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: SSO login(If user not exists, create a new user)
+      tags:
+      - Auth
+    put:
+      consumes:
+      - application/json
+      description: Bind a SSO account (github/google) to the current user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: SSO provider (github/google)
+        in: path
+        name: provider
+        required: true
+        type: string
+      - description: OAuth code
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.SSOLoginRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Add SSO binding
+      tags:
+      - Auth
+  /api/v1/auth/sso/bindings:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a SSO binding for the current user by provider
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Delete SSO binding request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.SSOBindingDeleteRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Delete SSO binding
+      tags:
+      - Auth
+    get:
+      consumes:
+      - application/json
+      description: Get all SSO bindings for the current user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-auth_SSOBindingGetResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Get SSO bindings
+      tags:
+      - Auth
+  /api/v1/global-script:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve the global script bound to the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-global_script_GetGlobalScriptResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Get global script
+      tags:
+      - GlobalScript
+    put:
+      consumes:
+      - application/json
+      description: Create or update the global script for the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Global script body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/global_script.UpdateGlobalScriptRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-global_script_UpdateGlobalScriptResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Update global script
+      tags:
+      - GlobalScript
+  /api/v1/healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: Verify that the service is up
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Health check
+      tags:
+      - Maintenance
+  /api/v1/tools:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all tools of the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-tools_AllToolsResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: List tools
+      tags:
+      - Tools
+  /api/v1/tools/{tool_uid}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a tool belonging to the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Tool unique identifier (UID)
+        in: path
+        name: tool_uid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-tools_DeleteToolResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Delete tool
+      tags:
+      - Tools
+    put:
+      consumes:
+      - application/json
+      description: Update an existing tool belonging to the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Tool identifier
+        in: path
+        name: tool_uid
+        required: true
+        type: string
+      - description: Fields to update
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/tools.UpdateToolRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-tools_UpdateToolResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Update tool
+      tags:
+      - Tools
+  /api/v1/tools/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a custom tool under the authenticated user
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Tool definition
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/tools.CreateToolRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-tools_CreateToolResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Create tool
+      tags:
+      - Tools
+  /api/v1/user:
+    get:
+      consumes:
+      - application/json
+      description: Fetch user information based on the supplied access token
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-user_UserInfoResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Get current user info
+      tags:
+      - User
+  /api/v1/user/check:
+    post:
+      consumes:
+      - application/json
+      description: Check if a username already exists
+      parameters:
+      - description: Username to check
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.CheckUsernameRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-user_CheckUsernameResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Check username exists
+      tags:
+      - User
+  /api/v1/user/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user with username and password
+      parameters:
+      - description: New user information
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.CreateUserRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-user_CreateUserResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Create user
+      tags:
+      - User
+  /api/v1/user/delete:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the current authenticated user and all related data
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-user_DeleteUserResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Delete current user
+      tags:
+      - User
+  /api/v1/user/info:
+    put:
+      consumes:
+      - application/json
+      description: Update current user's information (username, mail). Only provided
+        fields will be updated.
+      parameters:
+      - description: Bearer access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Fields to update (only non-null fields will be updated)
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.UpdateUserRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/swagger.BaseSuccessResponse-user_UpdateUserResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/swagger.BaseFailResponse'
+      summary: Update user
+      tags:
+      - User
+swagger: "2.0"

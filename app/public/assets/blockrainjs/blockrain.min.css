@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using clean-css v5.3.3.
+ * Original file: /npm/blockrain@0.2.0/dist/blockrain.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+.blockrain-game-holder{position:relative;padding:0;margin:0;color:#fff;font-size:18px;line-height:140%}.blockrain-btn{position:relative;display:inline-block;background:0 0;color:#fff;text-decoration:none;border:2px solid #fff;padding:15px 30px;font-size:18px;text-align:center;cursor:default}.blockrain-btn::before{position:absolute;content:"";top:100%;left:0;bottom:0;right:0;border:2px solid #fff;border-top:none;border-right:none;transition:all .2s ease}.blockrain-btn::after{position:absolute;content:"";top:0;left:100%;bottom:0;right:0;border:2px solid #fff;border-left:none;border-bottom:none;transition:all .2s ease}.blockrain-btn:hover::before{left:5px;bottom:-8px;right:-8px}.blockrain-btn:hover::after{top:5px;bottom:-8px;right:-8px}.blockrain-score-holder{position:absolute;top:20px;right:20px;text-align:right}.blockrain-score-msg{font-size:14px;line-height:100%;margin-bottom:.2em}.blockrain-score-num{font-size:20px;font-weight:700}.blockrain-game-over-holder,.blockrain-start-holder{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);text-align:center}.blockrain-game-over,.blockrain-start{position:absolute;top:50%;width:100%;transform:translateY(-50%)}.blockrain-game-over-msg,.blockrain-start-msg{font-size:18px;margin-bottom:30px}
+/*# sourceMappingURL=/sm/ccc559bb6ea4393cfa1d2896db85649807eb365134dc3d3c809b76a7abc247f3.map */

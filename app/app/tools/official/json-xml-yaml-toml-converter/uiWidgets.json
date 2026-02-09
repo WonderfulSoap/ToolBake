@@ -1,0 +1,55 @@
+[
+  [
+    {
+      "id": "json-input",
+      "type": "TextareaInput",
+      "title": "JSON",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste JSON here...",
+        "rows": 8,
+        "defaultValue": "{\n  \"name\": \"ToolBake\",\n  \"version\": 1,\n  \"tags\": [\"json\", \"xml\", \"yaml\"]\n}",
+        "highlight": "highlight:json"
+      }
+    }
+  ],
+  [
+    {
+      "id": "yaml-input",
+      "type": "TextareaInput",
+      "title": "YAML",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste YAML here...",
+        "rows": 8,
+        "highlight": "highlight:yaml"
+      }
+    }
+  ],
+  [
+    {
+      "id": "toml-input",
+      "type": "TextareaInput",
+      "title": "TOML",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste TOML here...",
+        "rows": 8,
+        "highlight": "highlight:toml"
+      }
+    }
+  ],
+  [
+    {
+      "id": "xml-input",
+      "type": "TextareaInput",
+      "title": "XML",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste XML here...",
+        "rows": 8,
+        "highlight": "highlight:xml"
+      }
+    }
+  ]
+]

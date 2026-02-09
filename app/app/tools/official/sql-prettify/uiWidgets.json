@@ -1,0 +1,29 @@
+[
+  [
+    {
+      "id": "sql-input",
+      "type": "TextareaInput",
+      "title": "SQL Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste SQL here...",
+        "rows": 10,
+        "defaultValue": "select users.id, users.name, orders.total from users join orders on users.id = orders.user_id where orders.total > 100 order by orders.total desc;",
+        "highlight": "highlight:sql"
+      }
+    }
+  ],
+  [
+    {
+      "id": "sql-output",
+      "type": "TextareaInput",
+      "title": "Prettified SQL",
+      "mode": "output",
+      "props": {
+        "placeholder": "Formatted SQL will appear here...",
+        "rows": 10,
+        "highlight": "highlight:sql"
+      }
+    }
+  ]
+]

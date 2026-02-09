@@ -1,0 +1,64 @@
+[
+  [
+    {
+      "id": "input-image",
+      "type": "FilesUploadInput",
+      "title": "Upload Images",
+      "mode": "input",
+      "props": {
+        "description": "Upload one or more image files to crop and rotate",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "preview-label",
+      "type": "LabelInput",
+      "title": "Preview & Edit",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground leading-relaxed'>Upload images to start editing. You can adjust rotation and select a crop area. All uploaded images will be processed with the same settings.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convert-btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Convert Images",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to convert all uploaded images with current settings"
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-command",
+      "type": "LabelInput",
+      "title": "ImageMagick Command",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Command will appear here after conversion</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-preview",
+      "type": "LabelInput",
+      "title": "Converted Results",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Converted images will appear here</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

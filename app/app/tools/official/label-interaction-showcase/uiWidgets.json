@@ -1,0 +1,182 @@
+[
+  [
+    {
+      "id": "scene-title",
+      "type": "TextInput",
+      "title": "Scene Title",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Title",
+        "prefixLabelSize": "5.5em",
+        "placeholder": "Incident bridge recap",
+        "defaultValue": "Incident Bridge Hand-off"
+      }
+    },
+    {
+      "id": "tone-mode",
+      "type": "SelectListInput",
+      "title": "Tone",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick a tone",
+        "defaultValue": "neutral",
+        "options": [
+          {
+            "value": "neutral",
+            "label": "Neutral"
+          },
+          {
+            "value": "calm",
+            "label": "Calm"
+          },
+          {
+            "value": "urgent",
+            "label": "Urgent"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "story-body",
+      "type": "TextareaInput",
+      "title": "Story",
+      "mode": "input",
+      "props": {
+        "placeholder": "Describe the situation or desired response...",
+        "rows": 4,
+        "defaultValue": "The core platform is stable, but we are monitoring elevated API latencies. Use the dialog preview to share next steps with the on-call rotation."
+      }
+    }
+  ],
+  [
+    {
+      "id": "action-tags",
+      "type": "TagInput",
+      "title": "Action Tags",
+      "mode": "input",
+      "props": {
+        "placeholder": "Add tags and press Enter",
+        "maxTags": 5
+      }
+    },
+    {
+      "id": "progress-meter",
+      "type": "SliderInput",
+      "title": "Progress",
+      "mode": "input",
+      "props": {
+        "defaultValue": 45,
+        "max": 100,
+        "step": 5,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "show-dialog",
+      "type": "ToggleInput",
+      "title": "Dialog Mode",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Show",
+        "description": "Keep the dialog preview pinned inside the label."
+      }
+    },
+    {
+      "id": "open-dialog",
+      "type": "ButtonInput",
+      "title": "Dialog Trigger",
+      "mode": "input",
+      "props": {
+        "label": "Preview Dialog",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to simulate a dialog opening."
+      }
+    }
+  ],
+  [
+    {
+      "id": "accent-style",
+      "type": "SelectListInput",
+      "title": "Accent",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick accent",
+        "defaultValue": "sky",
+        "options": [
+          {
+            "value": "sky",
+            "label": "Sky"
+          },
+          {
+            "value": "emerald",
+            "label": "Emerald"
+          },
+          {
+            "value": "amber",
+            "label": "Amber"
+          },
+          {
+            "value": "rose",
+            "label": "Rose"
+          }
+        ]
+      }
+    },
+    {
+      "id": "queue-size",
+      "type": "NumberInput",
+      "title": "Queue",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Items",
+        "min": 0,
+        "max": 99,
+        "step": 1,
+        "defaultValue": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "image-file",
+      "type": "FileUploadInput",
+      "title": "Image Upload",
+      "mode": "input",
+      "props": {
+        "description": "Upload an image to preview rotations."
+      }
+    }
+  ],
+  [
+    {
+      "id": "label-preview",
+      "type": "LabelInput",
+      "title": "Live Label Canvas",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-3'><div class='text-sm leading-relaxed text-muted-foreground'>The live label preview will appear here.</div><button class='inline-flex items-center rounded-sm bg-muted px-2 py-1 text-xs font-medium text-foreground' data-label-action='toggle' data-label-target='label-inline-dialog'>Open Dialog</button><div data-label-id='label-inline-dialog' class='hidden rounded-md border border-border bg-background p-3'><div class='text-sm font-semibold text-foreground'>Inline Dialog</div><div class='mt-1 text-xs text-muted-foreground'>This dialog is rendered inside LabelInput HTML.</div><button class='mt-2 text-xs text-primary underline underline-offset-2' data-label-action='close' data-label-target='label-inline-dialog'>Close</button></div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "label-activity",
+      "type": "LabelInput",
+      "title": "Interaction Trace",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Waiting for the first interaction...</div>",
+        "tone": "muted",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,115 @@
+[
+  [
+    {
+      "id": "refresh_btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Refresh Info",
+        "variant": "default",
+        "description": "Click to update screen information"
+      }
+    }
+  ],
+  [
+    {
+      "id": "physical_res",
+      "type": "LabelInput",
+      "title": "Physical Resolution (Est.)",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    },
+    {
+      "id": "device_res",
+      "type": "LabelInput",
+      "title": "Device Resolution (Logical)",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "inner_res",
+      "type": "LabelInput",
+      "title": "Device Inner Resolution",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    },
+    {
+      "id": "viewport",
+      "type": "LabelInput",
+      "title": "Browser Viewport",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "aspect_ratio",
+      "type": "LabelInput",
+      "title": "Display Aspect Ratio",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    },
+    {
+      "id": "dpr",
+      "type": "LabelInput",
+      "title": "DPR (Device Pixel Ratio)",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "color_depth",
+      "type": "LabelInput",
+      "title": "Color Depth",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    },
+    {
+      "id": "pixel_depth",
+      "type": "LabelInput",
+      "title": "Pixel Depth",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "res_category",
+      "type": "LabelInput",
+      "title": "Your Resolution Is",
+      "mode": "output",
+      "props": {
+        "content": "<span class=\"text-muted-foreground\">Loading...</span>",
+        "tone": "default"
+      }
+    }
+  ]
+]

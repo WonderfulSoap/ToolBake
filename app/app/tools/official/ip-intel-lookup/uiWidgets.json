@@ -1,0 +1,137 @@
+[
+  [
+    {
+      "id": "provider",
+      "type": "SelectListInput",
+      "title": "IP Provider",
+      "mode": "input",
+      "props": {
+        "defaultValue": "ipapi",
+        "options": [
+          {
+            "value": "ipapi",
+            "label": "ipapi.co"
+          },
+          {
+            "value": "ip-api",
+            "label": "ip-api"
+          },
+          {
+            "value": "ipify",
+            "label": "ipify"
+          }
+        ]
+      }
+    },
+    {
+      "id": "custom_ip",
+      "type": "TextInput",
+      "title": "Lookup IP (optional)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Leave empty to use your current IP",
+        "prefixLabel": "IP",
+        "prefixLabelSize": "4em"
+      }
+    },
+    {
+      "id": "lookup_ip",
+      "type": "ButtonInput",
+      "title": "Lookup",
+      "mode": "input",
+      "props": {
+        "label": "Query IP",
+        "variant": "default",
+        "size": "default",
+        "description": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "provider_note",
+      "type": "LabelInput",
+      "title": "Provider Notes",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-1 text-sm leading-relaxed text-muted-foreground'><div class='flex items-center gap-2 text-foreground'><span class='font-semibold'>ipapi.co</span><span class='inline-flex items-center gap-1 rounded-sm bg-muted/60 px-1.5 py-0.5 text-[11px] uppercase tracking-wide text-muted-foreground'>free tier</span></div><ul class='list-disc pl-4 space-y-1'><li>Endpoint: <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>https://ipapi.co/json/</code></li><li>Limit: Free tier up to 1,000 requests per day.</li><li>Returns IP, location, ASN, and ISP details.</li></ul></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "ip_summary",
+      "type": "MultiTextInput",
+      "title": "Common Fields",
+      "mode": "output",
+      "props": {
+        "gap": "0",
+        "items": [
+          {
+            "id": "ip",
+            "title": "",
+            "prefixLabel": "IP",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "country",
+            "title": "",
+            "prefixLabel": "Country",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "region",
+            "title": "",
+            "prefixLabel": "Region",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "city",
+            "title": "",
+            "prefixLabel": "City",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "timezone",
+            "title": "",
+            "prefixLabel": "Timezone",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "isp",
+            "title": "",
+            "prefixLabel": "ISP",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "organization",
+            "title": "",
+            "prefixLabel": "Organization",
+            "prefixLabelSize": "10em"
+          },
+          {
+            "id": "asn",
+            "title": "",
+            "prefixLabel": "ASN",
+            "prefixLabelSize": "10em"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "raw_response",
+      "type": "TextareaInput",
+      "title": "Raw Response",
+      "mode": "output",
+      "props": {
+        "placeholder": "JSON response will appear here...",
+        "rows": 12,
+        "highlight": "highlight:json"
+      }
+    }
+  ]
+]

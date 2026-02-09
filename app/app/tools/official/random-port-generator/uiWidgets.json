@@ -1,0 +1,42 @@
+[
+  [
+    {
+      "id": "random_port",
+      "type": "TextInput",
+      "title": "Random port",
+      "mode": "output",
+      "props": {
+        "placeholder": "Random port will appear here",
+        "prefixLabel": "Port",
+        "prefixLabelSize": "4em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "refresh_port",
+      "type": "ButtonInput",
+      "title": "Refresh",
+      "mode": "input",
+      "props": {
+        "label": "Refresh",
+        "variant": "default",
+        "size": "default",
+        "description": "Generate a new random port"
+      }
+    }
+  ],
+  [
+    {
+      "id": "port_guide",
+      "type": "LabelInput",
+      "title": "Port reference",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm font-semibold text-foreground'>Common ports</div><ul class='list-disc pl-4 space-y-1 text-sm text-muted-foreground'><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>21</code> FTP</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>22</code> SSH</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>25</code> SMTP</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>53</code> DNS</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>80</code> HTTP</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>110</code> POP3</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>143</code> IMAP</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>443</code> HTTPS</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>3306</code> MySQL</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>5432</code> PostgreSQL</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>6379</code> Redis</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>27017</code> MongoDB</li><li><code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>8080</code> HTTP Alternate</li></ul><div class='text-xs text-muted-foreground'>Well-known: 0-1023. Registered: 1024-49151. Dynamic/Private: 49152-65535.</div></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

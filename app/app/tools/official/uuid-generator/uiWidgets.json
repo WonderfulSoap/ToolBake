@@ -1,0 +1,121 @@
+[
+  [
+    {
+      "id": "uuid_version",
+      "type": "SelectListInput",
+      "title": "UUID version",
+      "mode": "input",
+      "props": {
+        "placeholder": "",
+        "defaultValue": "v4",
+        "options": [
+          {
+            "value": "v1",
+            "label": "v1"
+          },
+          {
+            "value": "v4",
+            "label": "v4"
+          },
+          {
+            "value": "v6",
+            "label": "v6"
+          },
+          {
+            "value": "v7",
+            "label": "v7"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "upper_case",
+      "type": "ToggleInput",
+      "title": "Upper Case",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Upper Case",
+        "description": ""
+      }
+    },
+    {
+      "id": "with_hyphen",
+      "type": "ToggleInput",
+      "title": "Hyphen",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "include hyphen",
+        "description": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "multi_num",
+      "type": "NumberInput",
+      "title": "Batch generation",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Numbers",
+        "min": 1,
+        "max": 999,
+        "step": 1,
+        "defaultValue": 1
+      }
+    },
+    {
+      "id": "batch_format",
+      "type": "SelectListInput",
+      "title": "Batch Format",
+      "mode": "input",
+      "props": {
+        "placeholder": "",
+        "defaultValue": "lines",
+        "options": [
+          {
+            "value": "lines",
+            "label": "lines"
+          },
+          {
+            "value": "json",
+            "label": "json"
+          },
+          {
+            "value": "csv",
+            "label": "csv"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "multi-result",
+      "type": "TextareaInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "placeholder": "",
+        "rows": 6
+      }
+    }
+  ],
+  [
+    {
+      "id": "regenerate",
+      "type": "ButtonInput",
+      "title": "Regenerate",
+      "mode": "input",
+      "props": {
+        "label": "Run",
+        "variant": "default",
+        "size": "default",
+        "description": ""
+      }
+    }
+  ]
+]

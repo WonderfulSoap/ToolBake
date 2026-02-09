@@ -1,0 +1,38 @@
+[
+  [
+    {
+      "id": "raw_text",
+      "type": "TextareaInput",
+      "title": "Raw Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter the original text...",
+        "rows": 6
+      }
+    }
+  ],
+  [
+    {
+      "id": "encoded_uri",
+      "type": "TextareaInput",
+      "title": "<div class='space-y-1'><div>encodeURI() Output</div><div class='text-[11px] leading-snug text-muted-foreground'>Encodes only the required parts to keep full URLs readable.</div></div>",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter encodeURI() output...",
+        "rows": 6
+      }
+    }
+  ],
+  [
+    {
+      "id": "encoded_uri_component",
+      "type": "TextareaInput",
+      "title": "<div class='space-y-1'><div>encodeURIComponent() Output</div><div class='text-[11px] leading-snug text-muted-foreground'>Encodes every component value for safe query or path segments.</div></div>",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter encodeURIComponent() output...",
+        "rows": 6
+      }
+    }
+  ]
+]

@@ -1,0 +1,91 @@
+[
+  [
+    {
+      "id": "allow-html",
+      "type": "ToggleInput",
+      "title": "Allow HTML",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "HTML",
+        "description": "Enable raw HTML in Markdown."
+      }
+    },
+    {
+      "id": "linkify",
+      "type": "ToggleInput",
+      "title": "Auto Link",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Linkify",
+        "description": "Convert plain URLs into links."
+      }
+    }
+  ],
+  [
+    {
+      "id": "typographer",
+      "type": "ToggleInput",
+      "title": "Typographer",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Smart Quotes",
+        "description": "Use typographic replacements."
+      }
+    },
+    {
+      "id": "breaks",
+      "type": "ToggleInput",
+      "title": "Soft Breaks",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Breaks",
+        "description": "Convert line breaks to &lt;br&gt;"
+      }
+    }
+  ],
+  [
+    {
+      "id": "input-markdown",
+      "type": "TextareaInput",
+      "title": "Markdown Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Write or paste Markdown here...",
+        "rows": 6,
+        "defaultValue": "# Markdown Preview\n\nType **Markdown** on the left to see a live HTML preview.\n\n- Supports lists\n- Supports _emphasis_ and links\n\n> Toggle options below to change rendering.",
+        "highlight": "highlight:markdown"
+      }
+    }
+  ],
+  [
+    {
+      "id": "preview-html",
+      "type": "LabelInput",
+      "title": "Rendered Preview",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm leading-relaxed text-muted-foreground'>Rendered preview will appear here.</div>",
+        "tone": "default",
+        "autoHeight": true,
+        "maxHeight": "360px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "output-html",
+      "type": "TextareaInput",
+      "title": "HTML Output",
+      "mode": "output",
+      "props": {
+        "placeholder": "Rendered HTML will appear here...",
+        "rows": 8,
+        "highlight": "highlight:html"
+      }
+    }
+  ]
+]

@@ -1,0 +1,125 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple audio files to convert into raw PCM using ffmpeg.wasm."
+      }
+    }
+  ],
+  [
+    {
+      "id": "sampleFormat",
+      "type": "SelectListInput",
+      "title": "Sample Format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Select format",
+        "defaultValue": "s16le",
+        "options": [
+          {
+            "value": "s16le",
+            "label": "16-bit PCM (LE)"
+          },
+          {
+            "value": "s24le",
+            "label": "24-bit PCM (LE)"
+          },
+          {
+            "value": "s32le",
+            "label": "32-bit PCM (LE)"
+          },
+          {
+            "value": "f32le",
+            "label": "32-bit Float (LE)"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertTrigger",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert to PCM",
+        "variant": "default",
+        "size": "default",
+        "width": "180px",
+        "description": "Run conversion with PCM output"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertOutput",
+      "type": "LabelInput",
+      "title": "Converted PCM Files",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertError",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertLog",
+      "type": "LabelInput",
+      "title": "FFmpeg Log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

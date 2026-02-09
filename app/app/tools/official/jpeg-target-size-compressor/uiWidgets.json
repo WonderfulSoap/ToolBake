@@ -1,0 +1,144 @@
+[
+  [
+    {
+      "id": "intro_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"space-y-2\"><p class=\"text-sm font-semibold text-foreground\">JPEG Target Size Compressor</p><div class=\"text-sm leading-relaxed text-muted-foreground\">Upload multiple JPEG files and compress them to a target size using ImageMagick. Adjust quality, optional metadata stripping, 4:2:0 sampling, and interlaced output.</div><ul class=\"list-disc pl-4 space-y-1 text-sm text-muted-foreground\"><li>Target size accepts values like <code class=\"rounded bg-muted px-1 py-0.5 text-[12px] font-mono\">800KB</code> or <code class=\"rounded bg-muted px-1 py-0.5 text-[12px] font-mono\">1MB</code>.</li><li>Non-JPEG inputs will be skipped.</li></ul></div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "source_images",
+      "type": "FilesUploadInput",
+      "title": "JPEG Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple JPEG images to compress.",
+        "allowDirectory": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "target_size",
+      "type": "TextInput",
+      "title": "Target Size",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Extent",
+        "prefixLabelSize": "6em",
+        "placeholder": "1MB",
+        "defaultValue": "1MB",
+        "size": "mini"
+      }
+    },
+    {
+      "id": "quality",
+      "type": "SliderInput",
+      "title": "Quality",
+      "mode": "input",
+      "props": {
+        "defaultValue": 85,
+        "min": 40,
+        "max": 100,
+        "step": 1,
+        "valueSuffix": "%"
+      }
+    }
+  ],
+  [
+    {
+      "id": "strip_meta",
+      "type": "ToggleInput",
+      "title": "Strip Metadata",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Enabled",
+        "description": "Remove EXIF and other metadata using -strip."
+      }
+    },
+    {
+      "id": "sampling_420",
+      "type": "ToggleInput",
+      "title": "Sampling 4:2:0",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Enabled",
+        "description": "Apply -sampling-factor 4:2:0."
+      }
+    },
+    {
+      "id": "interlace_plane",
+      "type": "ToggleInput",
+      "title": "Interlace Plane",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Enabled",
+        "description": "Apply -interlace Plane."
+      }
+    }
+  ],
+  [
+    {
+      "id": "compress_progress",
+      "type": "ProgressBarInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "label": "Compression progress",
+        "hint": "Waiting for images",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "compress_trigger",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Compress JPEGs",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to run ImageMagick compression."
+      }
+    }
+  ],
+  [
+    {
+      "id": "status_label",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Upload JPEG files to start.</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "output_label",
+      "type": "LabelInput",
+      "title": "Results",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Compressed files will appear here.</div>",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

@@ -1,0 +1,135 @@
+[
+  [
+    {
+      "id": "info_label",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Powered by <a href='https://github.com/JSONPath-Plus/JSONPath' target='_blank' class='font-medium text-primary underline underline-offset-2'>jsonpath-plus</a>. Convert JSON arrays or column objects into CSV with custom layout options.</div>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "json_format",
+      "type": "SelectListInput",
+      "title": "JSON Format",
+      "mode": "input",
+      "props": {
+        "defaultValue": "auto",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "array_objects",
+            "label": "Items with headers"
+          },
+          {
+            "value": "array_arrays",
+            "label": "Items as arrays"
+          },
+          {
+            "value": "object_columns",
+            "label": "Columns as object"
+          }
+        ]
+      }
+    },
+    {
+      "id": "json_path",
+      "type": "TextInput",
+      "title": "JSON Path Filter",
+      "mode": "input",
+      "props": {
+        "placeholder": "$.items[*]",
+        "prefixLabel": "Path",
+        "prefixLabelSize": "4em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "csv_layout",
+      "type": "SelectListInput",
+      "title": "CSV Layout",
+      "mode": "input",
+      "props": {
+        "defaultValue": "row",
+        "options": [
+          {
+            "value": "row",
+            "label": "Rows as items"
+          },
+          {
+            "value": "column",
+            "label": "Columns as items"
+          }
+        ]
+      }
+    },
+    {
+      "id": "csv_has_header",
+      "type": "ToggleInput",
+      "title": "Include CSV Header",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Header",
+        "description": ""
+      }
+    },
+    {
+      "id": "csv_delimiter",
+      "type": "TextInput",
+      "title": "CSV Delimiter",
+      "mode": "input",
+      "props": {
+        "defaultValue": ",",
+        "placeholder": ",",
+        "prefixLabel": "Delimiter",
+        "prefixLabelSize": "6em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "csv_download",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "json_input",
+      "type": "TextareaInput",
+      "title": "JSON",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste JSON data here...",
+        "defaultValue": "[\n  {\n    \"name\": \"Alice\",\n    \"age\": 30,\n    \"city\": \"Paris\"\n  },\n  {\n    \"name\": \"Bob\",\n    \"age\": 28,\n    \"city\": \"Berlin\"\n  }\n]",
+        "highlight": "highlight:json",
+        "rows": 20
+      }
+    },
+    {
+      "id": "csv_output",
+      "type": "TextareaInput",
+      "title": "CSV",
+      "mode": "output",
+      "props": {
+        "placeholder": "CSV output will appear here...",
+        "rows": 20
+      }
+    }
+  ]
+]

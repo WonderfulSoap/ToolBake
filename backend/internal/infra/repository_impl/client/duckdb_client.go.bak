@@ -1,0 +1,50 @@
+package client
+
+import (
+	"os"
+	"path/filepath"
+	"ya-tool-craft/internal/config"
+
+	_ "github.com/duckdb/duckdb-go/v2"
+	"github.com/jmoiron/sqlx"
+	"github.com/pkg/errors"
+)
+
+func NewDuckDBClient(config config.Config) (*DuckDBClient, error) {
+	if config.DuckDBPath == "" {
+		return nil, errors.Errorf("invalid duckdb store path: %s", config.DuckDBPath)
+	}
+
+	// support in-memory duckdb
+	path := config.DuckDBPath
+	if path == "memory" {
+		path = ""
+	} else {
+		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+			return nil, errors.Wrapf(err, "failed to create duckdb store path: %s", path)
+		}
+	}
+
+	db, err := sqlx.Open("duckdb", path)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to open duckdb: %s", path)
+	}
+
+	return &DuckDBClient{
+		db:     db,
+		config: config,
+	}, nil
+}
+
+type DuckDBClient struct {
+	db     *sqlx.DB
+	config config.Config
+}
+
+func (c *DuckDBClient) DB() *sqlx.DB {
+	return c.db
+}
+
+func (c *DuckDBClient) Close() error {
+	return c.db.Close()
+}

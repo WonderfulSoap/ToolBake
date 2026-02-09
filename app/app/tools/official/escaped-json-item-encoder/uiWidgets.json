@@ -1,0 +1,44 @@
+[
+  [
+    {
+      "id": "escaped-text",
+      "type": "TextareaInput",
+      "title": "JSON Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste JSON...",
+        "rows": 8,
+        "defaultValue": "{\n    \"error\": \"Error: This is an error\\n\\tat REPL2:1:11\"\n}",
+        "highlight": "highlight:json"
+      }
+    }
+  ],
+  [
+    {
+      "id": "json-path",
+      "type": "TextInput",
+      "title": "JSONPath (Optional)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Example: $.items[0].name",
+        "prefixLabel": "Path",
+        "prefixLabelSize": "4em",
+        "defaultValue": "$.error"
+      }
+    }
+  ],
+  [
+    {
+      "id": "raw-text",
+      "type": "TextareaInput",
+      "title": "Rendered Text",
+      "mode": "output",
+      "props": {
+        "placeholder": "Rendered control characters will appear here...",
+        "rows": 8,
+        "defaultValue": "Error: This is an error\n\tat REPL2:1:11",
+        "highlight": "highlight:json"
+      }
+    }
+  ]
+]

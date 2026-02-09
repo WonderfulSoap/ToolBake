@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "id": "raw_text",
+      "type": "TextareaInput",
+      "title": "Raw Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter original text here...",
+        "rows": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "base64_text",
+      "type": "TextareaInput",
+      "title": "Base64 String",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter Base64 encoded string here...",
+        "rows": 8
+      }
+    }
+  ]
+]

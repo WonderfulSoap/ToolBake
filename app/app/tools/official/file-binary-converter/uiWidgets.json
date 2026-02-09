@@ -1,0 +1,115 @@
+[
+  [
+    {
+      "id": "file-upload",
+      "type": "FileUploadInput",
+      "title": "Upload File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a file to convert to binary/octal/decimal/hexadecimal (Max 20MB)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "file-size-warning",
+      "type": "LabelInput",
+      "title": "File Info",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "guide-divider-input",
+      "type": "DividerInput",
+      "title": "Binary Text",
+      "mode": "output",
+      "props": {
+        "label": "Binary Text",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "binary-content",
+      "type": "TextareaInput",
+      "title": "Binary",
+      "mode": "input",
+      "props": {
+        "placeholder": "Binary representation (space-separated bytes, e.g., 01001000 01100101)",
+        "rows": 4
+      }
+    }
+  ],
+  [
+    {
+      "id": "octal-content",
+      "type": "TextareaInput",
+      "title": "Octal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Octal representation (space-separated)",
+        "rows": 4
+      }
+    }
+  ],
+  [
+    {
+      "id": "decimal-content",
+      "type": "TextareaInput",
+      "title": "Decimal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Decimal representation (space-separated, 0-255)",
+        "rows": 4
+      }
+    }
+  ],
+  [
+    {
+      "id": "hexadecimal-content",
+      "type": "TextareaInput",
+      "title": "Hexadecimal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Hexadecimal representation (space-separated, 00-FF)",
+        "rows": 4
+      }
+    }
+  ],
+  [
+    {
+      "id": "custom-filename",
+      "type": "TextInput",
+      "title": "Download Filename",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Filename",
+        "prefixLabelSize": "6em",
+        "placeholder": "Enter custom filename (e.g., output.bin)",
+        "size": "mini"
+      }
+    }
+  ],
+  [
+    {
+      "id": "download-label",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

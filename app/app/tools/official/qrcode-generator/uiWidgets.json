@@ -1,0 +1,76 @@
+[
+  [
+    {
+      "id": "qr_text",
+      "type": "TextareaInput",
+      "title": "Text or URL",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter text or a URL to encode...",
+        "rows": 6
+      }
+    }
+  ],
+  [
+    {
+      "id": "foreground_color",
+      "type": "ColorInput",
+      "title": "Foreground",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#111827",
+        "showHex": true
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "ColorInput",
+      "title": "Background",
+      "mode": "input",
+      "props": {
+        "defaultValue": "#FFFFFF",
+        "showHex": true
+      }
+    },
+    {
+      "id": "error_level",
+      "type": "SelectListInput",
+      "title": "Error Level",
+      "mode": "input",
+      "props": {
+        "placeholder": "Pick level",
+        "defaultValue": "M",
+        "options": [
+          { "value": "L", "label": "L - Low" },
+          { "value": "M", "label": "M - Medium" },
+          { "value": "Q", "label": "Q - Quartile" },
+          { "value": "H", "label": "H - High" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "qr_preview",
+      "type": "LabelInput",
+      "title": "QR Code",
+      "mode": "output",
+      "props": {
+        "content": "<div class=\"text-sm text-muted-foreground\">Enter text to generate a QR code preview.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "qr_download",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ]
+]

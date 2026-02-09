@@ -1,0 +1,76 @@
+[
+  [
+    {
+      "id": "original-text",
+      "type": "TextareaInput",
+      "title": "Original Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter text (e.g., hello)",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "guide-divider-input",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Binary Text",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "binary-text",
+      "type": "TextareaInput",
+      "title": "Binary",
+      "mode": "input",
+      "props": {
+        "placeholder": "Binary representation (space-separated bytes)",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "octal-text",
+      "type": "TextareaInput",
+      "title": "Octal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Octal representation (space-separated)",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "decimal-text",
+      "type": "TextareaInput",
+      "title": "Decimal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Decimal representation (space-separated)",
+        "rows": 3
+      }
+    }
+  ],
+  [
+    {
+      "id": "hexadecimal-text",
+      "type": "TextareaInput",
+      "title": "Hexadecimal",
+      "mode": "input",
+      "props": {
+        "placeholder": "Hexadecimal representation (space-separated)",
+        "rows": 3
+      }
+    }
+  ]
+]

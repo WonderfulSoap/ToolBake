@@ -1,0 +1,141 @@
+[
+  [
+    {
+      "id": "url_input",
+      "type": "TextInput",
+      "title": "URL Input",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter a URL to parse",
+        "defaultValue": "https://user:pass@example.com:8080/path?key=value&foo=bar&search=%E2%9D%A4%EF%B8%8F#section_id"
+      }
+    }
+  ],
+  [
+    {
+      "id": "decode_params",
+      "type": "ToggleInput",
+      "title": "URL Decode Parameters",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Enabled",
+        "description": "Decode URL-encoded query parameters for easier reading"
+      }
+    }
+  ],
+  [
+    {
+      "id": "protocol",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Protocol",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "username",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Username",
+        "prefixLabelSize": "8em"
+      }
+    },
+    {
+      "id": "password",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Password",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "hostname",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Hostname",
+        "prefixLabelSize": "8em"
+      }
+    },
+    {
+      "id": "port",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Port",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "pathname",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Pathname",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "hash",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Hash",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "search",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Search",
+        "prefixLabelSize": "8em"
+      }
+    }
+  ],
+  [
+    {
+      "id": "query_params",
+      "type": "TextareaInput",
+      "title": "<div class='space-y-1'><div>Query Parameters</div><div class='text-[11px] leading-snug text-muted-foreground'>Parsed key-value pairs from the search string</div></div>",
+      "mode": "output",
+      "props": {
+        "rows": 6
+      }
+    },
+    {
+      "id": "query_params_table",
+      "type": "LabelInput",
+      "title": "<div class='space-y-1'><div>Query Parameters Table</div><div class='text-[11px] leading-snug text-muted-foreground'>Structured view of query parameters</div></div>",
+      "mode": "output",
+      "props": {
+        "content": "<table class='w-full border-collapse text-sm'><thead><tr class='border-b border-border'><th class='text-left py-2 px-2 font-semibold text-foreground'>Key</th><th class='text-left py-2 px-2 font-semibold text-foreground'>Value</th></tr></thead><tbody id='query-table-body'></tbody></table>",
+        "autoHeight": true
+      }
+    }
+  ]
+]
+

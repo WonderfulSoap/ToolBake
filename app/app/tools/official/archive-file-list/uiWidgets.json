@@ -1,0 +1,108 @@
+[
+  [
+    {
+      "id": "archiveFile",
+      "type": "FileUploadInput",
+      "title": "Archive file",
+      "mode": "input",
+      "props": {
+        "description": "Upload a single archive (.zip, .7z, .rar, .tar, ...) to list its contents.",
+        "mini": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "nameEncoding",
+      "type": "SelectListInput",
+      "title": "Filename encoding",
+      "mode": "input",
+      "props": {
+        "placeholder": "Auto",
+        "defaultValue": "auto",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto (7-Zip default)"
+          },
+          {
+            "value": "utf-8",
+            "label": "UTF-8"
+          },
+          {
+            "value": "gbk",
+            "label": "GBK"
+          },
+          {
+            "value": "big5",
+            "label": "Big5"
+          },
+          {
+            "value": "shift_jis",
+            "label": "Shift_JIS"
+          },
+          {
+            "value": "euc-kr",
+            "label": "EUC-KR"
+          },
+          {
+            "value": "cp437",
+            "label": "CP437"
+          },
+          {
+            "value": "windows-1251",
+            "label": "Windows-1251"
+          }
+        ]
+      }
+    },
+    {
+      "id": "archivePassword",
+      "type": "TextInput",
+      "title": "Password",
+      "mode": "input",
+      "props": {
+        "placeholder": "Leave blank if the archive is not encrypted"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "fileList",
+      "type": "LabelInput",
+      "title": "Archive file list",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "rawOutput",
+      "type": "LabelInput",
+      "title": "7-Zip raw output",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

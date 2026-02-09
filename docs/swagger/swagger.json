@@ -1,0 +1,3032 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server",
+        "title": "My-Golang-Framework",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "WonderfulSoap"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/auth/2fa": {
+            "get": {
+                "description": "Get 2FA information for the current user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get 2FA info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_TwoFAGetResponseDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a specific 2FA method for the current user (requires verification code)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Delete 2FA",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "2FA type and verification code",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.TwoFADeleteRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/2fa/login": {
+            "post": {
+                "description": "Complete login with 2FA verification",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "2FA Login",
+                "parameters": [
+                    {
+                        "description": "2FA login request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.TwoFALoginRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_TwoFALoginResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/2fa/recovery": {
+            "post": {
+                "description": "Remove 2FA using recovery code. Use this when you've lost access to your authenticator app.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "2FA Recovery",
+                "parameters": [
+                    {
+                        "description": "2FA recovery request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.TwoFARecoveryRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/2fa/totp": {
+            "get": {
+                "description": "Generate TOTP secret and QR code for 2FA setup",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Retrieve TOTP setup info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_TwoFARetrieveTOTPResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Verify TOTP code and enable 2FA for the user. Returns a recovery code that can be used to disable 2FA.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Add TOTP 2FA",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "TOTP verification request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.TwoFATOTPAddRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_TwoFATOTPAddResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/access-token": {
+            "post": {
+                "description": "issue new access token by refresh token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "issue new access token",
+                "parameters": [
+                    {
+                        "description": "Refresh token",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.IssueAccessTokenRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_IssueAccessTokenResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "description": "login and get refresh token, access token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login",
+                "parameters": [
+                    {
+                        "description": "Account information",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.LoginRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "description": "invalidate tokens associated with the current access token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "logout",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkey/login/challenge": {
+            "post": {
+                "description": "Generate challenge for passkey login. Returns WebAuthn CredentialRequestOptions for navigator.credentials.get()",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Begin passkey login",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_PasskeyLoginChallengeResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkey/login/verify": {
+            "post": {
+                "description": "Verify the passkey credential from navigator.credentials.get() and return tokens",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Finish passkey login",
+                "parameters": [
+                    {
+                        "description": "Passkey credential assertion response",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.PasskeyLoginRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkey/register/challenge": {
+            "post": {
+                "description": "Generate challenge for passkey registration. Returns WebAuthn CredentialCreationOptions for navigator.credentials.create()",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Begin passkey registration",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_PasskeyChallengeResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkey/register/verify": {
+            "post": {
+                "description": "Verify and store the passkey credential created by navigator.credentials.create()",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Finish passkey registration",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Passkey credential response",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.PasskeyRegisterRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkeys": {
+            "get": {
+                "description": "Get all passkeys for the current user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get passkeys",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_PasskeyGetResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/passkeys/{passkey_id}": {
+            "delete": {
+                "description": "Delete a passkey for the current user by passkey ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Delete passkey",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Passkey ID",
+                        "name": "passkey_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/sso/bindings": {
+            "get": {
+                "description": "Get all SSO bindings for the current user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get SSO bindings",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_SSOBindingGetResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a SSO binding for the current user by provider",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Delete SSO binding",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Delete SSO binding request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.SSOBindingDeleteRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/sso/{provider}": {
+            "put": {
+                "description": "Bind a SSO account (github/google) to the current user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Add SSO binding",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "SSO provider (github/google)",
+                        "name": "provider",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "OAuth code",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.SSOLoginRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Login via SSO (github/google) and get refresh token, access token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "SSO login(If user not exists, create a new user)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "SSO provider (github/google)",
+                        "name": "provider",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "OAuth code",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.SSOLoginRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-auth_LoginResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/global-script": {
+            "get": {
+                "description": "Retrieve the global script bound to the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GlobalScript"
+                ],
+                "summary": "Get global script",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-global_script_GetGlobalScriptResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Create or update the global script for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GlobalScript"
+                ],
+                "summary": "Update global script",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Global script body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/global_script.UpdateGlobalScriptRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-global_script_UpdateGlobalScriptResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/healthcheck": {
+            "get": {
+                "description": "Verify that the service is up",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Maintenance"
+                ],
+                "summary": "Health check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-any"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tools": {
+            "get": {
+                "description": "Retrieve all tools of the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "List tools",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-tools_AllToolsResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tools/create": {
+            "post": {
+                "description": "Create a custom tool under the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Create tool",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Tool definition",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tools.CreateToolRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-tools_CreateToolResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tools/{tool_uid}": {
+            "put": {
+                "description": "Update an existing tool belonging to the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Update tool",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Tool identifier",
+                        "name": "tool_uid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Fields to update",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tools.UpdateToolRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-tools_UpdateToolResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a tool belonging to the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Delete tool",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Tool unique identifier (UID)",
+                        "name": "tool_uid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-tools_DeleteToolResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user": {
+            "get": {
+                "description": "Fetch user information based on the supplied access token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get current user info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-user_UserInfoResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/check": {
+            "post": {
+                "description": "Check if a username already exists",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Check username exists",
+                "parameters": [
+                    {
+                        "description": "Username to check",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.CheckUsernameRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-user_CheckUsernameResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/create": {
+            "post": {
+                "description": "Create a new user with username and password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create user",
+                "parameters": [
+                    {
+                        "description": "New user information",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.CreateUserRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-user_CreateUserResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/delete": {
+            "delete": {
+                "description": "Delete the current authenticated user and all related data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete current user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-user_DeleteUserResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/info": {
+            "put": {
+                "description": "Update current user's information (username, mail). Only provided fields will be updated.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer access token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Fields to update (only non-null fields will be updated)",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.UpdateUserRequestDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseSuccessResponse-user_UpdateUserResponseDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/swagger.BaseFailResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "auth.AuthenticatorSelectionCriteriaDto": {
+            "type": "object",
+            "properties": {
+                "authenticatorAttachment": {
+                    "type": "string",
+                    "example": "platform"
+                },
+                "requireResidentKey": {
+                    "type": "boolean"
+                },
+                "residentKey": {
+                    "type": "string",
+                    "example": "preferred"
+                },
+                "userVerification": {
+                    "type": "string",
+                    "example": "preferred"
+                }
+            }
+        },
+        "auth.IssueAccessTokenRequestDto": {
+            "type": "object",
+            "required": [
+                "refresh_token"
+            ],
+            "properties": {
+                "refresh_token": {
+                    "type": "string",
+                    "example": "refresh_token_a"
+                }
+            }
+        },
+        "auth.IssueAccessTokenResponseDto": {
+            "type": "object",
+            "required": [
+                "access_token",
+                "expires_in"
+            ],
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "access_token_a"
+                },
+                "expires_in": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-12-31T23:59:59Z"
+                }
+            }
+        },
+        "auth.LoginRequestDto": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "description": "password length should be between 6 and 32 characters",
+                    "type": "string",
+                    "maxLength": 32,
+                    "example": "password"
+                },
+                "username": {
+                    "description": "username length should be between 3 and 32 characters",
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3,
+                    "example": "username"
+                }
+            }
+        },
+        "auth.LoginResponseDto": {
+            "type": "object",
+            "required": [
+                "access_token",
+                "expires_in",
+                "refresh_token",
+                "refresh_token_expires_in"
+            ],
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "access_token_a"
+                },
+                "expires_in": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-12-31T23:59:59Z"
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "example": "refresh_token_a"
+                },
+                "refresh_token_expires_in": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-12-31T23:59:59Z"
+                }
+            }
+        },
+        "auth.PasskeyAssertionResponseDto": {
+            "type": "object",
+            "required": [
+                "authenticatorData",
+                "clientDataJSON",
+                "signature"
+            ],
+            "properties": {
+                "authenticatorData": {
+                    "type": "string",
+                    "example": "base64url-encoded-authenticator-data"
+                },
+                "clientDataJSON": {
+                    "type": "string",
+                    "example": "base64url-encoded-client-data-json"
+                },
+                "signature": {
+                    "type": "string",
+                    "example": "base64url-encoded-signature"
+                },
+                "userHandle": {
+                    "type": "string",
+                    "example": "base64url-encoded-user-handle"
+                }
+            }
+        },
+        "auth.PasskeyAttestationResponseDto": {
+            "type": "object",
+            "required": [
+                "attestationObject",
+                "clientDataJSON"
+            ],
+            "properties": {
+                "attestationObject": {
+                    "type": "string",
+                    "example": "base64url-encoded-attestation-object"
+                },
+                "clientDataJSON": {
+                    "type": "string",
+                    "example": "base64url-encoded-client-data-json"
+                },
+                "transports": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "auth.PasskeyChallengeResponseDto": {
+            "type": "object",
+            "required": [
+                "publicKey"
+            ],
+            "properties": {
+                "publicKey": {
+                    "$ref": "#/definitions/auth.PublicKeyCredentialCreationOptionsDto"
+                }
+            }
+        },
+        "auth.PasskeyDto": {
+            "type": "object",
+            "required": [
+                "backup_eligible",
+                "backup_state",
+                "created_at",
+                "credential_id",
+                "device_name",
+                "id",
+                "last_used_at"
+            ],
+            "properties": {
+                "backup_eligible": {
+                    "type": "boolean"
+                },
+                "backup_state": {
+                    "type": "boolean"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "credential_id": {
+                    "type": "string"
+                },
+                "device_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_used_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.PasskeyGetResponseDto": {
+            "type": "object",
+            "required": [
+                "passkeys"
+            ],
+            "properties": {
+                "passkeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.PasskeyDto"
+                    }
+                }
+            }
+        },
+        "auth.PasskeyLoginChallengeResponseDto": {
+            "type": "object",
+            "required": [
+                "publicKey"
+            ],
+            "properties": {
+                "publicKey": {
+                    "$ref": "#/definitions/auth.PublicKeyCredentialRequestOptionsDto"
+                }
+            }
+        },
+        "auth.PasskeyLoginRequestDto": {
+            "type": "object",
+            "required": [
+                "id",
+                "rawId",
+                "response",
+                "type"
+            ],
+            "properties": {
+                "authenticatorAttachment": {
+                    "type": "string",
+                    "example": "cross-platform"
+                },
+                "clientExtensionResults": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "id": {
+                    "type": "string",
+                    "example": "base64url-encoded-credential-id"
+                },
+                "rawId": {
+                    "type": "string",
+                    "example": "base64url-encoded-raw-id"
+                },
+                "response": {
+                    "$ref": "#/definitions/auth.PasskeyAssertionResponseDto"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "public-key"
+                }
+            }
+        },
+        "auth.PasskeyRegisterRequestDto": {
+            "type": "object",
+            "required": [
+                "id",
+                "rawId",
+                "response",
+                "type"
+            ],
+            "properties": {
+                "authenticatorAttachment": {
+                    "type": "string",
+                    "example": "platform"
+                },
+                "clientExtensionResults": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "deviceName": {
+                    "type": "string",
+                    "example": "MacBook Pro"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "base64url-encoded-credential-id"
+                },
+                "rawId": {
+                    "type": "string",
+                    "example": "base64url-encoded-raw-id"
+                },
+                "response": {
+                    "$ref": "#/definitions/auth.PasskeyAttestationResponseDto"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "public-key"
+                }
+            }
+        },
+        "auth.PubKeyCredParamDto": {
+            "type": "object",
+            "required": [
+                "alg",
+                "type"
+            ],
+            "properties": {
+                "alg": {
+                    "type": "integer",
+                    "example": -7
+                },
+                "type": {
+                    "type": "string",
+                    "example": "public-key"
+                }
+            }
+        },
+        "auth.PublicKeyCredentialCreationOptionsDto": {
+            "type": "object",
+            "required": [
+                "attestation",
+                "challenge",
+                "pubKeyCredParams",
+                "rp",
+                "timeout",
+                "user"
+            ],
+            "properties": {
+                "attestation": {
+                    "type": "string",
+                    "example": "none"
+                },
+                "authenticatorSelection": {
+                    "$ref": "#/definitions/auth.AuthenticatorSelectionCriteriaDto"
+                },
+                "challenge": {
+                    "type": "string",
+                    "example": "base64url-encoded-challenge"
+                },
+                "excludeCredentials": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.PublicKeyCredentialDescriptorDto"
+                    }
+                },
+                "pubKeyCredParams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.PubKeyCredParamDto"
+                    }
+                },
+                "rp": {
+                    "$ref": "#/definitions/auth.RelyingPartyDto"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "example": 300000
+                },
+                "user": {
+                    "$ref": "#/definitions/auth.UserEntityDto"
+                }
+            }
+        },
+        "auth.PublicKeyCredentialDescriptorDto": {
+            "type": "object",
+            "required": [
+                "id",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "base64url-encoded-credential-id"
+                },
+                "transports": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "example": "public-key"
+                }
+            }
+        },
+        "auth.PublicKeyCredentialRequestOptionsDto": {
+            "type": "object",
+            "required": [
+                "challenge",
+                "rpId",
+                "timeout"
+            ],
+            "properties": {
+                "allowCredentials": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.PublicKeyCredentialDescriptorDto"
+                    }
+                },
+                "challenge": {
+                    "type": "string",
+                    "example": "base64url-encoded-challenge"
+                },
+                "rpId": {
+                    "type": "string",
+                    "example": "localhost"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "example": 300000
+                },
+                "userVerification": {
+                    "type": "string",
+                    "example": "preferred"
+                }
+            }
+        },
+        "auth.RelyingPartyDto": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "localhost"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "ToolBake"
+                }
+            }
+        },
+        "auth.SSOBindingDeleteRequestDto": {
+            "type": "object",
+            "required": [
+                "provider"
+            ],
+            "properties": {
+                "provider": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.SSOBindingDto": {
+            "type": "object",
+            "required": [
+                "created_at",
+                "provider",
+                "provider_email",
+                "provider_user_id",
+                "provider_username"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "provider_email": {
+                    "type": "string"
+                },
+                "provider_user_id": {
+                    "type": "string"
+                },
+                "provider_username": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.SSOBindingGetResponseDto": {
+            "type": "object",
+            "required": [
+                "bindings"
+            ],
+            "properties": {
+                "bindings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.SSOBindingDto"
+                    }
+                }
+            }
+        },
+        "auth.SSOLoginRequestDto": {
+            "type": "object",
+            "required": [
+                "oauth_code"
+            ],
+            "properties": {
+                "oauth_code": {
+                    "description": "username length should be between 3 and 32 characters",
+                    "type": "string",
+                    "minLength": 1,
+                    "example": "xxxxxxxxx"
+                }
+            }
+        },
+        "auth.TwoFADeleteRequestDto": {
+            "type": "object",
+            "required": [
+                "code",
+                "type"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFAGetResponseDto": {
+            "type": "object",
+            "required": [
+                "two_fa_list"
+            ],
+            "properties": {
+                "two_fa_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/auth.TwoFAInfoDto"
+                    }
+                }
+            }
+        },
+        "auth.TwoFAInfoDto": {
+            "type": "object",
+            "required": [
+                "created_at",
+                "enabled",
+                "type"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFALoginRequestDto": {
+            "type": "object",
+            "required": [
+                "code",
+                "token"
+            ],
+            "properties": {
+                "code": {
+                    "description": "6-digit TOTP code from authenticator app",
+                    "type": "string"
+                },
+                "token": {
+                    "description": "token from login API when 2FA is required",
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFALoginResponseDto": {
+            "type": "object",
+            "required": [
+                "access_token",
+                "refresh_token"
+            ],
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFARecoveryRequestDto": {
+            "type": "object",
+            "required": [
+                "recovery_code",
+                "token"
+            ],
+            "properties": {
+                "recovery_code": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFARetrieveTOTPResponseDto": {
+            "type": "object",
+            "required": [
+                "qr_code",
+                "secret",
+                "token",
+                "url"
+            ],
+            "properties": {
+                "qr_code": {
+                    "description": "base64 encoded PNG image",
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "token": {
+                    "description": "token for verification",
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFATOTPAddRequestDto": {
+            "type": "object",
+            "required": [
+                "code",
+                "token"
+            ],
+            "properties": {
+                "code": {
+                    "description": "6-digit TOTP code from authenticator app",
+                    "type": "string"
+                },
+                "token": {
+                    "description": "token from retrieve TOTP API",
+                    "type": "string"
+                }
+            }
+        },
+        "auth.TwoFATOTPAddResponseDto": {
+            "type": "object",
+            "required": [
+                "recovery_code"
+            ],
+            "properties": {
+                "recovery_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.UserEntityDto": {
+            "type": "object",
+            "required": [
+                "displayName",
+                "id",
+                "name"
+            ],
+            "properties": {
+                "displayName": {
+                    "type": "string",
+                    "example": "John Doe"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "base64url-encoded-user-id"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "user@example.com"
+                }
+            }
+        },
+        "error_code.ErrorCodeConst": {
+            "type": "string",
+            "enum": [
+                "CannotDeleteLastSSOBinding",
+                "DirectoryNotFound",
+                "FileAlreadyExists",
+                "FileNotFound",
+                "FileOperationFailed",
+                "FileTooLarge",
+                "Forbidden",
+                "InternalServerError",
+                "InvalidAccessToken",
+                "InvalidCredentials",
+                "InvalidFilePath",
+                "InvalidFileType",
+                "InvalidParameter",
+                "InvalidParameters",
+                "InvalidRecoveryCode",
+                "InvalidRefreshToken",
+                "InvalidTotpCode",
+                "OauthTokenUnavailable",
+                "PasswordLoginIsNotEnabled",
+                "SSOProviderAccountAlreadyBinded",
+                "StorageQuotaExceeded",
+                "TokenNotFound",
+                "TwoFaAlreadyEnabled",
+                "TwoFaTotpIsRequiredForLogin",
+                "Unauthorized",
+                "UserAlreadyExists",
+                "UserNotFound"
+            ],
+            "x-enum-varnames": [
+                "ErrorCodeCannotDeleteLastSSOBinding",
+                "ErrorCodeDirectoryNotFound",
+                "ErrorCodeFileAlreadyExists",
+                "ErrorCodeFileNotFound",
+                "ErrorCodeFileOperationFailed",
+                "ErrorCodeFileTooLarge",
+                "ErrorCodeForbidden",
+                "ErrorCodeInternalServerError",
+                "ErrorCodeInvalidAccessToken",
+                "ErrorCodeInvalidCredentials",
+                "ErrorCodeInvalidFilePath",
+                "ErrorCodeInvalidFileType",
+                "ErrorCodeInvalidParameter",
+                "ErrorCodeInvalidParameters",
+                "ErrorCodeInvalidRecoveryCode",
+                "ErrorCodeInvalidRefreshToken",
+                "ErrorCodeInvalidTotpCode",
+                "ErrorCodeOauthTokenUnavailable",
+                "ErrorCodePasswordLoginIsNotEnabled",
+                "ErrorCodeSSOProviderAccountAlreadyBinded",
+                "ErrorCodeStorageQuotaExceeded",
+                "ErrorCodeTokenNotFound",
+                "ErrorCodeTwoFaAlreadyEnabled",
+                "ErrorCodeTwoFaTotpIsRequiredForLogin",
+                "ErrorCodeUnauthorized",
+                "ErrorCodeUserAlreadyExists",
+                "ErrorCodeUserNotFound"
+            ]
+        },
+        "global_script.GetGlobalScriptResponseDto": {
+            "type": "object",
+            "required": [
+                "global_script",
+                "updated_at"
+            ],
+            "properties": {
+                "global_script": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "global_script.UpdateGlobalScriptRequestDto": {
+            "type": "object",
+            "required": [
+                "global_script"
+            ],
+            "properties": {
+                "global_script": {
+                    "type": "string"
+                }
+            }
+        },
+        "global_script.UpdateGlobalScriptResponseDto": {
+            "type": "object"
+        },
+        "swagger.BaseFailResponse": {
+            "type": "object",
+            "required": [
+                "error_code",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "error_code": {
+                    "$ref": "#/definitions/error_code.ErrorCodeConst"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "error"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-any": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_IssueAccessTokenResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.IssueAccessTokenResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_LoginResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.LoginResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_PasskeyChallengeResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.PasskeyChallengeResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_PasskeyGetResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.PasskeyGetResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_PasskeyLoginChallengeResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.PasskeyLoginChallengeResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_SSOBindingGetResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.SSOBindingGetResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_TwoFAGetResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.TwoFAGetResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_TwoFALoginResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.TwoFALoginResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_TwoFARetrieveTOTPResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.TwoFARetrieveTOTPResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-auth_TwoFATOTPAddResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/auth.TwoFATOTPAddResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-global_script_GetGlobalScriptResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/global_script.GetGlobalScriptResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-global_script_UpdateGlobalScriptResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/global_script.UpdateGlobalScriptResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-tools_AllToolsResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/tools.AllToolsResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-tools_CreateToolResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/tools.CreateToolResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-tools_DeleteToolResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/tools.DeleteToolResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-tools_UpdateToolResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/tools.UpdateToolResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-user_CheckUsernameResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/user.CheckUsernameResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-user_CreateUserResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/user.CreateUserResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-user_DeleteUserResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/user.DeleteUserResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-user_UpdateUserResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/user.UpdateUserResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "swagger.BaseSuccessResponse-user_UserInfoResponseDto": {
+            "type": "object",
+            "required": [
+                "data",
+                "message",
+                "request_id",
+                "status"
+            ],
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/user.UserInfoResponseDto"
+                },
+                "message": {
+                    "type": "string",
+                    "example": ""
+                },
+                "request_id": {
+                    "type": "string",
+                    "example": "3c55e76b-21b0-41e9-9780-206283053886"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "tools.AllToolsResponseDto": {
+            "type": "object",
+            "required": [
+                "tools",
+                "tools_last_update_at"
+            ],
+            "properties": {
+                "tools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tools.ToolDto"
+                    }
+                },
+                "tools_last_update_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "tools.CreateToolRequestDto": {
+            "type": "object",
+            "required": [
+                "category",
+                "description",
+                "extra_info",
+                "id",
+                "is_activate",
+                "name",
+                "namespace",
+                "realtime_execution",
+                "source",
+                "ui_widgets"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "example": "analytics"
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "example": "Describe the tool briefly"
+                },
+                "extra_info": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "example": {
+                        "{\"key\"": "\"value\"}"
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "example": "tool-123"
+                },
+                "is_activate": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "example": "Sample Tool"
+                },
+                "namespace": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "example": "default"
+                },
+                "realtime_execution": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "source": {
+                    "type": "string",
+                    "example": "// source code"
+                },
+                "ui_widgets": {
+                    "type": "string",
+                    "example": "[]"
+                }
+            }
+        },
+        "tools.CreateToolResponseDto": {
+            "type": "object"
+        },
+        "tools.DeleteToolResponseDto": {
+            "type": "object"
+        },
+        "tools.ToolDto": {
+            "type": "object",
+            "required": [
+                "category",
+                "created_at",
+                "description",
+                "extra_info",
+                "is_activate",
+                "name",
+                "namespace",
+                "realtime_execution",
+                "source",
+                "tool_id",
+                "ui_widgets",
+                "uid",
+                "updated_at"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "example": "analytics"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "2024-01-01T00:00:00Z"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Simple tool"
+                },
+                "extra_info": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "example": {
+                        "{\"key\"": "\"value\"}"
+                    }
+                },
+                "is_activate": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Sample Tool"
+                },
+                "namespace": {
+                    "type": "string",
+                    "example": "default"
+                },
+                "realtime_execution": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "source": {
+                    "type": "string",
+                    "example": "// source code"
+                },
+                "tool_id": {
+                    "type": "string",
+                    "example": "tool-123"
+                },
+                "ui_widgets": {
+                    "type": "string",
+                    "example": "[]"
+                },
+                "uid": {
+                    "type": "string",
+                    "example": "tool-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "example": "2024-01-01T00:00:00Z"
+                }
+            }
+        },
+        "tools.UpdateToolRequestDto": {
+            "type": "object",
+            "required": [
+                "category",
+                "description",
+                "extra_info",
+                "id",
+                "is_activate",
+                "name",
+                "namespace",
+                "realtime_execution",
+                "source",
+                "ui_widgets"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "example": "analytics"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Describe the tool briefly"
+                },
+                "extra_info": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "example": {
+                        "{\"key\"": "\"value\"}"
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "example": "tool-123"
+                },
+                "is_activate": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "example": "Sample Tool"
+                },
+                "namespace": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "example": "default"
+                },
+                "realtime_execution": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "source": {
+                    "type": "string",
+                    "example": "// source code"
+                },
+                "ui_widgets": {
+                    "type": "string",
+                    "example": "[]"
+                }
+            }
+        },
+        "tools.UpdateToolResponseDto": {
+            "type": "object"
+        },
+        "user.CheckUsernameRequestDto": {
+            "type": "object",
+            "required": [
+                "username"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "minLength": 1,
+                    "example": "username"
+                }
+            }
+        },
+        "user.CheckUsernameResponseDto": {
+            "type": "object",
+            "required": [
+                "exists"
+            ],
+            "properties": {
+                "exists": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "user.CreateUserRequestDto": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "example": "password"
+                },
+                "username": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3,
+                    "example": "username"
+                }
+            }
+        },
+        "user.CreateUserResponseDto": {
+            "type": "object"
+        },
+        "user.DeleteUserResponseDto": {
+            "type": "object"
+        },
+        "user.UpdateUserRequestDto": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3,
+                    "example": "new_username"
+                }
+            }
+        },
+        "user.UpdateUserResponseDto": {
+            "type": "object"
+        },
+        "user.UserInfoResponseDto": {
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "user_id_a"
+                },
+                "mail": {
+                    "type": "string",
+                    "example": "user@example.com"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "username"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}

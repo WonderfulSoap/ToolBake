@@ -1,0 +1,48 @@
+[
+  [
+    {
+      "id": "username",
+      "type": "TextInput",
+      "title": "Username",
+      "mode": "input",
+      "props": {
+        "placeholder": "admin",
+        "defaultValue": ""
+      }
+    },
+    {
+      "id": "password",
+      "type": "TextInput",
+      "title": "Password",
+      "mode": "input",
+      "props": {
+        "placeholder": "secret",
+        "defaultValue": ""
+      }
+    }
+  ],
+  [
+    {
+      "id": "header",
+      "type": "TextInput",
+      "title": "Header Value",
+      "mode": "output",
+      "props": {
+        "placeholder": "Basic ...",
+        "readonly": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "full_header",
+      "type": "TextInput",
+      "title": "Full Header",
+      "mode": "output",
+      "props": {
+        "placeholder": "Authorization: Basic ...",
+        "readonly": true
+      }
+    }
+  ]
+]

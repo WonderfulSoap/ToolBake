@@ -1,0 +1,189 @@
+[
+  [
+    {
+      "id": "cidr_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "CIDR",
+        "prefixLabelSize": "8em",
+        "placeholder": "192.168.9.0/24",
+        "defaultValue": "192.168.20.0/24"
+      }
+    }
+  ],
+  [
+    {
+      "id": "or-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Or use netmask",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "ip_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "IP Address",
+        "prefixLabelSize": "8em",
+        "placeholder": "192.168.9.12"
+      }
+    },
+    {
+      "id": "netmask_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Netmask",
+        "prefixLabelSize": "8em",
+        "placeholder": "255.255.255.0"
+      }
+    }
+  ],
+  [
+    {
+      "id": "result-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Result",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "result_values",
+      "type": "MultiTextInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "gap": "0",
+        "items": [
+          {
+            "id": "network_size",
+            "title": "",
+            "prefixLabel": "Network size",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "first_address",
+            "title": "",
+            "prefixLabel": "First address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "last_address",
+            "title": "",
+            "prefixLabel": "Last address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "netmask",
+            "title": "",
+            "prefixLabel": "CIDR",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "network_address",
+            "title": "",
+            "prefixLabel": "Network address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "network_mask",
+            "title": "",
+            "prefixLabel": "Network mask",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "cidr_notation",
+            "title": "",
+            "prefixLabel": "CIDR notation",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "wildcard_mask",
+            "title": "",
+            "prefixLabel": "Wildcard mask",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "broadcast_address",
+            "title": "",
+            "prefixLabel": "Broadcast address",
+            "prefixLabelSize": "12em"
+          },
+          {
+            "id": "ip_class",
+            "title": "",
+            "prefixLabel": "IP class",
+            "prefixLabelSize": "12em"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "cidr_binary",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "test-divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Test if IP in CIDR",
+        "variant": "solid",
+        "gap": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "test_ip_input",
+      "type": "TextInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "IP Address",
+        "prefixLabelSize": "8em",
+        "placeholder": "192.168.20.8"
+      }
+    }
+  ],
+  [
+    {
+      "id": "test_ip_result",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<span class='text-xs text-muted-foreground'>Enter an IP address to check if it is in the CIDR.</span>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

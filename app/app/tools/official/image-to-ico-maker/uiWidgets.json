@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm leading-relaxed text-muted-foreground'>Upload an image and convert it to a multi-size <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>.ico</code> file for Windows apps or favicons.</div><div class='text-xs text-muted-foreground'>Uses ImageMagick WASM with <code class='rounded bg-muted px-1 py-0.5 text-[12px] font-mono'>icon:auto-resize</code>. You can edit the icon size list at any time.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "imageFile",
+      "type": "FileUploadInput",
+      "title": "Source Image",
+      "mode": "input",
+      "props": {
+        "description": "Upload one image (PNG/JPEG/WebP/BMP/GIF/TIFF/etc.)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "icoSizes",
+      "type": "TextInput",
+      "title": "Icon Sizes",
+      "mode": "input",
+      "props": {
+        "placeholder": "16,24,32,48,64,128,256",
+        "defaultValue": "16,24,32,48,64,128,256"
+      }
+    }
+  ],
+  [
+    {
+      "id": "showPreview",
+      "type": "ToggleInput",
+      "title": "Show Preview",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Enabled",
+        "description": "Show image preview after conversion"
+      }
+    },
+    {
+      "id": "convertBtn",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Generate ICO",
+        "variant": "default",
+        "size": "default",
+        "description": "Convert current image to ICO"
+      }
+    }
+  ],
+  [
+    {
+      "id": "statusLabel",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Upload an image and click Generate ICO.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadOutput",
+      "type": "LabelInput",
+      "title": "Result",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground py-2'>Generated ICO file will appear here.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

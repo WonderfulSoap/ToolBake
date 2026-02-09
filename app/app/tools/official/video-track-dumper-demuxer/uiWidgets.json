@@ -1,0 +1,149 @@
+[
+  [
+    {
+      "id": "sourceVideo",
+      "type": "FileUploadInput",
+      "title": "Video File",
+      "mode": "input",
+      "props": {
+        "description": "Upload a video to demux. Keep files under 120MB for in-browser FFmpeg."
+      }
+    }
+  ],
+  [
+    {
+      "id": "extractVideo",
+      "type": "ToggleInput",
+      "title": "Video Tracks",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Extract video"
+      }
+    },
+    {
+      "id": "extractAudio",
+      "type": "ToggleInput",
+      "title": "Audio Tracks",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Extract audio"
+      }
+    },
+    {
+      "id": "videoContainer",
+      "type": "SelectListInput",
+      "title": "Change Video Container",
+      "mode": "input",
+      "props": {
+        "placeholder": "Choose container",
+        "defaultValue": "original",
+        "options": [
+          {
+            "value": "original",
+            "label": "Original container"
+          },
+          {
+            "value": "mp4",
+            "label": "MP4 (.mp4)"
+          },
+          {
+            "value": "mkv",
+            "label": "Matroska (.mkv)"
+          },
+          {
+            "value": "webm",
+            "label": "WebM (.webm)"
+          },
+          {
+            "value": "avi",
+            "label": "AVI (.avi)"
+          },
+          {
+            "value": "ts",
+            "label": "MPEG-TS (.ts)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dumpTrigger",
+      "type": "ButtonInput",
+      "title": "Demux",
+      "mode": "input",
+      "props": {
+        "label": "Dump Tracks",
+        "variant": "default",
+        "size": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "dumpProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "FFmpeg stages",
+        "hint": "Shows the current track extraction stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "dumpDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "videoOutputs",
+      "type": "LabelInput",
+      "title": "Video Tracks",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "audioOutputs",
+      "type": "LabelInput",
+      "title": "Audio Tracks",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "otherOutputs",
+      "type": "LabelInput",
+      "title": "Other Tracks",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

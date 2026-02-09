@@ -1,0 +1,61 @@
+[
+  [
+    {
+      "id": "limitNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='flex items-center gap-2 p-2 rounded-sm bg-yellow-500/10 border border-yellow-500/20 text-[11px] text-yellow-600 dark:text-yellow-500 leading-relaxed'><div>⚠️ <b>Note:</b> Files over <code class='bg-yellow-500/10 px-1 rounded'>5MB</code> may cause lag. The hard limit is <code class='bg-yellow-500/10 px-1 rounded'>20MB</code>.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "fileInput",
+      "type": "FileUploadInput",
+      "title": "File to Base64",
+      "mode": "input",
+      "props": {
+        "description": "Recommended size < 5MB for best performance"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "OR",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "base64Input",
+      "type": "TextareaInput",
+      "title": "Base64 DataURL",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste DataURL here...",
+        "rows": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "previewOutput",
+      "type": "LabelInput",
+      "title": "Preview & Action",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Awaiting input...</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

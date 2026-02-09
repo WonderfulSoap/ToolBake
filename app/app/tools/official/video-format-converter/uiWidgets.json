@@ -1,0 +1,109 @@
+[
+  [
+    {
+      "id": "sourceVideos",
+      "type": "FilesUploadInput",
+      "title": "Video Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple videos to convert with ffmpeg.wasm."
+      }
+    }
+  ],
+  [
+    {
+      "id": "targetFormat",
+      "type": "TextInput",
+      "title": "Target Format",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Format",
+        "prefixLabelSize": "6em",
+        "placeholder": "ex: mp4",
+        "defaultValue": "mp4"
+      }
+    }
+  ],
+  [
+    {
+      "id": "remuxOnly",
+      "type": "ToggleInput",
+      "title": "Remux Only",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Enabled",
+        "description": "Copy audio/video streams without re-encoding. The target container must support the existing codecs."
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertTrigger",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert Videos",
+        "variant": "default",
+        "size": "default",
+        "width": "180px",
+        "description": "Run ffmpeg with default settings"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertOutput",
+      "type": "LabelInput",
+      "title": "Converted Videos",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertError",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

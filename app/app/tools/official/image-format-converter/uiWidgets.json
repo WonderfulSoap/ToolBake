@@ -1,0 +1,126 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm leading-relaxed text-muted-foreground'>Upload one or more images and select a target format. Format-specific options will appear below based on your selection. Click <span class='font-medium text-foreground'>Convert Images</span> to start batch conversion.</div><div class='text-xs text-muted-foreground'>Powered by ImageMagick WASM. Supports JPEG, PNG, WebP, GIF, BMP, TIFF, AVIF, ICO, PSD, TGA, PCX, PNM, EXR, HDR and more.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "imageFiles",
+      "type": "FilesUploadInput",
+      "title": "Images",
+      "mode": "input",
+      "props": {
+        "description": "Upload images to convert (drag & drop supported)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "formatDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Target Format",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "targetFormat",
+      "type": "SelectListInput",
+      "title": "Target format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Select format",
+        "defaultValue": "png",
+        "options": [
+          { "value": "jpg", "label": "JPEG (.jpg)" },
+          { "value": "png", "label": "PNG (.png)" },
+          { "value": "webp", "label": "WebP (.webp)" },
+          { "value": "gif", "label": "GIF (.gif)" },
+          { "value": "bmp", "label": "BMP (.bmp)" },
+          { "value": "tiff", "label": "TIFF (.tiff)" },
+          { "value": "avif", "label": "AVIF (.avif)" },
+          { "value": "ico", "label": "ICO (.ico)" },
+          { "value": "psd", "label": "PSD (.psd)" },
+          { "value": "tga", "label": "TGA (.tga)" },
+          { "value": "pcx", "label": "PCX (.pcx)" },
+          { "value": "pnm", "label": "PNM (.pnm)" },
+          { "value": "exr", "label": "OpenEXR (.exr)" },
+          { "value": "hdr", "label": "HDR (.hdr)" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "formatOptions",
+      "type": "LabelInput",
+      "title": "Format Options",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Select a format to see available options.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "actionDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Convert",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertBtn",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert Images",
+        "variant": "default",
+        "size": "default",
+        "description": "Start batch conversion"
+      }
+    },
+    {
+      "id": "showPreview",
+      "type": "ToggleInput",
+      "title": "Show preview",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Enabled",
+        "description": "Show preview thumbnails"
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadOutput",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground py-2'>Converted images will appear here for download.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

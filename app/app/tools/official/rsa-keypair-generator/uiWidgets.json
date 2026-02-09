@@ -1,0 +1,147 @@
+[
+  [
+    {
+      "id": "format-note",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='rounded-sm border border-border/60 bg-muted/30 p-2 text-xs leading-relaxed text-muted-foreground'><div class='text-foreground font-medium'>Output format</div><div class='mt-1'>Private key is PEM (PKCS#1) and public key is PEM + OpenSSH.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "key-size",
+      "type": "NumberInput",
+      "title": "Key Size",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Bits",
+        "min": 1024,
+        "max": 4096,
+        "step": 256,
+        "defaultValue": 4096
+      }
+    },
+    {
+      "id": "public-key-comment",
+      "type": "TextInput",
+      "title": "Public Key Comment",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Comment",
+        "prefixLabelSize": "6.5em",
+        "placeholder": "Optional comment (e.g., your_email@example.com)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "private-key-password",
+      "type": "TextInput",
+      "title": "Private Key Password",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Password",
+        "prefixLabelSize": "6.5em",
+        "placeholder": "Optional password to encrypt the private key"
+      }
+    }
+  ],
+  [
+    {
+      "id": "generate-button",
+      "type": "ButtonInput",
+      "title": "Generate",
+      "mode": "input",
+      "props": {
+        "label": "Generate Key Pair",
+        "variant": "default",
+        "size": "default",
+        "description": "Click to generate a new RSA key pair"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status-note",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Click Generate to create keys.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "private-key-pem",
+      "type": "TextareaInput",
+      "title": "Private Key (PEM)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Generated private key PEM will appear here...",
+        "rows": 10
+      }
+    }
+  ],
+  [
+    {
+      "id": "download-private-pem",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "public-key-pem",
+      "type": "TextareaInput",
+      "title": "Public Key (PEM)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Generated public key PEM will appear here...",
+        "rows": 8
+      }
+    },
+    {
+      "id": "public-key-ssh",
+      "type": "TextareaInput",
+      "title": "Public Key (OpenSSH)",
+      "mode": "input",
+      "props": {
+        "placeholder": "Generated OpenSSH public key will appear here...",
+        "rows": 8
+      }
+    }
+  ],
+  [
+    {
+      "id": "download-public-pem",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    },
+    {
+      "id": "download-public-ssh",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true
+      }
+    }
+  ]
+]

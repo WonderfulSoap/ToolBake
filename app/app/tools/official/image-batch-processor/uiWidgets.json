@@ -1,0 +1,253 @@
+[
+  [
+    {
+      "id": "introNote",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='space-y-2'><div class='text-sm leading-relaxed text-muted-foreground'>Upload one or more images and apply batch operations in the browser. Format-specific controls appear below. Click <span class='font-medium text-foreground'>Run Batch Processing</span> to process all images.</div><div class='text-xs text-muted-foreground'>Powered by ImageMagick WASM. Large batches can be slow on low-memory devices.</div></div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "imageFiles",
+      "type": "FilesUploadInput",
+      "title": "Images",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple images (drag & drop supported)"
+      }
+    }
+  ],
+  [
+    {
+      "id": "previewOutput",
+      "type": "LabelInput",
+      "title": "Preview",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Upload images to generate a live preview.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "formatDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Format Conversion",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "targetFormat",
+      "type": "SelectListInput",
+      "title": "Target format",
+      "mode": "input",
+      "props": {
+        "placeholder": "Keep original",
+        "defaultValue": "keep",
+        "options": [
+          { "value": "keep", "label": "Keep original" },
+          { "value": "jpg", "label": "JPEG" },
+          { "value": "png", "label": "PNG" },
+          { "value": "webp", "label": "WebP" },
+          { "value": "gif", "label": "GIF" },
+          { "value": "bmp", "label": "BMP" },
+          { "value": "tiff", "label": "TIFF" }
+        ]
+      }
+    },
+    {
+      "id": "formatParams",
+      "type": "LabelInput",
+      "title": "Format parameters",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Select a format to see available parameters.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "cropDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Crop",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "enableCrop",
+      "type": "ToggleInput",
+      "title": "Enable crop",
+      "mode": "input",
+      "props": {
+        "onLabel": "Crop enabled",
+        "description": "Draw a crop region on the preview"
+      }
+    }
+  ],
+  [
+    {
+      "id": "transformDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Transform",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "flipHorizontal",
+      "type": "ToggleInput",
+      "title": "Flip horizontally",
+      "mode": "input",
+      "props": {
+        "onLabel": "Flip left/right"
+      }
+    },
+    {
+      "id": "flipVertical",
+      "type": "ToggleInput",
+      "title": "Flip vertically",
+      "mode": "input",
+      "props": {
+        "onLabel": "Flip up/down"
+      }
+    },
+    {
+      "id": "rotateDegrees",
+      "type": "NumberInput",
+      "title": "Rotate",
+      "mode": "input",
+      "props": {
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "prefixLabel": "deg",
+        "size": "mini",
+        "delayTrigger": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Resize",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeMode",
+      "type": "RadioGroupInput",
+      "title": "Resize mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "none",
+        "options": [
+          { "value": "none", "label": "No resize", "description": "Keep original size" },
+          { "value": "size", "label": "Target size", "description": "Specify width/height" },
+          { "value": "percent", "label": "Scale %", "description": "Uniform scaling" }
+        ]
+      }
+    },
+    {
+      "id": "keepAspect",
+      "type": "ToggleInput",
+      "title": "Keep aspect ratio",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "Keep ratio",
+        "description": "Maintain original aspect when resizing by size"
+      }
+    }
+  ],
+  [
+    {
+      "id": "resizeWidth",
+      "type": "TextInput",
+      "title": "Resize width",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Width",
+        "placeholder": "Auto",
+        "size": "mini",
+        "delayTrigger": true
+      }
+    },
+    {
+      "id": "resizeHeight",
+      "type": "TextInput",
+      "title": "Resize height",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Height",
+        "placeholder": "Auto",
+        "size": "mini",
+        "delayTrigger": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "showResultPreviews",
+      "type": "ToggleInput",
+      "title": "Show all result previews",
+      "mode": "input",
+      "props": {
+        "defaultValue": false,
+        "onLabel": "Show preview grid",
+        "description": "Applies after you run the batch"
+      }
+    },
+    {
+      "id": "runBatch",
+      "type": "ButtonInput",
+      "title": "Run batch processing",
+      "mode": "input",
+      "props": {
+        "label": "Run Batch Processing",
+        "variant": "default",
+        "size": "default",
+        "description": "Only runs when you click"
+      }
+    }
+  ],
+  [
+    {
+      "id": "resultGallery",
+      "type": "LabelInput",
+      "title": "Batch results",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground'>Run batch processing to generate outputs and downloads.</div>",
+        "autoHeight": true
+      }
+    }
+  ]
+]

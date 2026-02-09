@@ -1,0 +1,28 @@
+[
+  [
+    {
+      "id": "escaped-text",
+      "type": "TextareaInput",
+      "title": "Escaped Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Paste escaped text like a\\nb\\tc...",
+        "rows": 8,
+        "defaultValue": "Error: This is an error\\n\\tat REPL2:1:11"
+      }
+    }
+  ],
+  [
+    {
+      "id": "raw-text",
+      "type": "TextareaInput",
+      "title": "Rendered Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Rendered control characters will appear here...",
+        "rows": 8,
+        "defaultValue": "Error: This is an error\n\tat REPL2:1:11"
+      }
+    }
+  ]
+]

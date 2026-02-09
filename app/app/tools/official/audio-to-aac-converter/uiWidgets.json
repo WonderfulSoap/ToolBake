@@ -1,0 +1,198 @@
+[
+  [
+    {
+      "id": "sourceAudios",
+      "type": "FilesUploadInput",
+      "title": "Audio Files",
+      "mode": "input",
+      "props": {
+        "description": "Upload multiple audio files to convert into AAC using ffmpeg.wasm."
+      }
+    }
+  ],
+  [
+    {
+      "id": "rateMode",
+      "type": "RadioGroupInput",
+      "title": "Rate Mode",
+      "mode": "input",
+      "props": {
+        "orientation": "horizontal",
+        "defaultValue": "CBR",
+        "options": [
+          {
+            "value": "CBR",
+            "label": "CBR",
+            "description": "Constant bitrate"
+          },
+          {
+            "value": "VBR",
+            "label": "VBR",
+            "description": "Variable bitrate"
+          },
+          {
+            "value": "ABR",
+            "label": "ABR",
+            "description": "Average bitrate"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "cbrBitrate",
+      "type": "NumberInput",
+      "title": "CBR Bitrate",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kbps",
+        "prefixLabelSize": "6em",
+        "min": 32,
+        "max": 320,
+        "step": 16,
+        "defaultValue": 192
+      }
+    },
+    {
+      "id": "vbrQuality",
+      "type": "NumberInput",
+      "title": "VBR Quality",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "Q",
+        "prefixLabelSize": "6em",
+        "min": 0,
+        "max": 9,
+        "step": 1,
+        "defaultValue": 3
+      }
+    },
+    {
+      "id": "abrBitrate",
+      "type": "NumberInput",
+      "title": "ABR Bitrate",
+      "mode": "input",
+      "props": {
+        "prefixLabel": "kbps",
+        "prefixLabelSize": "6em",
+        "min": 32,
+        "max": 320,
+        "step": 16,
+        "defaultValue": 192
+      }
+    }
+  ],
+  [
+    {
+      "id": "aacProfile",
+      "type": "SelectListInput",
+      "title": "AAC Profile",
+      "mode": "input",
+      "props": {
+        "placeholder": "Auto",
+        "defaultValue": "auto",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "lc",
+            "label": "AAC-LC"
+          },
+          {
+            "value": "he",
+            "label": "HE-AAC"
+          },
+          {
+            "value": "hev2",
+            "label": "HE-AAC v2"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertTrigger",
+      "type": "ButtonInput",
+      "title": "Convert",
+      "mode": "input",
+      "props": {
+        "label": "Convert to AAC",
+        "variant": "default",
+        "size": "default",
+        "width": "180px",
+        "description": "Run conversion with AAC output"
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertProgress",
+      "type": "ProgressBarInput",
+      "title": "Progress",
+      "mode": "output",
+      "props": {
+        "label": "Conversion progress",
+        "hint": "Shows the current ffmpeg stage",
+        "defaultValue": 0,
+        "defaultTotal": 100
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputDivider",
+      "type": "DividerInput",
+      "title": "Divider",
+      "mode": "output",
+      "props": {
+        "label": "Output",
+        "variant": "dashed",
+        "gap": 8,
+        "hidden": false
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertOutput",
+      "type": "LabelInput",
+      "title": "Converted AAC Files",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertError",
+      "type": "LabelInput",
+      "title": "Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "convertLog",
+      "type": "LabelInput",
+      "title": "FFmpeg Log",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "tone": "default",
+        "autoHeight": true
+      }
+    }
+  ]
+]

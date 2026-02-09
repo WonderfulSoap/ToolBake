@@ -1,0 +1,41 @@
+[
+  [
+    {
+      "id": "raw-html-preview",
+      "type": "RawHtmlInput",
+      "title": "Raw HTML Preview",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Loading raw HTML...</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "sync-btn",
+      "type": "ButtonInput",
+      "title": "",
+      "mode": "input",
+      "props": {
+        "label": "Sync State To Handler",
+        "variant": "default",
+        "size": "default",
+        "description": "Capture data-* from the RawHtmlInput"
+      }
+    }
+  ],
+  [
+    {
+      "id": "status",
+      "type": "LabelInput",
+      "title": "Handler Status",
+      "mode": "output",
+      "props": {
+        "content": "",
+        "autoHeight": true,
+        "tone": "muted"
+      }
+    }
+  ]
+]

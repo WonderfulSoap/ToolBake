@@ -1,0 +1,175 @@
+[
+  [
+    {
+      "id": "fileInput",
+      "type": "FileUploadInput",
+      "title": "Upload Text File",
+      "mode": "input",
+      "props": {
+        "description": "Drop a text file here or click to select"
+      }
+    }
+  ],
+  [
+    {
+      "id": "sourceEncoding",
+      "type": "SelectListInput",
+      "title": "Source Encoding",
+      "mode": "input",
+      "props": {
+        "defaultValue": "auto",
+        "placeholder": "Auto detect",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto (detect)"
+          },
+          {
+            "value": "utf-8",
+            "label": "UTF-8"
+          },
+          {
+            "value": "utf-16le",
+            "label": "UTF-16 LE"
+          },
+          {
+            "value": "utf-16be",
+            "label": "UTF-16 BE"
+          },
+          {
+            "value": "gbk",
+            "label": "GBK"
+          },
+          {
+            "value": "gb2312",
+            "label": "GB2312"
+          },
+          {
+            "value": "big5",
+            "label": "Big5"
+          },
+          {
+            "value": "shift_jis",
+            "label": "Shift JIS"
+          },
+          {
+            "value": "euc-jp",
+            "label": "EUC-JP"
+          },
+          {
+            "value": "iso-8859-1",
+            "label": "ISO-8859-1"
+          },
+          {
+            "value": "windows-1252",
+            "label": "Windows-1252"
+          },
+          {
+            "value": "ascii",
+            "label": "ASCII"
+          }
+        ]
+      }
+    },
+    {
+      "id": "targetEncoding",
+      "type": "SelectListInput",
+      "title": "Output Encoding",
+      "mode": "input",
+      "props": {
+        "defaultValue": "utf-8",
+        "placeholder": "Select encoding",
+        "options": [
+          {
+            "value": "utf-8",
+            "label": "UTF-8"
+          },
+          {
+            "value": "utf-16le",
+            "label": "UTF-16 LE"
+          },
+          {
+            "value": "utf-16be",
+            "label": "UTF-16 BE"
+          },
+          {
+            "value": "gbk",
+            "label": "GBK"
+          },
+          {
+            "value": "gb2312",
+            "label": "GB2312"
+          },
+          {
+            "value": "big5",
+            "label": "Big5"
+          },
+          {
+            "value": "shift_jis",
+            "label": "Shift JIS"
+          },
+          {
+            "value": "euc-jp",
+            "label": "EUC-JP"
+          },
+          {
+            "value": "iso-8859-1",
+            "label": "ISO-8859-1"
+          },
+          {
+            "value": "windows-1252",
+            "label": "Windows-1252"
+          },
+          {
+            "value": "ascii",
+            "label": "ASCII"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputFileName",
+      "type": "TextInput",
+      "title": "File Name",
+      "mode": "input",
+      "props": {
+        "placeholder": "Keep original name"
+      }
+    },
+    {
+      "id": "outputFileExtension",
+      "type": "TextInput",
+      "title": "File Extension",
+      "mode": "input",
+      "props": {
+        "placeholder": "Keep original extension"
+      }
+    }
+  ],
+  [
+    {
+      "id": "downloadInfo",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Awaiting input...</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "outputText",
+      "type": "TextareaInput",
+      "title": "Converted Text",
+      "mode": "output",
+      "props": {
+        "placeholder": "Converted text will appear here...",
+        "rows": 10
+      }
+    }
+  ]
+]

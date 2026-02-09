@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "id": "file_status",
+      "type": "LabelInput",
+      "title": "",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-xs text-muted-foreground italic'>Awaiting file. Max size depends on your browser runtime resources.</div>",
+        "autoHeight": true
+      }
+    }
+  ],
+  [
+    {
+      "id": "file_input",
+      "type": "FileUploadInput",
+      "title": "File to Hash",
+      "mode": "input",
+      "props": {
+        "description": "Larger files depend on your browser runtime resources"
+      }
+    }
+  ],
+  [
+    {
+      "id": "hash_encoding",
+      "type": "SelectListInput",
+      "title": "Hash encoding",
+      "mode": "input",
+      "props": {
+        "placeholder": "Hash encoding",
+        "defaultValue": "hex",
+        "options": [
+          { "value": "bin", "label": "Bin" },
+          { "value": "hex", "label": "Hex" },
+          { "value": "base64", "label": "Base64" },
+          { "value": "base64_safe", "label": "Base64 without =" }
+        ]
+      }
+    },
+    {
+      "id": "uppercase_output",
+      "type": "ToggleInput",
+      "title": "Uppercase Output",
+      "mode": "input",
+      "props": {
+        "defaultValue": true,
+        "onLabel": "ON"
+      }
+    }
+  ],
+  [
+    {
+      "id": "hash_results",
+      "type": "MultiTextInput",
+      "title": "Hash Results",
+      "mode": "output",
+      "props": {
+        "gap": "0",
+        "items": [
+          { "id": "md5", "title": "", "prefixLabel": "MD5", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha1", "title": "", "prefixLabel": "SHA1", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha224", "title": "", "prefixLabel": "SHA224", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha256", "title": "", "prefixLabel": "SHA256", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha384", "title": "", "prefixLabel": "SHA384", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha512", "title": "", "prefixLabel": "SHA512", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "sha3", "title": "", "prefixLabel": "SHA3", "prefixLabelSize": "10em", "placeholder": "" },
+          { "id": "ripemd160", "title": "", "prefixLabel": "RIPEMD160", "prefixLabelSize": "10em", "placeholder": "" }
+        ]
+      }
+    }
+  ]
+]

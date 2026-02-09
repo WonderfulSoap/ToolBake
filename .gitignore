@@ -1,0 +1,33 @@
+backend/index.html
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+.react-router/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+app/public/assets/7z
+app/public/assets/ffmpeg
+frontend/
+/data/
+app/.claude
+backend/tmp
+backend/db-data
+backend/data-backup

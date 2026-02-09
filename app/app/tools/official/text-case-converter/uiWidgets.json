@@ -1,0 +1,193 @@
+[
+  [
+    {
+      "id": "info-label",
+      "type": "LabelInput",
+      "title": "Case Converter",
+      "mode": "output",
+      "props": {
+        "content": "<div class='text-sm text-muted-foreground'>Enter text below to automatically convert it into various naming conventions.</div>",
+        "tone": "default"
+      }
+    }
+  ],
+  [
+    {
+      "id": "input-text",
+      "type": "TextareaInput",
+      "title": "Input Text",
+      "mode": "input",
+      "props": {
+        "placeholder": "Enter text here (e.g., hello world or camelCaseText)...",
+        "rows": 4,
+        "defaultValue": "hello world"
+      }
+    }
+  ],
+  [
+    {
+      "id": "divider-1",
+      "type": "DividerInput",
+      "title": "Results",
+      "mode": "output",
+      "props": {
+        "label": "Conversion Results",
+        "variant": "dashed"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-lower",
+      "type": "TextInput",
+      "title": "Lowercase",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "lower",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-upper",
+      "type": "TextInput",
+      "title": "Uppercase",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "UPPER",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-camel",
+      "type": "TextInput",
+      "title": "Camel Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "camelCase",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-pascal",
+      "type": "TextInput",
+      "title": "Pascal Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "PascalCase",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-snake",
+      "type": "TextInput",
+      "title": "Snake Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "snake_case",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-param",
+      "type": "TextInput",
+      "title": "Param Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "param-case",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-constant",
+      "type": "TextInput",
+      "title": "Constant Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "CONSTANT",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-dot",
+      "type": "TextInput",
+      "title": "Dot Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "dot.case",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-path",
+      "type": "TextInput",
+      "title": "Path Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "path/case",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-header",
+      "type": "TextInput",
+      "title": "Header Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Header-Case",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-capital",
+      "type": "TextInput",
+      "title": "Capital Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Capital Case",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-sentence",
+      "type": "TextInput",
+      "title": "Sentence Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "Sentence case",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ],
+  [
+    {
+      "id": "out-no",
+      "type": "TextInput",
+      "title": "No Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "no case",
+        "prefixLabelSize": "100px"
+      }
+    },
+    {
+      "id": "out-mocking",
+      "type": "TextInput",
+      "title": "Mocking Case",
+      "mode": "output",
+      "props": {
+        "prefixLabel": "mOcKiNg",
+        "prefixLabelSize": "100px"
+      }
+    }
+  ]
+]
