@@ -37,7 +37,7 @@ func (j *JsonResponse) SuccessWithCachedJsonString(ctx *gin.Context, message, ob
 		"request_id": requestid.GetRequestID(ctx),
 	})
 	if err != nil {
-		j.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "fail genearte cached json response"))
+		j.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "fail genearte cached json response"))
 		return
 	}
 	// finalStr := strings.Replace(string(bodyStr), `"{{DATA_PLACEHOLDER}}"`, objectJsonString, 1)

@@ -55,13 +55,13 @@ func (c *PasskeyDeleteController) Handler(ctx *gin.Context) {
 
 	passkeyIDStr := ctx.Param("passkey_id")
 	if passkeyIDStr == "" {
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "passkey_id is required"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "passkey_id is required"))
 		return
 	}
 
 	passkeyID, err := strconv.ParseInt(passkeyIDStr, 10, 64)
 	if err != nil || passkeyID <= 0 {
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "passkey_id must be a positive integer"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "passkey_id must be a positive integer"))
 		return
 	}
 

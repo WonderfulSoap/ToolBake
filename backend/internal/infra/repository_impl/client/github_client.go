@@ -72,13 +72,13 @@ func (c *GithubClient) OauthTokenToAccessToken(oauthToken string) (string, error
 	if resp.IsError() {
 		respBody := resp.String()
 		if result.Error != "" {
-			return "", error_code.NewErrorWithErrorCode(error_code.OauthTokenUnavailable, "github oauth error: %s (%s), body: %s", result.Error, result.ErrorDescription, respBody)
+			return "", error_code.NewErrorWithErrorCodef(error_code.OauthTokenUnavailable, "github oauth error: %s (%s), body: %s", result.Error, result.ErrorDescription, respBody)
 		}
 		return "", errors.Errorf("github oauth request failed with status: %s, body: %s", resp.Status(), respBody)
 	}
 
 	if result.Error != "" {
-		return "", error_code.NewErrorWithErrorCode(error_code.OauthTokenUnavailable, "github oauth error: %s (%s), body: %s", result.Error, result.ErrorDescription, resp.String())
+		return "", error_code.NewErrorWithErrorCodef(error_code.OauthTokenUnavailable, "github oauth error: %s (%s), body: %s", result.Error, result.ErrorDescription, resp.String())
 	}
 
 	if result.AccessToken == "" {

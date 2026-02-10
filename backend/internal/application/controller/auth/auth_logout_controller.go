@@ -62,7 +62,7 @@ func (c *AuthLogoutController) Handler(ctx *gin.Context) {
 	err = c.authService.Logout(ctx, accessToken)
 	if err != nil {
 		logger.Errorf(ctx, "Logout failed: %v", err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected logout error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected logout error"))
 		return
 	}
 

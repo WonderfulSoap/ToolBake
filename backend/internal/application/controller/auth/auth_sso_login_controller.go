@@ -63,7 +63,7 @@ func (c *SSOLoginController) SSOLogin(ctx *gin.Context) {
 
 	// Check if 2FA is required
 	if twoFAToken != nil {
-		err := error_code.NewErrorWithErrorCodeAppendExtraData(
+		err := error_code.NewErrorWithErrorCodeFAppendExtraData(
 			error_code.TwoFaTotpIsRequiredForLogin,
 			gin.H{
 				"two_fa_token": *twoFAToken,

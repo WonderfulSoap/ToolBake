@@ -55,13 +55,13 @@ func (c *AuthIssueAccessTokenController) Handler(ctx *gin.Context) {
 	accessToken, valid, err := c.authService.IssueNewAccessToken(ctx, req.RefreshToken)
 	if err != nil {
 		logger.Errorf(ctx, "failed to issue access token: %v", err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected issue access token error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected issue access token error"))
 		return
 	}
 
 	if !valid {
 		logger.Infof(ctx, "invalid refresh token supplied")
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidRefreshToken, ""))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidRefreshToken, ""))
 		return
 	}
 

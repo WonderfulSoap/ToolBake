@@ -73,13 +73,13 @@ func (c *CreateToolController) Create(ctx *gin.Context) {
 
 	if err := c.toolRepository.CreateTool(user.ID, tool); err != nil {
 		logger.Errorf(ctx, "Failed to create tool for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected create tool error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected create tool error"))
 		return
 	}
 
 	if err := c.cache.Delete(ctx, toolsCacheKey(user.ID)); err != nil {
 		logger.Errorf(ctx, "Failed to delete cache for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected delete cache error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected delete cache error"))
 		return
 	}
 

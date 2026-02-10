@@ -83,13 +83,13 @@ func (c *GoogleClient) OauthCodeToAccessToken(oauthCode string) (string, error) 
 	if resp.IsError() {
 		respBody := resp.String()
 		if errResult.Error != "" {
-			return "", error_code.NewErrorWithErrorCode(error_code.OauthTokenUnavailable, "google oauth error: %s (%s), body: %s", errResult.Error, errResult.ErrorDescription, respBody)
+			return "", error_code.NewErrorWithErrorCodef(error_code.OauthTokenUnavailable, "google oauth error: %s (%s), body: %s", errResult.Error, errResult.ErrorDescription, respBody)
 		}
 		return "", errors.Errorf("google oauth request failed with status: %s, body: %s", resp.Status(), respBody)
 	}
 
 	if errResult.Error != "" {
-		return "", error_code.NewErrorWithErrorCode(error_code.OauthTokenUnavailable, "google oauth error: %s (%s), body: %s", errResult.Error, errResult.ErrorDescription, resp.String())
+		return "", error_code.NewErrorWithErrorCodef(error_code.OauthTokenUnavailable, "google oauth error: %s (%s), body: %s", errResult.Error, errResult.ErrorDescription, resp.String())
 	}
 
 	if result.AccessToken == "" {

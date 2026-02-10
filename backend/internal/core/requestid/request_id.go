@@ -8,7 +8,7 @@ import (
 
 func GetRequestID(ctx context.Context) string {
 	if ctx == nil {
-		panic(error_code.NewErrorWithErrorCode(error_code.InternalServerError, "get request id from context failed, context is nil"))
+		panic(error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "get request id from context failed, context is nil"))
 	}
 
 	if ctxWithValue, ok := ctx.(utils.ContextWithValue); ok {

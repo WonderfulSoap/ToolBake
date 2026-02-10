@@ -66,7 +66,7 @@ func (c *UpdateToolController) Update(ctx *gin.Context) {
 	toolUID := ctx.Param("tool_uid")
 	if toolUID == "" {
 		logger.Errorf(ctx, "Invalid tool update: tool_uid is required")
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "tool_uid is required"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "tool_uid is required"))
 		return
 	}
 
@@ -81,13 +81,13 @@ func (c *UpdateToolController) Update(ctx *gin.Context) {
 
 	if err := c.toolRepository.UpdateTool(user.ID, tool); err != nil {
 		logger.Errorf(ctx, "Failed to update tool %s for user %s: %v", toolUID, user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected update tool error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected update tool error"))
 		return
 	}
 
 	if err := c.cache.Delete(ctx, toolsCacheKey(user.ID)); err != nil {
 		logger.Errorf(ctx, "Failed to delete cache for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected delete cache error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected delete cache error"))
 		return
 	}
 

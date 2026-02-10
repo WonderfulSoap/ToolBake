@@ -79,7 +79,7 @@ func (s *AuthPasskeyService) RegistrationChallenge(ctx context.Context, userID e
 		return nil, errors.Wrap(err, "failed to get user")
 	}
 	if !exists {
-		return nil, error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+		return nil, error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 	}
 
 	// Get existing credentials to exclude
@@ -138,7 +138,7 @@ func (s *AuthPasskeyService) FinishRegistration(ctx context.Context, userID enti
 		return entity.PasskeyEntity{}, errors.Wrap(err, "failed to get user")
 	}
 	if !exists {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 	}
 
 	cacheKey := fmt.Sprintf("%s%s:register", passkeyChallengePrefix, userID)
@@ -147,7 +147,7 @@ func (s *AuthPasskeyService) FinishRegistration(ctx context.Context, userID enti
 		return entity.PasskeyEntity{}, errors.Wrap(err, "failed to get passkey registration session")
 	}
 	if !ok {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "passkey registration session not found or expired")
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "passkey registration session not found or expired")
 	}
 
 	var session webauthn.SessionData
@@ -181,12 +181,12 @@ func (s *AuthPasskeyService) FinishRegistration(ctx context.Context, userID enti
 
 	parsedResponse, err := protocol.ParseCredentialCreationResponseBytes(payloadBytes)
 	if err != nil {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	credential, err := s.webauthn.CreateCredential(wuser, session, parsedResponse)
 	if err != nil {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	logger.Debugf(ctx, "Passkey registration credential parsed: id_len=%d, backup_eligible=%t, backup_state=%t, user_verified=%t, user_present=%t",
@@ -200,7 +200,7 @@ func (s *AuthPasskeyService) FinishRegistration(ctx context.Context, userID enti
 	if _, exists, err := s.passkeyRepo.GetByCredentialID(ctx, credential.ID); err != nil {
 		return entity.PasskeyEntity{}, errors.Wrap(err, "failed to check existing passkey credential")
 	} else if exists {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "credential already registered")
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "credential already registered")
 	}
 
 	var transports *string
@@ -280,7 +280,7 @@ func (s *AuthPasskeyService) DeletePasskey(ctx context.Context, userID entity.Us
 func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.PasskeyLoginRequestEntity) (entity.AccessToken, entity.RefreshToken, error) {
 	parsedResponse, err := req.Parse()
 	if err != nil {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	logger.Debugf(ctx, "Passkey login response parsed: raw_id_len=%d, backup_eligible=%t, backup_state=%t, user_verified=%t, user_present=%t",
@@ -299,7 +299,7 @@ func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.Passkey
 		return entity.AccessToken{}, entity.RefreshToken{}, errors.Wrap(err, "failed to get passkey login session")
 	}
 	if !ok {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "passkey login session not found or expired")
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "passkey login session not found or expired")
 	}
 
 	var session webauthn.SessionData
@@ -320,7 +320,7 @@ func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.Passkey
 			return nil, errors.Wrap(err, "failed to get user")
 		}
 		if !exists {
-			return nil, error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+			return nil, error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 		}
 
 		// Get user's passkeys to find the matching credential
@@ -383,12 +383,12 @@ func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.Passkey
 	// Validate the login
 	credential, err := s.webauthn.ValidateDiscoverableLogin(userHandler, session, parsedResponse)
 	if err != nil {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	// Ensure we found the matching passkey
 	if foundPasskey.ID == 0 {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "passkey credential not found")
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "passkey credential not found")
 	}
 
 	// Update sign count

@@ -146,7 +146,7 @@ func (s *AuthService) AddSSOBindingForUser(ctx context.Context, userID entity.Us
 		return errors.Wrapf(err, "fail to get user by id")
 	}
 	if !userExists {
-		return error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not exists")
+		return error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not exists")
 	}
 
 	providerUserID, providerUsername, providerEmail, err := s.getSSOProviderUserInfo(provider, providerOauthToken)
@@ -162,7 +162,7 @@ func (s *AuthService) AddSSOBindingForUser(ctx context.Context, userID entity.Us
 	for _, binding := range bindings {
 		// user have to remove existing binding first
 		if binding.Provider == provider {
-			return error_code.NewErrorWithErrorCode(error_code.SSOProviderAccountAlreadyBinded, "There is already a SSO provider '%s' account binded to the user, please remove it first", provider)
+			return error_code.NewErrorWithErrorCodef(error_code.SSOProviderAccountAlreadyBinded, "There is already a SSO provider '%s' account binded to the user, please remove it first", provider)
 		}
 	}
 
@@ -173,7 +173,7 @@ func (s *AuthService) AddSSOBindingForUser(ctx context.Context, userID entity.Us
 		return errors.Wrapf(err, "fail to get user by SSO info, provider: %s, providerUserID: %s", provider, providerUserID)
 	}
 	if exists {
-		return error_code.NewErrorWithErrorCode(error_code.SSOProviderAccountAlreadyBinded, "Your SSO provider '%s' account is already binded to another user", provider)
+		return error_code.NewErrorWithErrorCodef(error_code.SSOProviderAccountAlreadyBinded, "Your SSO provider '%s' account is already binded to another user", provider)
 	}
 
 	// add bindings
@@ -247,7 +247,7 @@ func (s *AuthService) DeleteUserSSOBinding(ctx context.Context, userID entity.Us
 
 	// Prevent deletion if user has only one or fewer bindings
 	if len(bindings) <= 1 {
-		return error_code.NewErrorWithErrorCode(error_code.CannotDeleteLastSSOBinding, "Cannot delete the last SSO binding. User must have at least one login method.")
+		return error_code.NewErrorWithErrorCodef(error_code.CannotDeleteLastSSOBinding, "Cannot delete the last SSO binding. User must have at least one login method.")
 	}
 
 	if err := s.userRepo.DeleteUserSSOBinding(ctx, userID, provider); err != nil {

@@ -84,7 +84,7 @@ func (s *TwoFAService) GenerateNewTOTPForUser(ctx context.Context, userID entity
 		return nil, errors.Wrap(err, "fail to check existing totp")
 	}
 	if exists {
-		return nil, error_code.NewErrorWithErrorCode(error_code.TwoFaAlreadyEnabled, "please remove existing TOTP before generating a new one")
+		return nil, error_code.NewErrorWithErrorCodef(error_code.TwoFaAlreadyEnabled, "please remove existing TOTP before generating a new one")
 	}
 
 	// Generate TOTP key
@@ -209,7 +209,7 @@ func (s *TwoFAService) VerifyAndEnableTOTP(ctx context.Context, userID entity.Us
 		return "", errors.Wrap(err, "fail to check existing totp")
 	}
 	if exists {
-		return "", error_code.NewErrorWithErrorCode(error_code.TwoFaAlreadyEnabled, "please remove existing TOTP before adding a new one")
+		return "", error_code.NewErrorWithErrorCodef(error_code.TwoFaAlreadyEnabled, "please remove existing TOTP before adding a new one")
 	}
 
 	// Get pending TOTP data from cache
@@ -229,7 +229,7 @@ func (s *TwoFAService) VerifyAndEnableTOTP(ctx context.Context, userID entity.Us
 	// Verify the TOTP code
 	valid := totp.Validate(code, cacheData.Secret)
 	if !valid {
-		return "", error_code.NewErrorWithErrorCode(error_code.InvalidTotpCode, "please try again")
+		return "", error_code.NewErrorWithErrorCodef(error_code.InvalidTotpCode, "please try again")
 	}
 
 	// Create 2FA record in database
@@ -297,7 +297,7 @@ func (s *TwoFAService) Verify2FAToken(ctx context.Context, token string, code st
 		return "", errors.Wrap(err, "fail to get totp verify cache data")
 	}
 	if !exists {
-		return "", error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "2FA verification session expired or invalid token")
+		return "", error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "2FA verification session expired or invalid token")
 	}
 
 	var cacheData totpVerifyCacheData
@@ -313,13 +313,13 @@ func (s *TwoFAService) Verify2FAToken(ctx context.Context, token string, code st
 		return "", errors.Wrap(err, "fail to get 2fa record")
 	}
 	if !exists {
-		return "", error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "2FA is not enabled")
+		return "", error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "2FA is not enabled")
 	}
 
 	// Verify the TOTP code
 	valid := totp.Validate(code, twoFA.Secret)
 	if !valid {
-		return "", error_code.NewErrorWithErrorCode(error_code.InvalidTotpCode, "please try again")
+		return "", error_code.NewErrorWithErrorCodef(error_code.InvalidTotpCode, "please try again")
 	}
 
 	// Clear the token after successful verification
@@ -348,7 +348,7 @@ func (s *TwoFAService) Verify2FATokenAndLogin(ctx context.Context, token string,
 		return TwoFALoginResult{}, errors.Wrap(err, "fail to get user")
 	}
 	if !exists {
-		return TwoFALoginResult{}, error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+		return TwoFALoginResult{}, error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 	}
 
 	// Issue tokens
@@ -377,7 +377,7 @@ func (s *TwoFAService) Delete2FA(ctx context.Context, userID entity.UserIDEntity
 		return errors.Wrap(err, "fail to check existing 2fa")
 	}
 	if !exists {
-		return error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "2FA of type %s is not enabled", twoFAType)
+		return error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "2FA of type %s is not enabled", twoFAType)
 	}
 
 	// Verify the code - try TOTP first, then recovery code
@@ -398,7 +398,7 @@ func (s *TwoFAService) Delete2FA(ctx context.Context, userID entity.UserIDEntity
 	}
 
 	if !codeValid {
-		return error_code.NewErrorWithErrorCode(error_code.InvalidTotpCode, "invalid code, please try again")
+		return error_code.NewErrorWithErrorCodef(error_code.InvalidTotpCode, "invalid code, please try again")
 	}
 
 	// Delete the 2FA record
@@ -424,7 +424,7 @@ func (s *TwoFAService) Remove2FAByRecoveryCode(ctx context.Context, twoFAToken s
 		return errors.Wrap(err, "fail to get totp verify cache data")
 	}
 	if !exists {
-		return error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "2FA verification session expired or invalid token")
+		return error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "2FA verification session expired or invalid token")
 	}
 
 	var cacheData totpVerifyCacheData
@@ -440,7 +440,7 @@ func (s *TwoFAService) Remove2FAByRecoveryCode(ctx context.Context, twoFAToken s
 		return errors.Wrap(err, "fail to get recovery code")
 	}
 	if storedRecoveryCode == nil || *storedRecoveryCode != recoveryCode {
-		return error_code.NewErrorWithErrorCode(error_code.InvalidRecoveryCode, "invalid recovery code")
+		return error_code.NewErrorWithErrorCodef(error_code.InvalidRecoveryCode, "invalid recovery code")
 	}
 
 	// Delete the 2FA record

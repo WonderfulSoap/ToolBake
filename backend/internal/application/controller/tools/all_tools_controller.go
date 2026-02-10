@@ -68,7 +68,7 @@ func (c *AllToolsController) AllTools(ctx *gin.Context) {
 	cachedValue, found, err := c.cache.Get(ctx, cacheKey)
 	if err != nil {
 		logger.Errorf(ctx, "Failed to get cache for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected fetch tools from cache"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected fetch tools from cache"))
 		return
 	}
 
@@ -83,7 +83,7 @@ func (c *AllToolsController) AllTools(ctx *gin.Context) {
 		toolsEntity, err := c.toolRepository.AllTools(user.ID)
 		if err != nil {
 			logger.Errorf(ctx, "Failed to get tools for user %s: %v", user.ID, err)
-			c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected fetch tools error"))
+			c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected fetch tools error"))
 			return
 		}
 
@@ -94,12 +94,12 @@ func (c *AllToolsController) AllTools(ctx *gin.Context) {
 		respJSON, err := json.Marshal(resp)
 		if err != nil {
 			logger.Warnf(ctx, "Failed to marshal tools response for cache for user %s: %v", user.ID, err)
-			c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected marshal tools error"))
+			c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected marshal tools error"))
 			return
 		}
 		if err := c.cache.Set(ctx, cacheKey, string(respJSON)); err != nil {
 			logger.Warnf(ctx, "Failed to set cache for user %s: %v", user.ID, err)
-			c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected set cache error"))
+			c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected set cache error"))
 			return
 		}
 		respJsonObjectStr = string(respJSON)

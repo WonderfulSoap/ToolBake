@@ -35,7 +35,7 @@ func (s *UserService) CreateUser(ctx context.Context, username string, password 
 		return entity.UserEntity{}, errors.Wrapf(err, "fail to check existing user")
 	}
 	if exists {
-		return entity.UserEntity{}, error_code.NewErrorWithErrorCode(error_code.UserAlreadyExists, "username already exists")
+		return entity.UserEntity{}, error_code.NewErrorWithErrorCodef(error_code.UserAlreadyExists, "username already exists")
 	}
 
 	// Create user
@@ -73,7 +73,7 @@ func (s *UserService) UpdateUser(
 		return errors.Wrapf(err, "fail to get user by id")
 	}
 	if !exists {
-		return error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+		return error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 	}
 
 	// Apply updates (diff update: only non-nil fields)
@@ -84,7 +84,7 @@ func (s *UserService) UpdateUser(
 			return errors.Wrapf(err, "fail to check username")
 		}
 		if usernameExists {
-			return error_code.NewErrorWithErrorCode(error_code.UserAlreadyExists, "username already exists")
+			return error_code.NewErrorWithErrorCodef(error_code.UserAlreadyExists, "username already exists")
 		}
 		user.Name = *params.Username
 	}
@@ -105,7 +105,7 @@ func (s *UserService) DeleteUser(ctx context.Context, userID entity.UserIDEntity
 		return errors.Wrapf(err, "fail to get user by id")
 	}
 	if !exists {
-		return error_code.NewErrorWithErrorCode(error_code.UserNotFound, "user not found")
+		return error_code.NewErrorWithErrorCodef(error_code.UserNotFound, "user not found")
 	}
 
 	// Delete all access tokens for this user

@@ -57,7 +57,7 @@ func (c *SSOBindingGetController) Handler(ctx *gin.Context) {
 	bindings, err := c.authService.GetUserSSOBindings(ctx, user.ID)
 	if err != nil {
 		logger.Errorf(ctx, "Failed to get SSO bindings: %v", err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Failed to get SSO bindings"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Failed to get SSO bindings"))
 		return
 	}
 

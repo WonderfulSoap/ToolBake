@@ -61,13 +61,13 @@ func (c *GetGlobalScriptController) GetGlobalScript(ctx *gin.Context) {
 	entity, err := c.globalScriptRepository.GetGlobalScript(user.ID)
 	if err != nil {
 		logger.Errorf(ctx, "Failed to load global script for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected fetch global script error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected fetch global script error"))
 		return
 	}
 
 	if entity == nil {
 		logger.Warnf(ctx, "Global script not found for user %s", user.ID)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.FileNotFound, "global script not found"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.FileNotFound, "global script not found"))
 		return
 	}
 

@@ -65,19 +65,19 @@ func (c *DeleteToolController) Delete(ctx *gin.Context) {
 	toolUID := ctx.Param("tool_uid")
 	if toolUID == "" {
 		logger.Errorf(ctx, "Invalid tool delete: tool_uid is required")
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "tool_uid is required"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidRequestParameters, "tool_uid is required"))
 		return
 	}
 
 	if err := c.toolRepository.DeleteTool(user.ID, toolUID); err != nil {
 		logger.Errorf(ctx, "Failed to delete tool %s for user %s: %v", toolUID, user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected delete tool error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected delete tool error"))
 		return
 	}
 
 	if err := c.cache.Delete(ctx, toolsCacheKey(user.ID)); err != nil {
 		logger.Errorf(ctx, "Failed to delete cache for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected delete cache error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected delete cache error"))
 		return
 	}
 

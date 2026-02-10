@@ -48,7 +48,7 @@ func (c *AuthLoginController) Login(ctx *gin.Context) {
 
 	if !c.config.ENABLE_PASSWORD_LOGIN {
 		logger.Warnf(ctx, "Authentication is disabled in the configuration")
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.PasswordLoginIsNotEnabled, "password login is not enabled, please set env: ENABLE_PASSWORD_LOGIN"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.PasswordLoginIsNotEnabled, "password login is not enabled, please set env: ENABLE_PASSWORD_LOGIN"))
 		return
 	}
 	var req LoginRequestDto
@@ -60,19 +60,19 @@ func (c *AuthLoginController) Login(ctx *gin.Context) {
 	res, twoFAToken, credentialValid, err := c.authService.Login(ctx, req.UserName, req.Password)
 	if err != nil {
 		logger.Errorf(ctx, "Failed to login: %v", err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected login error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected login error"))
 		return
 	}
 
 	if !credentialValid {
 		logger.Infof(ctx, "Invalid credentials for user: %s", req.UserName)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InvalidCredentials, ""))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InvalidCredentials, ""))
 		return
 	}
 
 	// Check if 2FA is required
 	if twoFAToken != nil {
-		err := error_code.NewErrorWithErrorCodeAppendExtraData(
+		err := error_code.NewErrorWithErrorCodeFAppendExtraData(
 			error_code.TwoFaTotpIsRequiredForLogin,
 			gin.H{
 				"two_fa_token": *twoFAToken,

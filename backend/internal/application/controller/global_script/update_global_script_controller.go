@@ -68,7 +68,7 @@ func (c *UpdateGlobalScriptController) UpdateGlobalScript(ctx *gin.Context) {
 
 	if err := c.globalScriptRepository.UpdateGlobalScript(user.ID, req.GlobalScript); err != nil {
 		logger.Errorf(ctx, "Failed to update global script for user %s: %v", user.ID, err)
-		c.Error(ctx, error_code.NewErrorWithErrorCode(error_code.InternalServerError, "Unexpected update global script error"))
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.InternalServerError, "Unexpected update global script error"))
 		return
 	}
 
