@@ -11,6 +11,7 @@ import (
 
 	"ya-tool-craft/internal/config"
 	"ya-tool-craft/internal/core/logger"
+	domain_client "ya-tool-craft/internal/domain/client"
 	"ya-tool-craft/internal/domain/entity"
 	"ya-tool-craft/internal/error_code"
 	mockgen "ya-tool-craft/internal/infra/repository_impl/mock_gen"
@@ -78,8 +79,8 @@ func newTestAuthService(ctrl *gomock.Controller) (
 
 func newTestAuthServiceWithSSOClients(
 	ctrl *gomock.Controller,
-	githubClient IGithubAuthClient,
-	googleClient IGoogleAuthClient,
+	githubClient domain_client.IGithubAuthClient,
+	googleClient domain_client.IGoogleAuthClient,
 ) (
 	*AuthService,
 	*mockgen.MockIAuthAccessTokenRepository,

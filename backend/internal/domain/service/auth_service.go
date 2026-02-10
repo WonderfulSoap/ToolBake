@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"ya-tool-craft/internal/core/logger"
+	"ya-tool-craft/internal/domain/client"
 	"ya-tool-craft/internal/domain/entity"
 	"ya-tool-craft/internal/domain/repository"
 	"ya-tool-craft/internal/error_code"
@@ -12,22 +13,12 @@ import (
 	"github.com/pkg/errors"
 )
 
-type IGithubAuthClient interface {
-	OauthTokenToAccessToken(oauthToken string) (string, error)
-	GetUserInfo(accessToken string) (entity.GithubUserInfoEntity, error)
-}
-
-type IGoogleAuthClient interface {
-	OauthCodeToAccessToken(oauthCode string) (string, error)
-	GetUserInfo(accessToken string) (entity.GoogleUserInfoEntity, error)
-}
-
 func NewAuthService(
 	accessTokenRepo repository.IAuthAccessTokenRepository,
 	refreshTokenRepo repository.IAuthRefreshTokenRepository,
 	userRepo repository.IUserRepository,
-	githubClient IGithubAuthClient,
-	googleClient IGoogleAuthClient,
+	githubClient client.IGithubAuthClient,
+	googleClient client.IGoogleAuthClient,
 	twoFAService *TwoFAService,
 ) *AuthService {
 	return &AuthService{
@@ -44,8 +35,8 @@ type AuthService struct {
 	accessTokenRepo  repository.IAuthAccessTokenRepository
 	refreshTokenRepo repository.IAuthRefreshTokenRepository
 	userRepo         repository.IUserRepository
-	githubClient     IGithubAuthClient
-	googleClient     IGoogleAuthClient
+	githubClient     client.IGithubAuthClient
+	googleClient     client.IGoogleAuthClient
 	twoFAService     *TwoFAService
 }
 

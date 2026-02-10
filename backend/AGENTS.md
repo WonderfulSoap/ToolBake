@@ -17,6 +17,7 @@ The project currently uses a clear DDD layering model. The approximate directori
 | Application Layer | `internal/application/controller/**` | Exposes HTTP APIs (Gin Handler), handles parameter validation/DTO conversion/domain service invocation/response assembly, and does not contain core business rules. |
 | Domain Layer - Entity | `internal/domain/entity/**` | Defines core business objects and domain data structures (such as `UserEntity`, `ToolEntity`, `UserSSOEntity`, etc.). |
 | Domain Layer - Repository Interface | `internal/domain/repository/**` | Defines persistence and external capability abstractions required by the domain (such as `IUserRepository`, `IToolRepository`, `IAuthAccessTokenRepository`, etc.). |
+| Domain Layer - External Client Interface | `internal/domain/client/**` | Defines external capability abstractions required by domain services (such as `IGithubAuthClient`, `IGoogleAuthClient`) so domain code depends on interfaces instead of infra clients. |
 | Domain Layer - Domain Service | `internal/domain/service/**` | Carries core business workflows and rule orchestration (such as authentication, 2FA, and user-related logic), and stays decoupled from infrastructure through repository interfaces. |
 | Infrastructure Layer | `internal/infra/repository_impl/**` | Concrete implementations of domain repository interfaces (RDS/Badger/JWT, etc.) and third-party client implementations (GitHub/Google OAuth). |
 | Composition/Bootstrap Layer | `internal/di/**`, `internal/core/**`, `main.go` | Dependency injection composition (`dig`), route registration, middleware mounting, configuration loading, database migration, and service startup. |
@@ -119,7 +120,7 @@ The project uses `uber-go/dig` for dependency injection. Core files are:
 - Bind `IRdsClient` by `DBType` (duckdb/sqlite)
 - Bind repository implementations such as `IMigration`, `IUserRepository`, and `IToolRepository`
 - Bind `ICache`, `IAuthRefreshTokenRepository`, etc. by `KeyValueDBType`
-- Register third-party clients (such as `client.NewGithubClient`, `client.NewGoogleClient`)
+- Bind third-party client implementations to domain client interfaces (such as `bind(client.NewGithubClient, new(domain_client.IGithubAuthClient))`)
 
 3) Domain services  
 - `service.NewAuthService`
@@ -142,13 +143,16 @@ bind(repository_impl.NewXxxRepositoryImpl, new(repository.IXxxRepository))
 ```
 4) Add `repository.IXxxRepository` to the target service constructor parameters, and dig will inject it automatically.
 
-### Add a new third-party client (without interface binding)
-1) Add `NewXxxClient(config.Config) *XxxClient` in `internal/infra/repository_impl/client/`.  
-2) In `internal/di/init_di_register.go`, use:
+### Add a new third-party client (interface-first, recommended for domain services such as SSO)
+1) Define a domain client interface in `internal/domain/client/`, for example `IXxxAuthClient`.  
+2) Add `NewXxxClient(config.Config) *XxxClient` in `internal/infra/repository_impl/client/`, and make sure it implements `IXxxAuthClient`.  
+3) In `internal/di/init_di_register.go`, use:
 ```go
-provide(client.NewXxxClient)
+bind(client.NewXxxClient, new(domain_client.IXxxAuthClient))
 ```
-3) Declare `*client.XxxClient` directly in the constructor parameters of the service that needs it.
+4) Declare `domain_client.IXxxAuthClient` in the constructor parameters of the service that needs it.
+
+If a concrete client is only used as a concrete type (not injected behind an interface), you may still use `provide(...)`.
 
 ### Add a new controller
 1) Add `NewXxxController(...) router.Controller` under `internal/application/controller/...`.  
@@ -202,19 +206,20 @@ GitHub SSO and Google SSO are currently supported. Related capabilities are conc
   - Return entity: `internal/domain/entity/google_user_info_entity.go`
 
 ## Service & Controller
-- Service: `internal/domain/service/auth_service.go` injects `GithubClient` and `GoogleClient`
+- Service: `internal/domain/service/auth_service.go` injects `domain_client.IGithubAuthClient` and `domain_client.IGoogleAuthClient` (implemented by infra clients)
 - Controller: `internal/application/controller/auth/auth_sso_login_controller.go`
-  - Routes: `POST /api/v1/auth/sso/github`, `POST /api/v1/auth/sso/google`
+  - Route: `POST /api/v1/auth/sso/:provider` (`provider` currently supports `github` and `google`)
   - Request DTO: `SSOLoginRequestDto` (`oauth_code`)
 
 ## Notes for Extending New SSO Providers
 1) Add environment variable configuration for the new provider in `internal/config/config.go` (CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
 2) Create a new provider client under `internal/infra/repository_impl/client/` by following `GithubClient`/`GoogleClient`
 3) Create the corresponding user info entity (`internal/domain/entity/xxx_user_info_entity.go`)
-4) Register the new client in `internal/di/init_di_register.go` (`provide(client.NewXxxClient)`)
-5) Inject the new client in `internal/domain/service/auth_service.go`, and add provider handling logic in the switch of the private method `getSSOProviderUserInfo`
-6) Add the provider-specific handler, router, and Swagger info in `internal/application/controller/auth/auth_sso_login_controller.go`
-7) Update frontend runtime config (`__SSR_CONFIG__`), and pass SSO config to the frontend according to the "Steps to Add a New Config Item" section below (the file to modify is `internal/application/controller/frontend_assets_host/ssr_config_dto.go`)
+4) Define the corresponding domain client interface in `internal/domain/client/` (or extend an existing one), and make the infra client implement it
+5) Register the new client in `internal/di/init_di_register.go` using interface binding (`bind(client.NewXxxClient, new(domain_client.IXxxAuthClient))`)
+6) Inject the domain client interface in `internal/domain/service/auth_service.go`, and add provider handling logic in the switch of the private method `getSSOProviderUserInfo`
+7) Update provider support description/validation in `internal/application/controller/auth/auth_sso_login_controller.go` (the route itself is already dynamic: `/api/v1/auth/sso/:provider`)
+8) Update frontend runtime config (`__SSR_CONFIG__`), and pass SSO config to the frontend according to the "Steps to Add a New Config Item" section below (the file to modify is `internal/application/controller/frontend_assets_host/ssr_config_dto.go`)
 
 # __SSR_CONFIG__ Frontend Runtime Configuration
 
