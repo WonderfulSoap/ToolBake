@@ -6,7 +6,7 @@
 <p align="center"><b>A Platform for Creating Your Own Tools.</b></p>
 
 <p align="center">
-  <img width="800" src="app/public/assets/social-card.png" />
+  <img width="600" src="app/public/assets/social-card.png" />
 </p>
 
 ---
