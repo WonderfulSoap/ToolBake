@@ -197,9 +197,7 @@ In this example, when the user modifies the value of the `user_input_text` input
 
 For this example, we did not use it, so we will skip the explanation for now.
 
-> todo: Add callback documentation
->
-For more detailed information about `callback()`, refer to [here](../api-reference/handler.md).
+For more detailed information about `callback()`, refer to [Handler docs](../handler/handler-use-package.md).
 
 
 

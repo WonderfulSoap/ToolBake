@@ -23,7 +23,6 @@ ToolBake comes with a wide variety of built-in official tools, including:
 - Image processing tools
 - And more
 
-> todo: Add documentation and references for how to create new official tools
 
 :::warning
 Official tools cannot be modified. You can only click the `Fork` button in the top-right corner to create a copy as a custom tool before making any modifications.

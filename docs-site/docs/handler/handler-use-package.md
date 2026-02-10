@@ -17,8 +17,7 @@ ToolBake has a rich collection of official tools (such as UUID generation, video
 
 You can load and use these built-in packages directly in the handler via `await requirePackage('package-name')`.
 
-// todo: Add UUID Generator tool URL
-For example, to implement the [UUID Generator](xxx) official tool, ToolBake has the npm [uuid](https://www.npmjs.com/package/uuid) package built in.
+For example, to implement the [UUID Generator](https://toolbake.com/t/official-uuid-generator) official tool, ToolBake has the npm [uuid](https://www.npmjs.com/package/uuid) package built in.
 
 You can load and use this package directly in the handler via `await requirePackage('uuid')`, as shown below:
 
@@ -250,8 +249,7 @@ await Magick.initializeImageMagick(wasmBytes)
 
 ImageMagick wasm does not necessarily support all filters, features, and formats available on the desktop version.
 
-// todo: Link to official tools
-For the full ImageMagick Wasm feature support list, please refer to [xxxx](https://github.com/dlemstra/magick-wasm).
+For the full ImageMagick Wasm feature support list, please refer to official tool [ImageMagick.wasm Feature List](https://toolbake.com/t/official-imagemagick-feature-list).
 
 
 #### Special Limitation: ImageMagick Wasm Does Not Support SVG Processing

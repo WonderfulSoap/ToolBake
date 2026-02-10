@@ -154,8 +154,7 @@ Result:
 <img src={require('./assets/label-html-render.png').default} style={{maxWidth: '450px'}} />
 
 :::tip
-// todo: Add link
-There is an official tool that demonstrates dynamic HTML rendering capabilities.
+There is an official tool that demonstrates [dynamic HTML rendering capabilities](https://toolbake.com/t/official-label-interaction-showcase).
 The dynamic content in the Label section at the bottom of that tool is entirely rendered via HTML.
 :::
 
@@ -338,8 +337,6 @@ You can access the user's input data from the HTML by reading the inputWidgets v
 :::tip
 By combining afterHook and `data-*` attributes, you can build tools with complex interactive features.
 
-// todo: Add link
-
-The official tools include one that demonstrates this feature: [Label Interaction Showcase](/tools/official/label-interaction-showcase)
+The official tools include one that demonstrates this feature: [Label Interaction Showcase](https://toolbake.com/t/official-label-dynamic-demo)
 This tool renders a Label with a counter using dynamic HTML scripts and data binding. Clicking the `Count` button triggers the handler, which then retrieves the count from the HTML.
 :::

@@ -70,5 +70,4 @@ The workaround is:
 ```
 
 ## Example
-// todo: Add link
-The [Tetris]() official tool is built using RawHtmlInput. It dynamically loads the JS and CSS from [blockrain.js](https://github.com/Aerolab/blockrain.js) to implement an online Tetris game.
+The [Tetris](https://toolbake.com/t/official-blockrain-tetris) official tool is built using RawHtmlInput. It dynamically loads the JS and CSS from [blockrain.js](https://github.com/Aerolab/blockrain.js) to implement an online Tetris game.

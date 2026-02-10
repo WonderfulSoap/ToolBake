@@ -68,8 +68,7 @@ ToolBake comes with a rich set of built-in Official Tools:
 
 All of these tools are implemented through ToolBake's tool customization mechanism. Any feature supported by the official tools can be fully replicated in your own tools.
 
-// todo: add links
-Visit the ToolBake website now to try out the various official tools and experience ToolBake's powerful capabilities.
+Visit the [ToolBake Demo website](https://toolbake.com) now to try out the various official tools and experience ToolBake's powerful capabilities.
 
 ### Create Custom Tools
 
