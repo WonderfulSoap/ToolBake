@@ -35,6 +35,15 @@ const features = [
   { icon: Sparkles, title: "Modern", description: "Built with modern web technologies for the best developer experience" },
 ];
 
+const promoShots = [
+  { src: "/assets/sc/image3.png", alt: "ToolBake screenshot 1", className: "left-[4%] top-[28%] w-[32%] -rotate-[8deg] z-[2]" },
+  { src: "/assets/sc/image2.png", alt: "ToolBake screenshot 2", className: "left-[21%] top-[13%] w-[33%] -rotate-[2deg] z-[5]" },
+  { src: "/assets/sc/image1.png", alt: "ToolBake screenshot 3", className: "left-[39%] top-[21%] w-[34%] rotate-[5deg] z-[6]" },
+  { src: "/assets/sc/image6.png", alt: "ToolBake screenshot 4", className: "left-[61%] top-[8%] w-[30%] rotate-[11deg] z-[3]" },
+  { src: "/assets/sc/image5.png", alt: "ToolBake screenshot 5", className: "left-[55%] top-[49%] w-[32%] rotate-[6deg] z-[6]" },
+  { src: "/assets/sc/image4.png", alt: "ToolBake screenshot 6", className: "left-[16%] top-[49%] w-[32%] -rotate-[10deg] z-[1]" },
+];
+
 /**
  * Group tools by namespace, then by category from metadata.
  * Empty namespace/category fall back to "Unassigned"/"General".
@@ -76,9 +85,27 @@ export default function HomePage() {
 
   return (
     <div className="h-full w-full overflow-auto bg-background">
-      {/* Hero Section - full width background */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+      <div className="relative w-full overflow-visible bg-gradient-to-b from-primary/5 via-background to-background">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+
+        {/* Promo Header */}
+        <section className="relative w-full overflow-visible bg-transparent px-4 pb-0 pt-2 md:px-6 md:pb-0 md:pt-3">
+          <div className="relative mx-auto w-full max-w-[1200px]">
+            <div className="relative mx-auto aspect-[1200/270] w-full max-w-[1200px] [mask-image:linear-gradient(to_bottom,black_0%,black_76%,transparent_100%)]">
+              {promoShots.map((shot) => (
+                <figure
+                  key={shot.src}
+                  className={`absolute m-0 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 shadow-[0_14px_34px_rgba(15,23,42,0.18)] backdrop-blur-[2px] ${shot.className}`}
+                >
+                  <img src={shot.src} alt={shot.alt} loading="lazy" className="block h-full w-full object-cover" />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Hero Section - full width background */}
+        <section className="relative w-full overflow-hidden bg-transparent">
         <div className="relative mx-auto w-full max-w-7xl px-6 py-16 md:py-24 lg:px-8">
           <div className="flex flex-col items-center text-center">
             {/* Logo and Title */}
@@ -121,7 +148,8 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </div>
 
       {/* Tool Categories Section - full width with inner constraint */}
       <section id="official-tools-section" className="w-full bg-muted/20 py-12">

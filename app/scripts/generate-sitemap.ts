@@ -27,4 +27,3 @@ ${urls.map((path) => `  <url>
 
 const outPath = resolve(import.meta.dirname, "../build/client/sitemap.xml");
 writeFileSync(outPath, sitemap, "utf-8");
-console.log(`Sitemap generated: ${outPath} (${urls.length} URLs)`);

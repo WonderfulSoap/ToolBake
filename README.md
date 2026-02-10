@@ -6,7 +6,7 @@
 <p align="center"><b>A Platform for Creating Your Own Tools.</b></p>
 
 <p align="center">
-  <img width="800" src="app/public/assets/social-card.svg" />
+  <img width="800" src="app/public/assets/social-card.png" />
 </p>
 
 ---
@@ -68,8 +68,7 @@ ToolBake comes with a rich set of built-in Official Tools:
 
 All of these tools are implemented through ToolBake's tool customization mechanism. Any feature supported by the official tools can be fully replicated in your own tools.
 
-// todo: add links
-Visit the ToolBake website now to try out the various official tools and experience ToolBake's powerful capabilities.
+Visit the [ToolBake Demo website](https://toolbake.com) now to try out the various official tools and experience ToolBake's powerful capabilities.
 
 ### Create Custom Tools
 
@@ -138,8 +137,7 @@ You just need to download the binary and run it directly — that's all it takes
 
 ### Install
 
-// todo: complete links
-Visit the Release page, download the corresponding ToolBake version, then:
+Visit the [Release page](https://github.com/WonderfulSoap/ToolBake/releases), download the corresponding ToolBake version, then:
 
 ```bash
 chmod +x xxxxxx
@@ -149,7 +147,7 @@ chmod +x xxxxxx
 
 All done.
 
-### Docker
+<!-- ### Docker
 
 If you prefer running software via Docker, you can also use the Docker configuration.
 
@@ -158,7 +156,7 @@ If you prefer running software via Docker, you can also use the Docker configura
 
 ### k8s
 
-// todo: complete k8s
+// todo: complete k8s deployment yaml
 
 ### Advanced Configuration
 
@@ -168,4 +166,4 @@ All ToolBake configurations can be set through environment variables. Refer to t
 
 ## More Information
 
-Please refer to the official documentation to learn about ToolBake's execution mechanism and how to create your own tools.
+Please refer to the official documentation to learn about ToolBake's execution mechanism and how to create your own tools. -->
