@@ -11,7 +11,7 @@ import { useAuthContext } from "~/contexts/auth-context";
 import { useUserInfo } from "~/hooks/use-auth";
 import { globalDI } from "~/di/global-di";
 import { queryClient } from "~/lib/query-client";
-import type { Passkey, PasskeyRegisterRequest, SsoBinding, SsoProvider, TotpSetupInfo, TwoFaInfo } from "~/data/interface/i-auth-repository";
+import type { Passkey, PasskeyRegisterRequest, SsoBinding, SsoProvider, TotpSetupInfo } from "~/data/interface/i-auth-repository";
 import { buildGithubAuthorizeUrl, buildGoogleAuthorizeUrl, generateSsoStateId, getSsoStateStorageKey } from "~/lib/sso";
 import { base64UrlToArrayBuffer } from "~/lib/utils";
 
@@ -274,7 +274,7 @@ export function SettingsDialog({ onReportError, open, onOpenChange, activeTab: a
     const normalizedDeviceName = deviceName?.trim();
     return {
       authenticatorAttachment: credential.authenticatorAttachment ?? undefined,
-      clientExtensionResults : credential.getClientExtensionResults?.() ?? undefined,
+      clientExtensionResults : { ...credential.getClientExtensionResults?.() },
       deviceName             : normalizedDeviceName?.length ? normalizedDeviceName : undefined,
       id                     : credential.id,
       rawId                  : arrayBufferToBase64Url(credential.rawId),
@@ -508,7 +508,7 @@ export function SettingsDialog({ onReportError, open, onOpenChange, activeTab: a
             <DialogTitle>Settings</DialogTitle>
             <DialogDescription>Configure OpenAI credentials and account bindings.</DialogDescription>
           </DialogHeader>
-          <Tabs value={dialogTab} onValueChange={(value) => { onActiveTabChange ? onActiveTabChange(value) : setActiveTab(value); }} className="w-full">
+          <Tabs value={dialogTab} onValueChange={(value) => { if (onActiveTabChange) { onActiveTabChange(value); } else { setActiveTab(value); } }} className="w-full">
             <TabsList className="w-full justify-start bg-transparent p-0 h-auto">
               <TabsTrigger value="openai" className="rounded-full px-4 py-1.5 text-xs data-[state=active]:bg-muted/60">
                 OpenAI
@@ -831,7 +831,7 @@ export function SettingsDialog({ onReportError, open, onOpenChange, activeTab: a
                             <code className="text-sm font-mono font-semibold tracking-wide text-foreground select-all break-all whitespace-pre-wrap">{recoveryCode}</code>
                           </div>
                           <div className="flex flex-wrap items-center gap-2">
-                            <Button size="sm" variant="outline" onClick={handleCopyRecoveryCode}>Copy</Button>
+                            <Button size="sm" variant="outline" onClick={() => { void handleCopyRecoveryCode(); }}>Copy</Button>
                             <Button size="sm" variant="outline" onClick={handleDownloadRecoveryCode}>Download .txt</Button>
                           </div>
                           <p className="text-[11px] text-destructive font-medium">

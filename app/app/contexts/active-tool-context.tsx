@@ -3,7 +3,7 @@ import type { Tool } from "~/entity/tool";
 
 interface ActiveToolOverrideContextValue {
   /** Override tool to display in header (used by edit pages). */
-  overrideTool: Tool | null;
+  overrideTool   : Tool | null;
   /** Set the override tool. Pass null to clear. */
   setOverrideTool: (tool: Tool | null) => void;
 }

@@ -283,13 +283,13 @@ async function buildMonacoBundle() {
 
   await build({
     entryPoints: { "monaco": "node_modules/monaco-editor/esm/vs/editor/editor.main.js" },
-    outdir  : outDir,
-    bundle  : true,
-    format  : "esm",
-    platform: "browser",
-    target  : "es2020",
-    minify  : true,
-    loader  : { ".ttf": "dataurl" }, // Embed codicon font in CSS
+    outdir     : outDir,
+    bundle     : true,
+    format     : "esm",
+    platform   : "browser",
+    target     : "es2020",
+    minify     : true,
+    loader     : { ".ttf": "dataurl" }, // Embed codicon font in CSS
   });
   console.log("Built Monaco bundle: monaco.js + monaco.css");
 }
@@ -409,7 +409,7 @@ export default defineConfig({
       // Externalize monaco-editor so Rollup doesn't process its 5000+ ESM modules (causes OOM).
       // The pre-built bundle in public/assets/monacoeditorwork/monaco.js is loaded at runtime instead.
       external: ["monaco-editor"],
-      output: {
+      output  : {
         // Rewrite externalized monaco-editor import to the pre-built bundle URL
         paths: {
           "monaco-editor": "/assets/monacoeditorwork/monaco.js",

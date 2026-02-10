@@ -105,7 +105,7 @@ export function AppLayout({
             <div
               className={`fixed inset-y-0 left-0 z-50 w-[340px] max-w-[85vw] md:hidden ${isMobileSidebarOpen ? "shadow-2xl" : "invisible"}`}
               style={{
-                transform: isMobileSidebarOpen ? "translateX(0)" : "translateX(-100%)",
+                transform : isMobileSidebarOpen ? "translateX(0)" : "translateX(-100%)",
                 transition: isMobileSidebarOpen
                   ? "transform 300ms cubic-bezier(0.32, 0.72, 0, 1)"
                   : "transform 300ms cubic-bezier(0.32, 0.72, 0, 1), visibility 0s 300ms",

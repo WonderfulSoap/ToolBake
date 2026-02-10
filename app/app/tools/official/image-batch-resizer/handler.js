@@ -130,10 +130,10 @@ async function handler(inputWidgets, changedWidgetIds, callback) {
       callback({
         resizeProgress: {
           current: i,
-          total: files.length,
+          total  : files.length,
           percent: Math.round((i / files.length) * 100),
-          label: `Resizing ${i + 1}/${files.length}`,
-          hint: file.name,
+          label  : `Resizing ${i + 1}/${files.length}`,
+          hint   : file.name,
         },
       });
 
@@ -150,10 +150,10 @@ async function handler(inputWidgets, changedWidgetIds, callback) {
 
     result.resizeProgress = {
       current: files.length,
-      total: files.length,
+      total  : files.length,
       percent: 100,
-      label: "Complete",
-      hint: `${lastResults.filter(r => !r.error).length} images resized`,
+      label  : "Complete",
+      hint   : `${lastResults.filter(r => !r.error).length} images resized`,
     };
   }
 

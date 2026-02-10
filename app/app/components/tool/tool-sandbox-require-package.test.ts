@@ -71,7 +71,7 @@ describe("ToolSandboxRequirePackage.create", function () {
     const requirePackage = new ToolSandboxRequirePackage().requirePackageFactory();
 
     await expect(requirePackage("not-supported")).rejects.toThrow(
-      "Dynamic require package fail: package \"not-supported\" is not supported for dynamic loading.",
+      "Package \"not-supported\" is not available.",
     );
   });
 

@@ -2,11 +2,11 @@ import { useCallback, useRef, type ClipboardEvent, type KeyboardEvent } from "re
 import { cn } from "~/lib/utils";
 
 interface OtpInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  length?: number;
-  disabled?: boolean;
-  autoFocus?: boolean;
+  value      : string;
+  onChange   : (value: string) => void;
+  length?    : number;
+  disabled?  : boolean;
+  autoFocus? : boolean;
   onComplete?: (value: string) => void;
 }
 

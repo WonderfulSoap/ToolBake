@@ -322,14 +322,14 @@ function normalizePasskeyId(passkeyId: number | bigint | string): bigint {
 }
 
 function mapDtoToPasskeyCreationOptions(dto: {
-  attestation: string;
+  attestation            : string;
   authenticatorSelection?: { authenticatorAttachment?: string; requireResidentKey?: boolean; residentKey?: string; userVerification?: string };
-  challenge: string;
-  excludeCredentials?: Array<{ id: string; transports?: string[]; type: string }>;
-  pubKeyCredParams: Array<{ alg: number; type: string }>;
-  rp: { id: string; name: string };
-  timeout: number;
-  user: { displayName: string; id: string; name: string };
+  challenge              : string;
+  excludeCredentials?    : Array<{ id: string; transports?: string[]; type: string }>;
+  pubKeyCredParams       : Array<{ alg: number; type: string }>;
+  rp                     : { id: string; name: string };
+  timeout                : number;
+  user                   : { displayName: string; id: string; name: string };
 }): PasskeyCreationOptions {
   return {
     attestation           : dto.attestation,
@@ -345,9 +345,9 @@ function mapDtoToPasskeyCreationOptions(dto: {
 
 function mapDtoToPasskeyRequestOptions(dto: {
   allowCredentials?: Array<{ id: string; transports?: string[]; type: string }>;
-  challenge: string;
-  rpId: string;
-  timeout: number;
+  challenge        : string;
+  rpId             : string;
+  timeout          : number;
   userVerification?: string;
 }): PasskeyRequestOptions {
   return {

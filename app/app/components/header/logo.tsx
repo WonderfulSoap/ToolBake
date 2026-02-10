@@ -20,10 +20,10 @@ export function Logo({ className = "h-8 w-8" }: LogoProps) {
             r="288"
             pathLength="1000"
             style={{
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "14px",
-              strokeLinecap: "round",
+              fill           : "none",
+              stroke         : "currentColor",
+              strokeWidth    : "14px",
+              strokeLinecap  : "round",
               strokeDasharray: "2 18",
             }}
           />
@@ -37,11 +37,11 @@ export function Logo({ className = "h-8 w-8" }: LogoProps) {
           <path
             d="M364,372C396,340 450,340 482,372L588,478C620,510 620,564 588,596L486,698C454,730 400,730 368,698L340,670C308,638 308,584 340,552L442,450"
             style={{
-              fill: "none",
-              fillRule: "nonzero",
-              stroke: "currentColor",
-              strokeWidth: "34px",
-              strokeLinecap: "round",
+              fill          : "none",
+              fillRule      : "nonzero",
+              stroke        : "currentColor",
+              strokeWidth   : "34px",
+              strokeLinecap : "round",
               strokeLinejoin: "round",
             }}
           />
@@ -54,7 +54,7 @@ export function Logo({ className = "h-8 w-8" }: LogoProps) {
             r="28"
             className="fill-primary/10 dark:fill-primary/20"
             style={{
-              stroke: "rgb(15,23,42)",
+              stroke     : "rgb(15,23,42)",
               strokeWidth: "14px",
             }}
           />

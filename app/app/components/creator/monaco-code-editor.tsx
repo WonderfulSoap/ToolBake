@@ -58,7 +58,9 @@ export function MonacoCodeEditor({
   // Load monaco on mount
   useEffect(() => {
     if (!isMonacoLoaded) {
-      loadMonaco().then(() => setIsMonacoLoaded(true));
+      loadMonaco().then(() => setIsMonacoLoaded(true)).catch((error) => {
+        throw error;
+      });
     }
   }, [isMonacoLoaded]);
 

@@ -41,7 +41,7 @@ function setupMonacoEnvironment() {
  */
 function injectMonacoCss() {
   if (typeof document === "undefined") return;
-  if (document.querySelector('link[data-monaco-css]')) return;
+  if (document.querySelector("link[data-monaco-css]")) return;
   const link = document.createElement("link");
   link.rel = "stylesheet";
   link.href = "/assets/monacoeditorwork/monaco.css";

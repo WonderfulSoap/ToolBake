@@ -7,7 +7,6 @@ import { OfficialToolHtmlEscapeUnescape } from "./official/html-escape-unescape/
 import { OfficialToolColorPickerConverter } from "./official/color-picker-converter/def";
 import { OfficialToolDateTimeTimestampConverter } from "./official/datetime-timstamp-converter/def";
 import { OfficialToolFileBinaryEncoderDecoder } from "./official/file-binary-converter/def";
-import { OfficialToolImageBatchProcessor } from "./official/image-batch-processor/def";
 import { OfficialToolImageFormatConverter } from "./official/image-format-converter/def";
 import { OfficialToolArchiveFileList } from "./official/archive-file-list/def";
 import { OfficialToolArchiveFormatConverter } from "./official/archive-format-converter/def";

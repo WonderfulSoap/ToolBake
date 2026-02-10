@@ -43,10 +43,10 @@ describe("ToggleInput Component", () => {
   describe("Props Schema Validation", () => {
     it("parses valid props correctly", () => {
       const validProps: ToggleInputProps = {
-        defaultChecked: true,
-        onLabel       : "Active",
-        description   : "Enable live handler execution",
-        width         : "240px",
+        defaultValue: true,
+        onLabel     : "Active",
+        description : "Enable live handler execution",
+        width       : "240px",
       };
 
       const result = ToggleInputProps.parse(validProps);
@@ -58,15 +58,15 @@ describe("ToggleInput Component", () => {
       expect(result).toEqual({});
     });
 
-    it("accepts boolean values for defaultChecked", () => {
-      const resultTrue = ToggleInputProps.parse({ defaultChecked: true });
-      const resultFalse = ToggleInputProps.parse({ defaultChecked: false });
-      expect(resultTrue.defaultChecked).toBe(true);
-      expect(resultFalse.defaultChecked).toBe(false);
+    it("accepts boolean values for defaultValue", () => {
+      const resultTrue = ToggleInputProps.parse({ defaultValue: true });
+      const resultFalse = ToggleInputProps.parse({ defaultValue: false });
+      expect(resultTrue.defaultValue).toBe(true);
+      expect(resultFalse.defaultValue).toBe(false);
     });
 
     it("rejects invalid prop types", () => {
-      expect(() => ToggleInputProps.parse({ defaultChecked: "true" })).toThrow();
+      expect(() => ToggleInputProps.parse({ defaultValue: "true" })).toThrow();
       expect(() => ToggleInputProps.parse({ onLabel: 123 })).toThrow();
       expect(() => ToggleInputProps.parse({ description: 456 })).toThrow();
       expect(() => ToggleInputProps.parse({ width: 789 })).toThrow();
@@ -178,9 +178,9 @@ describe("ToggleInput Component", () => {
   describe("Props Application Verification", () => {
     const propsCases = [
       {
-        name : "defaultChecked",
-        props: { defaultChecked: true },
-        value: undefined as unknown as boolean,
+        name : "defaultValue",
+        props: { defaultValue: true },
+        value: true,
         verify() {
           const switchEl = screen.getByRole("switch");
           expect(switchEl.getAttribute("aria-checked")).toBe("true");

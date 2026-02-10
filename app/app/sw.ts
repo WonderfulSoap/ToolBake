@@ -5,7 +5,7 @@ import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
 
 declare let self: ServiceWorkerGlobalScope;
 
-self.skipWaiting();
+void self.skipWaiting();
 clientsClaim();
 cleanupOutdatedCaches();
 // Precache core shell assets so the app is installable and starts quickly.
