@@ -31,6 +31,12 @@ ToolBake focuses on customization, local-first execution, and practical power in
 
 ## Getting Started
 
+Quick path:
+
+- [Try the Official Tools](#try-the-official-tools)
+- [Create Custom Tools](#create-custom-tools)
+- [Use AI Assistant to Create Tools](#use-ai-assistant-to-create-tools)
+
 ### Try the Official Tools
 
 ToolBake comes with a rich set of built-in Official Tools:
@@ -41,12 +47,14 @@ ToolBake comes with a rich set of built-in Official Tools:
 - 🎬 Video processing tools
 - 🖼️ Image processing tools
 - 👾 Games
-- 🤖 AI Agent frontends
+<!-- - 🤖 AI Agent frontends -->
 - ✨ And more
 
 All of these tools are implemented through ToolBake's tool customization mechanism. Any feature supported by the official tools can be fully replicated in your own tools.
 
 Visit the [ToolBake Demo website](https://toolbake.com) now to try out the various official tools and experience ToolBake's powerful capabilities.
+
+---
 
 ### Create Custom Tools
 
@@ -54,11 +62,15 @@ Custom tools are the core feature of ToolBake and the biggest differentiator fro
 
 Visit the [documentation](https://wonderfulsoap.github.io/ToolBake-docs/) to learn about ToolBake's execution mechanism and how to create custom tools.
 
+---
+
 ### Use AI Assistant to Create Tools
 
 Creating custom tools requires writing `handler` code, defining UI components, and constant debugging — too much hassle?
 
 No problem. Visit the [documentation](https://wonderfulsoap.github.io/ToolBake-docs/docs/tutorial/use-ai-to-create-tool) to learn how to use the AI Assistant to quickly create tools that meet your needs.
+
+---
 
 ## Log In to Sync Tools
 
@@ -68,12 +80,15 @@ While your information never leaves your device, this is quite inconvenient, so 
 
 Click the user avatar in the top-right corner to log in via SSO and enter login mode. When logged in, the following information will be saved to the server:
 
+**Will be saved to the server:**
+
 - Your custom tool `handler` code, UI definitions, and tool metadata
 
 The following information will NOT be saved to the server:
 
-- Your OpenAI endpoint and OpenAI API Key
+**Will NOT be saved to the server:**
 
+- Your OpenAI endpoint and OpenAI API Key
 
 ### Secure Account Login System
 
