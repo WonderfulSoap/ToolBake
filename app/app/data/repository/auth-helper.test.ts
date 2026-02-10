@@ -24,6 +24,7 @@ type AuthRepositoryStub = IAuthRepository & {
   add2FaTotp              : ReturnType<typeof vi.fn<IAuthRepository["add2FaTotp"]>>;
   delete2Fa               : ReturnType<typeof vi.fn<IAuthRepository["delete2Fa"]>>;
   loginWith2Fa            : ReturnType<typeof vi.fn<IAuthRepository["loginWith2Fa"]>>;
+  recover2Fa              : ReturnType<typeof vi.fn<IAuthRepository["recover2Fa"]>>;
 };
 
 type TokenRepositoryStub = ITokenLocalStorageRepository & {
@@ -59,9 +60,10 @@ function createAuthRepository(newToken: AccessToken): AuthRepositoryStub {
     deletePasskey           : vi.fn<IAuthRepository["deletePasskey"]>(async () => {}),
     get2FaList              : vi.fn<IAuthRepository["get2FaList"]>(async () => []),
     get2FaTotpSetup         : vi.fn<IAuthRepository["get2FaTotpSetup"]>(),
-    add2FaTotp              : vi.fn<IAuthRepository["add2FaTotp"]>(async () => {}),
+    add2FaTotp              : vi.fn<IAuthRepository["add2FaTotp"]>(async () => "recovery-code"),
     delete2Fa               : vi.fn<IAuthRepository["delete2Fa"]>(async () => {}),
     loginWith2Fa            : vi.fn<IAuthRepository["loginWith2Fa"]>(),
+    recover2Fa              : vi.fn<IAuthRepository["recover2Fa"]>(async () => {}),
   };
 }
 
@@ -164,9 +166,10 @@ describe("AuthHelper", () => {
       deletePasskey           : vi.fn(),
       get2FaList              : vi.fn(async () => []),
       get2FaTotpSetup         : vi.fn(),
-      add2FaTotp              : vi.fn(async () => {}),
+      add2FaTotp              : vi.fn(async () => "recovery-code"),
       delete2Fa               : vi.fn(async () => {}),
       loginWith2Fa            : vi.fn(),
+      recover2Fa              : vi.fn(async () => {}),
     };
     const tokenRepository = createTokenRepository({ refreshToken });
     const helper = new AuthHelper(authRepository, tokenRepository);

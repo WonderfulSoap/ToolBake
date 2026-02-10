@@ -24,3 +24,4 @@ backend/tmp
 backend/data-backup
 backend/db-data
 app/public/assets/imagemagick
+db-data

@@ -19,7 +19,7 @@ function LabelInputInner({
   mode           : "input" | "output";
   value          : LabelInputOutputValue;
   onChange       : (id: string, newValue: LabelInputOutputValue) => void;
-  collectValueRef: RefObject<WidgetValueCollectorInf<LabelInputScriptValue> | undefined>;
+  collectValueRef: RefObject<WidgetValueCollectorInf<LabelInputOutputValue> | undefined>;
   props?         : LabelInputProps;
 }) {
   useEffect(() => {
@@ -43,7 +43,7 @@ function LabelInputWrapper({
   mode           : "input" | "output";
   value          : LabelInputOutputValue;
   onChange       : (id: string, newValue: LabelInputOutputValue) => void;
-  collectValueRef: RefObject<WidgetValueCollectorInf<LabelInputScriptValue> | undefined>;
+  collectValueRef: RefObject<WidgetValueCollectorInf<LabelInputOutputValue> | undefined>;
   props?         : LabelInputProps;
 }) {
   return (
@@ -66,7 +66,7 @@ describe("LabelInput Component", () => {
     mode           : "output" as const,
     value          : "<div>Default content</div>",
     onChange       : vi.fn(),
-    collectValueRef: createRef<WidgetValueCollectorInf<LabelInputScriptValue> | undefined>() as RefObject<WidgetValueCollectorInf<LabelInputScriptValue> | undefined>,
+    collectValueRef: createRef<WidgetValueCollectorInf<LabelInputOutputValue> | undefined>() as RefObject<WidgetValueCollectorInf<LabelInputOutputValue> | undefined>,
   };
 
   beforeEach(() => {

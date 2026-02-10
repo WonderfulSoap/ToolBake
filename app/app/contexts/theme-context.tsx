@@ -213,7 +213,7 @@ export function ThemeProvider({
       delete root.dataset.themeColor;
       return;
     }
-    root.classList.add(nextThemeColorClass);
+    root.classList.add(nextThemeColorClass!);
     root.dataset.themeColor = themeColor;
   }, [themeColor]);
 

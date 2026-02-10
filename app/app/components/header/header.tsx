@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { Link } from "react-router";
 import { BookOpen, ChevronLeft, Github, Menu, Moon, MoreHorizontal, Palette, Search, Sun, X } from "lucide-react";
 import { Button } from "~/components/ui/button";
@@ -101,7 +101,7 @@ export function Header({
   useEffect(() => {
     if (!showSearch) return;
     // Enable "/" for quick access and Alt+K as a global fallback.
-    function handleGlobalSearchShortcut(event: KeyboardEvent) {
+    function handleGlobalSearchShortcut(event: globalThis.KeyboardEvent) {
       const isSlash = event.key === "/" && !event.metaKey && !event.ctrlKey && !event.altKey;
       const isAltK = (event.key === "k" || event.key === "K") && event.altKey && !event.metaKey && !event.ctrlKey;
       if (!isSlash && !isAltK) return;
@@ -135,7 +135,7 @@ export function Header({
     setShowAllResults(false);
   }
 
-  function handleSearchKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+  function handleSearchKeyDown(event: ReactKeyboardEvent<HTMLInputElement>) {
     if (event.key === "Escape") {
       setIsSearchOpen(false);
       setShowAllResults(false);
