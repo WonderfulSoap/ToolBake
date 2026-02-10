@@ -7,6 +7,7 @@ import (
 	"ya-tool-craft/internal/domain/entity"
 	"ya-tool-craft/internal/unittest"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -55,13 +56,60 @@ func TestAuthAccessTokenRepositoryImpl_ValidateAccessToken(t *testing.T) {
 
 	// Test validating invalid token - should return error
 	_, valid, err = repo.ValidateAccessToken(context.Background(), "invalid-token")
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 	assert.False(t, valid)
 
 	// Test validating token with wrong signature - should return error
 	_, valid, err = repo.ValidateAccessToken(context.Background(), "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidS10ZXN0LXVzZXItNDU2Iiwicm9sZXMiOlsidXNlciJdLCJleHAiOjE3MDAwMDAwMDAsImlhdCI6MTcwMDAwMDAwMH0.invalid")
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 	assert.False(t, valid)
+}
+
+func TestAuthAccessTokenRepositoryImpl_ValidateAccessToken_MissingTimeClaims(t *testing.T) {
+	unitTestCtx := unittest.GetUnitTestCtx()
+	repo := NewAuthAccessTokenRepositoryJWTImpl(unitTestCtx.Config, unitTestCtx.WritableConfig)
+
+	userID := entity.UserIDEntity("u-test-user-missing-claims")
+	refreshToken := "rt-test-refresh-token-missing-claims"
+	secret := []byte(unitTestCtx.WritableConfig.Value.JWTSecret)
+
+	testCases := []struct {
+		name  string
+		claim jwt.RegisteredClaims
+	}{
+		{
+			name: "missing-exp",
+			claim: jwt.RegisteredClaims{
+				IssuedAt: jwt.NewNumericDate(time.Now()),
+				Subject:  string(userID),
+			},
+		},
+		{
+			name: "missing-iat",
+			claim: jwt.RegisteredClaims{
+				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
+				Subject:   string(userID),
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTClaims{
+				UserID:                   string(userID),
+				RelativeRefreshTokenHash: refreshToken,
+				RegisteredClaims:         tc.claim,
+			})
+			tokenString, err := token.SignedString(secret)
+			assert.Nil(t, err)
+
+			assert.NotPanics(t, func() {
+				_, valid, err := repo.ValidateAccessToken(context.Background(), tokenString)
+				assert.Nil(t, err)
+				assert.False(t, valid)
+			})
+		})
+	}
 }
 
 func TestAuthAccessTokenRepositoryImpl_TokenExpiration(t *testing.T) {

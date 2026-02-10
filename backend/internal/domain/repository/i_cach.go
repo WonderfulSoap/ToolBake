@@ -1,5 +1,7 @@
 package repository
 
+//go:generate mockgen -destination=../../infra/repository_impl/mock_gen/mock_i_cache.go -package mock_gen ya-tool-craft/internal/domain/repository ICache
+
 import (
 	"context"
 )

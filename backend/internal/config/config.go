@@ -30,10 +30,9 @@ type Config struct {
 
 	ConfigFilePath string `env:"CONFIG_FILE_PATH" envDefault:"data/config.json"` // support memory
 
-	LogFormat    string `env:"LOG_FORMAT" envDefault:"text" validate:"oneof=text json"`                  // supports: text, json
-	LogLevel     string `env:"LOG_LEVEL" envDefault:"info" validate:"oneof=debug info warn error"`       // supports: debug, info, warn, error
-	Cache        string `env:"CACHE" envDefault:"disabled" validate:"oneof=disabled memory redis mysql"` // supports: disabled, memory, redis, mysql
-	CacheRedisDB int    `env:"CACHE_REDIS_DB" envDefault:"0"`
+	LogFormat string `env:"LOG_FORMAT" envDefault:"text" validate:"oneof=text json"`                  // supports: text, json
+	LogLevel  string `env:"LOG_LEVEL" envDefault:"info" validate:"oneof=debug info warn error"`       // supports: debug, info, warn, error
+	Cache     string `env:"CACHE" envDefault:"disabled" validate:"oneof=disabled memory redis mysql"` // supports: disabled, memory, redis, mysql
 
 	SSO_GITHUB_CLIENT_ID     string `env:"SSO_GITHUB_CLIENT_ID" envDefault:""`
 	SSO_GITHUB_CLIENT_SECRET string `env:"SSO_GITHUB_CLIENT_SECRET" envDefault:""`
@@ -57,21 +56,9 @@ type Config struct {
 	MysqlPass string `env:"MYSQL_PASS"`
 	MysqlDB   string `env:"MYSQL_DB"`
 
-	RedisHost     string `env:"REDIS_HOST" envDefault:""`
-	RedisPort     int    `env:"REDIS_PORT" envDefault:"6379"`
-	RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
-
-	// S3 Storage Configuration
-	FileStorageType  string `env:"FILE_STORAGE_TYPE" envDefault:"local" validate:"oneof=local s3"` // supports: local, s3
-	S3Endpoint       string `env:"S3_ENDPOINT" envDefault:""`                                      // Custom endpoint for S3 compatible services like MinIO
-	S3Region         string `env:"S3_REGION" envDefault:"us-east-1"`
-	S3Bucket         string `env:"S3_BUCKET" envDefault:""`
-	S3AccessKey      string `env:"S3_ACCESS_KEY" envDefault:""`
-	S3SecretKey      string `env:"S3_SECRET_KEY" envDefault:""`
-	S3ForcePathStyle bool   `env:"S3_FORCE_PATH_STYLE" envDefault:"false"` // Set to true for MinIO and other S3 compatible services
-
-	OAuthTokenBackend        string `env:"OAUTH_TOKEN_BACKEND" envDefault:"rds" validate:"oneof=redis rds disabled"`
-	OAuthTokenRedisBackendDB int    `env:"OAUTH_TOKEN_REDIS_BACKEND_DB" envDefault:"1"`
+	// RedisHost     string `env:"REDIS_HOST" envDefault:""`
+	// RedisPort     int    `env:"REDIS_PORT" envDefault:"6379"`
+	// RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
 }
 
 func NewConfig() (Config, error) {

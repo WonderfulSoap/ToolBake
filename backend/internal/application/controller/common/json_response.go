@@ -62,15 +62,18 @@ func (j *JsonResponse) Error(ctx *gin.Context, err error) {
 		httpStatusCode := e.ErrorCode.HTTPStatusCode
 		code := e.ErrorCode.Code
 		message := e.ErrorCode.Message
-		extraMessage := e.ExtraMessage
-		if extraMessage != "" {
-			message = fmt.Sprintf("%s, %s", message, extraMessage)
-		}
+		// for security reason, we should not return e.ExtraMessage to client, it may contain sensitive infomation
+		// extraMessage := e.ExtraMessage
+		// if extraMessage != "" {
+		// 	message = fmt.Sprintf("%s, %s", message, extraMessage)
+		// }
 
 		var extraData any = nil
 		if e.ExtraData != nil {
 			extraData = e.ExtraData
 		}
+
+		logger.Errorf(ctx, "error response: error_code=%s, message=%s, extra_data=%+v", code, message, extraData)
 
 		ctx.JSON(httpStatusCode, gin.H{
 			"status":     "error",

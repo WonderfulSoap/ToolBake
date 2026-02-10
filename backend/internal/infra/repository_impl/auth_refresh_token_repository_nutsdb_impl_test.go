@@ -2,6 +2,7 @@ package repository_impl
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"sync"
 	"testing"
@@ -144,6 +145,59 @@ func TestAuthRefreshTokenRepositoryNutsDBImpl_DeleteRefreshTokenByHash(t *testin
 		// Test deleting non-existent token hash (should not error)
 		err = authTokenRepo.DeleteRefreshTokenByHash(ctx, utils.Sha256String("rt-non-existent-token"))
 		assert.Nil(t, err)
+	})
+}
+
+func TestAuthRefreshTokenRepositoryNutsDBImpl_DeleteRefreshTokenByHash_ReturnErrorOnCorruptedTokenData(t *testing.T) {
+	unitTestCtx := unittest.GetUnitTestCtx()
+
+	unitTestCtx.WithClearNutsDB(func(ctx context.Context, nutsDBClient *client.NutsDBClient) {
+		authTokenRepo := NewAuthRefreshTokenRepositoryNutsDBImpl(unitTestCtx.Config, nutsDBClient)
+
+		tokenHash := utils.Sha256String("rt-corrupted-token")
+		err := nutsDBClient.DB.Update(func(tx *nutsdb.Tx) error {
+			return tx.Put(nutsdbRefreshTokenBucket, []byte(tokenHash), []byte("{invalid-json"), 300)
+		})
+		assert.Nil(t, err)
+
+		err = authTokenRepo.DeleteRefreshTokenByHash(ctx, tokenHash)
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "fail to lookup refresh token before delete")
+	})
+}
+
+func TestAuthRefreshTokenRepositoryNutsDBImpl_DeleteRefreshTokenByHash_ReturnErrorWhenSetRemovalFails(t *testing.T) {
+	unitTestCtx := unittest.GetUnitTestCtx()
+
+	unitTestCtx.WithClearNutsDB(func(ctx context.Context, nutsDBClient *client.NutsDBClient) {
+		authTokenRepo := NewAuthRefreshTokenRepositoryNutsDBImpl(unitTestCtx.Config, nutsDBClient)
+
+		userID := entity.UserIDEntity("u-test-user-delete-hash-error")
+		token := "rt-test-token-delete-hash-error"
+		tokenHash := utils.Sha256String(token)
+		now := time.Now().UTC()
+
+		model := RefreshTokenModel{
+			UserID:    string(userID),
+			Token:     token,
+			TokenHash: tokenHash,
+			IssueAt:   now,
+			ExpireAt:  now.Add(time.Hour),
+		}
+		data, err := json.Marshal(model)
+		assert.Nil(t, err)
+
+		err = nutsDBClient.DB.Update(func(tx *nutsdb.Tx) error {
+			if err := tx.Put(nutsdbRefreshTokenBucket, []byte(tokenHash), data, 300); err != nil {
+				return err
+			}
+			return tx.DeleteBucket(nutsdb.DataStructureSet, nutsdbRefreshTokenUserBucket)
+		})
+		assert.Nil(t, err)
+
+		err = authTokenRepo.DeleteRefreshTokenByHash(ctx, tokenHash)
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "fail to delete refresh token from nutsdb")
 	})
 }
 
@@ -346,6 +400,27 @@ func TestAuthRefreshTokenRepositoryNutsDBImpl_DeleteAllTokensByUserID_NoTokens(t
 		userID := entity.UserIDEntity("u-test-user-no-tokens")
 		err := authTokenRepo.DeleteAllTokensByUserID(ctx, userID)
 		assert.Nil(t, err)
+	})
+}
+
+func TestAuthRefreshTokenRepositoryNutsDBImpl_DeleteAllTokensByUserID_ReturnErrorOnDeleteFailure(t *testing.T) {
+	unitTestCtx := unittest.GetUnitTestCtx()
+
+	unitTestCtx.WithClearNutsDB(func(ctx context.Context, nutsDBClient *client.NutsDBClient) {
+		authTokenRepo := NewAuthRefreshTokenRepositoryNutsDBImpl(unitTestCtx.Config, nutsDBClient)
+
+		userID := entity.UserIDEntity("u-test-user-delete-all-error")
+		err := nutsDBClient.DB.Update(func(tx *nutsdb.Tx) error {
+			if err := tx.SAdd(nutsdbRefreshTokenUserBucket, []byte(string(userID)), []byte("stale-token-hash")); err != nil {
+				return err
+			}
+			return tx.DeleteBucket(nutsdb.DataStructureBTree, nutsdbRefreshTokenBucket)
+		})
+		assert.Nil(t, err)
+
+		err = authTokenRepo.DeleteAllTokensByUserID(ctx, userID)
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "fail to delete user refresh tokens from nutsdb")
 	})
 }
 

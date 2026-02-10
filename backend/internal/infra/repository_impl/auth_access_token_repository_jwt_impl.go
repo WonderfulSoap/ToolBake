@@ -91,6 +91,12 @@ func (r *AuthAccessTokenRepositoryJWTImpl) ValidateAccessToken(ctx context.Conte
 		return entity.AccessToken{}, false, errors.New("invalid JWT claims body")
 	}
 
+	// avoid nil dereference when malformed but signed tokens miss required claims
+	if claims.ExpiresAt == nil || claims.IssuedAt == nil {
+		logger.Errorf(ctx, "jwt missing required time claims: exp=%v iat=%v", claims.ExpiresAt != nil, claims.IssuedAt != nil)
+		return entity.AccessToken{}, false, nil
+	}
+
 	// check if token is expired (double check)
 	if time.Now().After(claims.ExpiresAt.Time) {
 		return entity.AccessToken{}, false, nil

@@ -83,11 +83,9 @@ func InitDI() {
 		}
 	}
 
-	// provide Github Client
-	provide(client.NewGithubClient)
-
-	// provide Google Client
-	provide(client.NewGoogleClient)
+	// bind SSO clients to auth service interfaces
+	bind(client.NewGithubClient, new(service.IGithubAuthClient))
+	bind(client.NewGoogleClient, new(service.IGoogleAuthClient))
 
 	infBinds := [][]any{
 		{repository_impl.NewAuthAccessTokenRepositoryJWTImpl, new(repository.IAuthAccessTokenRepository)},

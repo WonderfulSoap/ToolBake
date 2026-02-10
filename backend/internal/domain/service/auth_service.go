@@ -7,18 +7,27 @@ import (
 	"ya-tool-craft/internal/domain/entity"
 	"ya-tool-craft/internal/domain/repository"
 	"ya-tool-craft/internal/error_code"
-	"ya-tool-craft/internal/infra/repository_impl/client"
 
 	gonanoid "github.com/matoous/go-nanoid/v2"
 	"github.com/pkg/errors"
 )
 
+type IGithubAuthClient interface {
+	OauthTokenToAccessToken(oauthToken string) (string, error)
+	GetUserInfo(accessToken string) (entity.GithubUserInfoEntity, error)
+}
+
+type IGoogleAuthClient interface {
+	OauthCodeToAccessToken(oauthCode string) (string, error)
+	GetUserInfo(accessToken string) (entity.GoogleUserInfoEntity, error)
+}
+
 func NewAuthService(
 	accessTokenRepo repository.IAuthAccessTokenRepository,
 	refreshTokenRepo repository.IAuthRefreshTokenRepository,
 	userRepo repository.IUserRepository,
-	githubClient *client.GithubClient,
-	googleClient *client.GoogleClient,
+	githubClient IGithubAuthClient,
+	googleClient IGoogleAuthClient,
 	twoFAService *TwoFAService,
 ) *AuthService {
 	return &AuthService{
@@ -35,8 +44,8 @@ type AuthService struct {
 	accessTokenRepo  repository.IAuthAccessTokenRepository
 	refreshTokenRepo repository.IAuthRefreshTokenRepository
 	userRepo         repository.IUserRepository
-	githubClient     *client.GithubClient
-	googleClient     *client.GoogleClient
+	githubClient     IGithubAuthClient
+	googleClient     IGoogleAuthClient
 	twoFAService     *TwoFAService
 }
 

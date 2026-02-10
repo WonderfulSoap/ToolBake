@@ -181,12 +181,12 @@ func (s *AuthPasskeyService) FinishRegistration(ctx context.Context, userID enti
 
 	parsedResponse, err := protocol.ParseCredentialCreationResponseBytes(payloadBytes)
 	if err != nil {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, err.Error())
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	credential, err := s.webauthn.CreateCredential(wuser, session, parsedResponse)
 	if err != nil {
-		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, err.Error())
+		return entity.PasskeyEntity{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	logger.Debugf(ctx, "Passkey registration credential parsed: id_len=%d, backup_eligible=%t, backup_state=%t, user_verified=%t, user_present=%t",
@@ -280,7 +280,7 @@ func (s *AuthPasskeyService) DeletePasskey(ctx context.Context, userID entity.Us
 func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.PasskeyLoginRequestEntity) (entity.AccessToken, entity.RefreshToken, error) {
 	parsedResponse, err := req.Parse()
 	if err != nil {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, err.Error())
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	logger.Debugf(ctx, "Passkey login response parsed: raw_id_len=%d, backup_eligible=%t, backup_state=%t, user_verified=%t, user_present=%t",
@@ -383,7 +383,7 @@ func (s *AuthPasskeyService) FinishLogin(ctx context.Context, req entity.Passkey
 	// Validate the login
 	credential, err := s.webauthn.ValidateDiscoverableLogin(userHandler, session, parsedResponse)
 	if err != nil {
-		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, err.Error())
+		return entity.AccessToken{}, entity.RefreshToken{}, error_code.NewErrorWithErrorCode(error_code.InvalidRequestParameters, "%s", err.Error())
 	}
 
 	// Ensure we found the matching passkey

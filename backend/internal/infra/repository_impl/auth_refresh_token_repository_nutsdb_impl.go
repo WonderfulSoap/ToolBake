@@ -137,7 +137,7 @@ func (r *AuthRefreshTokenRepositoryNutsDBImpl) DeleteRefreshToken(ctx context.Co
 func (r *AuthRefreshTokenRepositoryNutsDBImpl) DeleteRefreshTokenByHash(ctx context.Context, tokenHash string) error {
 	// look up userID first so we can remove from the user's set
 	var userID string
-	_ = r.client.DB.View(func(tx *nutsdb.Tx) error {
+	err := r.client.DB.View(func(tx *nutsdb.Tx) error {
 		val, err := tx.Get(nutsdbRefreshTokenBucket, []byte(tokenHash))
 		if err != nil {
 			return err
@@ -149,19 +149,29 @@ func (r *AuthRefreshTokenRepositoryNutsDBImpl) DeleteRefreshTokenByHash(ctx cont
 		userID = model.UserID
 		return nil
 	})
+	if err != nil {
+		if nutsdb.IsKeyNotFound(err) {
+			// token already deleted or expired
+			return nil
+		}
+		return errors.Wrap(err, "fail to lookup refresh token before delete")
+	}
 
-	err := r.client.DB.Update(func(tx *nutsdb.Tx) error {
-		_ = tx.Delete(nutsdbRefreshTokenBucket, []byte(tokenHash))
+	err = r.client.DB.Update(func(tx *nutsdb.Tx) error {
+		if err := tx.Delete(nutsdbRefreshTokenBucket, []byte(tokenHash)); err != nil && !nutsdb.IsKeyNotFound(err) {
+			return err
+		}
 		if userID != "" {
-			_ = tx.SRem(nutsdbRefreshTokenUserBucket, []byte(userID), []byte(tokenHash))
+			if err := tx.SRem(nutsdbRefreshTokenUserBucket, []byte(userID), []byte(tokenHash)); err != nil &&
+				err != nutsdb.ErrSetNotExist &&
+				err != nutsdb.ErrSetMemberNotExist {
+				return err
+			}
 		}
 		return nil
 	})
 
 	if err != nil {
-		if nutsdb.IsKeyNotFound(err) || nutsdb.IsBucketNotFound(err) {
-			return nil
-		}
 		return errors.Wrap(err, "fail to delete refresh token from nutsdb")
 	}
 
@@ -193,14 +203,28 @@ func (r *AuthRefreshTokenRepositoryNutsDBImpl) DeleteAllTokensByUserID(ctx conte
 		return errors.Wrap(err, "fail to get user token hashes from nutsdb")
 	}
 
+	if len(tokenHashes) == 0 {
+		return nil
+	}
+
 	// delete all token entries and clear the user's set
-	return r.client.DB.Update(func(tx *nutsdb.Tx) error {
+	err = r.client.DB.Update(func(tx *nutsdb.Tx) error {
 		for _, hash := range tokenHashes {
-			_ = tx.Delete(nutsdbRefreshTokenBucket, hash)
+			if err := tx.Delete(nutsdbRefreshTokenBucket, hash); err != nil && !nutsdb.IsKeyNotFound(err) {
+				return err
+			}
 		}
-		_ = tx.SRem(nutsdbRefreshTokenUserBucket, []byte(string(userID)), tokenHashes...)
+		if err := tx.SRem(nutsdbRefreshTokenUserBucket, []byte(string(userID)), tokenHashes...); err != nil &&
+			err != nutsdb.ErrSetNotExist &&
+			err != nutsdb.ErrSetMemberNotExist {
+			return err
+		}
 		return nil
 	})
+	if err != nil {
+		return errors.Wrap(err, "fail to delete user refresh tokens from nutsdb")
+	}
+	return nil
 }
 
 // CleanupExpiredTokenHashesForUser removes stale entries from the user's token hash set.
