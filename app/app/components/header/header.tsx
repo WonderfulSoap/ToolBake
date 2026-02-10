@@ -40,8 +40,8 @@ export function Header({
   onToggleSidebar,
 }: HeaderProps) {
   // Keep repository URL configurable without hardcoding project-specific links in code.
-  const projectGithubUrl = (import.meta.env.VITE_PROJECT_GITHUB_URL as string | undefined)?.trim() || "https://github.com";
-  const projectDocsUrl = (import.meta.env.VITE_PROJECT_DOCS_URL as string | undefined)?.trim() || "/docs";
+  const projectGithubUrl = (import.meta.env.VITE_PROJECT_GITHUB_URL as string | undefined)?.trim() || "https://github.com/WonderfulSoap/ToolBake";
+  const projectDocsUrl = (import.meta.env.VITE_PROJECT_DOCS_URL as string | undefined)?.trim() || "https://wonderfulsoap.github.io/ToolBake-docs";
   const { theme, setTheme, themeColor, setThemeColor } = useThemeContext();
   const selectedPreset = themeColor ? themeColorPresets[themeColor] : undefined;
   const themeColorOptions = Object.entries(themeColorPresets);
