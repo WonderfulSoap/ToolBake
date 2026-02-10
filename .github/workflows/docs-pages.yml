@@ -3,10 +3,7 @@ name: Deploy Docs Site
 on:
   push:
     branches:
-      - main
-    paths:
-      - "docs-site/**"
-      - ".github/workflows/docs-pages.yml"
+      - master
   workflow_dispatch:
 
 permissions:
