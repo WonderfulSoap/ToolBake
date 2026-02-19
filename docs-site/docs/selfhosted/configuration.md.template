@@ -1,0 +1,154 @@
+---
+sidebar_position: 10
+---
+
+# Configuration
+
+All ToolBake configurations can be set through environment variables
+
+## Change Database Type
+
+ToolBake supports multiple databases internally.
+
+Currently supported databases:
+
+- sqlite
+- mysql
+
+The database type is configured through the `DB_TYPE` environment variable. Different databases have different environment variable configurations, which will be explained separately below.
+
+:::note
+The default value of `DB_TYPE` is `sqlite`, so if you don't configure anything, ToolBake will use sqlite as the database.
+:::
+
+### sqlite
+
+This is the default database used by ToolBake. If you don't configure anything, ToolBake will use sqlite as the database, and the database file will be stored in `data/sqlite.db`.
+
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| DB_TYPE | Database type | sqlite |
+| SQLLITE_PATH | sqlite database file path, stored in `data/sqlite.db` by default | data/sqlite.db |
+
+
+### mysql
+
+Use mysql as the database by setting `DB_TYPE=mysql`, and you also need to set the following environment variables:
+
+| Environment Variable | Description |
+| --- | --- |
+| DB_TYPE | Set to `mysql` |
+| MYSQL_HOST | mysql host |
+| MYSQL_PORT | mysql port |
+| MYSQL_USER | mysql user |
+| MYSQL_PASS | mysql password |
+| MYSQL_DB | mysql database |
+
+
+## NoSQL Configuration
+
+To manage user authentication tokens and various cache data, ToolBake uses a separate Key-Value NoSQL database to store this data.
+
+ToolBake uses the `KEY_VALUE_DB_TYPE` environment variable to configure which NoSQL database to use.
+
+:::note
+Currently, ToolBake only supports using the embedded `nutsdb` as the default NoSQL database. In the future, it will support Redis and other databases.
+:::
+
+
+### nutsdb
+
+The default value of `KeyValueDBType` is `nutsdb`, which uses [nutsdb](https://github.com/nutsdb/nutsdb) as the NoSQL database. The database files will be stored in `data/nutsdb`.
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| KEY_VALUE_DB_TYPE | NoSQL database type | nutsdb |
+| NUTSDB_PATH | nutsdb database folder path, stored in `data/nutsdb` directory by default | `data/nutsdb` |
+
+
+
+## Authentication Token Expiration Time
+
+ToolBake uses RefreshToken + AccessToken as the authentication method. You can configure the token expiration time through the `REFRESH_TOKEN_TTL` and `ACCESS_TOKEN_TTL` environment variables.
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| REFRESH_TOKEN_TTL | RefreshToken expiration time in seconds | 15778463 |
+| ACCESS_TOKEN_TTL | AccessToken expiration time in seconds | 300 |
+
+## Configure JSON File Path
+
+When ToolBake starts, it generates a configuration file `config.json` to store some randomly generated configuration information, such as the JWT secret for AccessToken.
+
+This file is stored in `data/config.json` by default. You can also configure the storage path through the `CONFIG_FILE_PATH` environment variable.
+
+## Configure Log Output
+
+ToolBake's server-side logs support two formats:
+
+- Plain text logs
+- JSON format logs
+
+You can configure the log format through the `LOG_FORMAT` environment variable.
+
+You can also configure the log level through the `LOG_LEVEL` environment variable.
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| LOG_FORMAT | Log format, supports `text` and `json` | text |
+| LOG_LEVEL | Log level, supports `debug` `info` `warn` `error` | info |
+
+
+## SSO Configuration
+
+ToolBake supports multiple SSO Provider logins. You can configure the corresponding SSO Provider through the following environment variables.
+
+### Github SSO Configuration
+
+
+| Environment Variable | Description |
+| --- | --- |
+| SSO_GITHUB_CLIENT_ID | Github OAuth Client ID |
+| SSO_GITHUB_CLIENT_SECRET | Github OAuth Client Secret |
+| SSO_GITHUB_REDIRECT_URL | Github OAuth Redirect URL |
+
+
+### Google SSO Configuration
+
+
+| Environment Variable | Description |
+| --- | --- |
+| SSO_GOOGLE_CLIENT_ID | Google OAuth Client ID |
+| SSO_GOOGLE_CLIENT_SECRET | Google OAuth Client Secret |
+| SSO_GOOGLE_REDIRECT_URL | Google OAuth Redirect URL |
+
+### Enable Password Login
+
+ToolBake does not enable password login by default. You can enable password login by setting `ENABLE_PASSWORD_LOGIN=true`.
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| ENABLE_PASSWORD_LOGIN | Whether to enable password login, supports `true` and `false` | false |
+
+### WebAuthn (Passkey) Configuration
+
+ToolBake also supports Passkey login using the WebAuthn protocol. If you want to enable Passkey login, you need to configure the following environment variables.
+
+:::note
+Due to the hard requirements of Passkey, enabling Passkey login requires that your website already supports HTTPS access. To enable Passkey login, please configure HTTPS access for your website first.
+:::
+
+| Environment Variable | Description | Sample |
+| --- | --- | --- |
+| WEBAUTHN_RP_NAME | WebAuthn RP Name. When self-hosting, please use a unique name and do not use the default value to prevent conflicts with the official website's webauthn RP name | ToolBake-localhost |
+| WEBAUTHN_RP_ID | WebAuthn RP ID, also a unique name | localhost |
+| WEBAUTHN_RP_ORIGIN | WebAuthn RP Origin, must be exactly the same as your website URL | https://toolbake.com |
+| WEBAUTHN_CHALLENGE_TTL | WebAuthn Challenge expiration time in seconds | 300 |
+
+
+
+## Complete Environment Variable List
+
+{{{{config env table}}}}
+

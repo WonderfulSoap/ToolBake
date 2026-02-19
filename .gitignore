@@ -25,3 +25,4 @@ backend/data-backup
 backend/db-data
 app/public/assets/imagemagick
 db-data
+prompt/translate-to-en.md

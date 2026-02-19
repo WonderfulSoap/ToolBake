@@ -15,7 +15,7 @@ import (
 type Config struct {
 	FrontendAssetPath string `env:"FRONTEND_ASSET_PATH" envDefault:"./frontend"`
 
-	Host string `env:"HOST" envDefault:"localhost:8080"`
+	Host string `env:"HOST" envDefault:"0.0.0.0:8080"`
 
 	DBType     string `env:"DB_TYPE" envDefault:"sqlite" validate:"oneof=sqlite mysql"` // supports: sqlite, mysql
 	DuckDBPath string `env:"DUCKDB_PATH" envDefault:"data/duckdb.db"`                   // also support "memory" for in-memory db
@@ -30,9 +30,9 @@ type Config struct {
 
 	ConfigFilePath string `env:"CONFIG_FILE_PATH" envDefault:"data/config.json"` // support memory
 
-	LogFormat string `env:"LOG_FORMAT" envDefault:"text" validate:"oneof=text json"`                  // supports: text, json
-	LogLevel  string `env:"LOG_LEVEL" envDefault:"info" validate:"oneof=debug info warn error"`       // supports: debug, info, warn, error
-	Cache     string `env:"CACHE" envDefault:"disabled" validate:"oneof=disabled memory redis mysql"` // supports: disabled, memory, redis, mysql
+	LogFormat string `env:"LOG_FORMAT" envDefault:"text" validate:"oneof=text json"`            // supports: text, json
+	LogLevel  string `env:"LOG_LEVEL" envDefault:"info" validate:"oneof=debug info warn error"` // supports: debug, info, warn, error
+	// Cache     string `env:"CACHE" envDefault:"disabled" validate:"oneof=disabled memory redis mysql"` // supports: disabled, memory, redis, mysql
 
 	SSO_GITHUB_CLIENT_ID     string `env:"SSO_GITHUB_CLIENT_ID" envDefault:""`
 	SSO_GITHUB_CLIENT_SECRET string `env:"SSO_GITHUB_CLIENT_SECRET" envDefault:""`
@@ -136,4 +136,60 @@ func (c Config) Validate() error {
 		return errors.Errorf("config validation failed, check your config or environment variables: %+v", err)
 	}
 	return nil
+}
+
+// DumpEnvDefaultsMarkdownTable returns config env tags as a markdown table.
+func (c Config) DumpEnvDefaultsMarkdownTable() string {
+	t := reflect.TypeOf(c)
+
+	var sb strings.Builder
+	sb.WriteString("| ENV_NAME | defaultValue | supported value |\n")
+	sb.WriteString("| --- | --- | --- |\n")
+
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		envName := field.Tag.Get("env")
+		if envName == "" || envName == "-" {
+			continue
+		}
+
+		defaultValue := field.Tag.Get("envDefault")
+		oneOf := formatSupportedValues(extractOneOfFromValidateTag(field.Tag.Get("validate")))
+		sb.WriteString(fmt.Sprintf("| %s | %s | %s |\n",
+			escapeMarkdownCell(envName),
+			escapeMarkdownCell(defaultValue),
+			oneOf,
+		))
+	}
+
+	return sb.String()
+}
+
+func extractOneOfFromValidateTag(validateTag string) string {
+	parts := strings.Split(validateTag, ",")
+	for _, part := range parts {
+		part = strings.TrimSpace(part)
+		if strings.HasPrefix(part, "oneof=") {
+			return strings.TrimPrefix(part, "oneof=")
+		}
+	}
+	return ""
+}
+
+func formatSupportedValues(value string) string {
+	if strings.TrimSpace(value) == "" {
+		return ""
+	}
+
+	items := strings.Fields(value)
+	for i, item := range items {
+		items[i] = fmt.Sprintf("`%s`", item)
+	}
+	return strings.Join(items, ", ")
+}
+
+func escapeMarkdownCell(value string) string {
+	value = strings.ReplaceAll(value, "|", "\\|")
+	value = strings.ReplaceAll(value, "\n", "<br>")
+	return value
 }

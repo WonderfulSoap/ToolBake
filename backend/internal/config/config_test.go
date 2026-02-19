@@ -2,6 +2,8 @@ package config
 
 import (
 	"os"
+	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -26,7 +28,6 @@ func TestNewConfig(t *testing.T) {
 		assert.NoError(t, err)
 		assert.Equal(t, "json", config.LogFormat)
 		assert.Equal(t, "debug", config.LogLevel)
-		assert.Equal(t, "redis", config.Cache)
 		assert.Equal(t, "ignored.db", config.SqlitePath)
 		assert.Equal(t, "mysql.example.com", config.MysqlHost)
 		assert.Equal(t, "3307", config.MysqlPort)
@@ -43,7 +44,6 @@ func TestNewConfig(t *testing.T) {
 		assert.NoError(t, err)
 		assert.Equal(t, "text", config.LogFormat)
 		assert.Equal(t, "info", config.LogLevel)
-		assert.Equal(t, "disabled", config.Cache)
 		assert.Equal(t, "data/sqlite.db", config.SqlitePath)
 		assert.Equal(t, "", config.MysqlHost)
 		assert.Equal(t, "", config.MysqlPort)
@@ -79,4 +79,26 @@ func TestLoadConfigFromEnvFile(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, "warn", config.LogLevel)
+}
+
+func TestDumpEnvDefaultsMarkdownTable(t *testing.T) {
+	c := Config{}
+	table := c.DumpEnvDefaultsMarkdownTable()
+
+	assert.Contains(t, table, "| ENV_NAME | defaultValue | supported value |")
+	assert.Contains(t, table, "| FRONTEND_ASSET_PATH | ./frontend |  |")
+	assert.Contains(t, table, "| DB_TYPE | sqlite | `sqlite`, `mysql` |")
+	assert.Contains(t, table, "| MYSQL_HOST |  |  |")
+
+	lineCount := len(strings.Split(strings.TrimSpace(table), "\n"))
+	tagCount := 0
+	cfgType := reflect.TypeOf(c)
+	for i := 0; i < cfgType.NumField(); i++ {
+		if cfgType.Field(i).Tag.Get("env") != "" {
+			tagCount++
+		}
+	}
+
+	// 2 table header lines + one line per env-tagged field.
+	assert.Equal(t, tagCount+2, lineCount)
 }

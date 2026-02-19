@@ -197,10 +197,7 @@ In this example, when the user modifies the value of the `user_input_text` input
 
 For this example, we did not use it, so we will skip the explanation for now.
 
-For more detailed information about `callback()`, refer to [Handler docs](../handler/handler-use-package.md).
-
-
-
+For more detailed information about `callback()`, refer to the section **Displaying ffmpeg Processing Progress** in [Handler docs](../handler/handler-use-package.md#displaying-ffmpeg-processing-progress) to see how to use it to update UI component values in real time during handler execution.
 
 ### Return Value of handler
 

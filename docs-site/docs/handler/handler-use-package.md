@@ -34,7 +34,7 @@ async function handler(inputWidgets, changedWidgetIds) {
 
 ## Full Embedded Package List
 
-Please refer to the [Embedded Package List](../uiwidgets/ui-widgets.md).
+Please refer to the [Embedded Package List](./embeded-pkg-list.md).
 
 ## Some Special Embedded Packages
 

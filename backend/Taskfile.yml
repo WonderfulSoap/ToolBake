@@ -55,6 +55,11 @@ tasks:
     cmds:
       - go run cmd/create_admin_user/main.go -u admin -p password
 
+  render-docs:
+    desc: Render doc-site markdown templates for backend-owned placeholders
+    cmds:
+      - go run cmd/render_doc_templates/main.go
+
   build:
     desc: build the application
     cmds:

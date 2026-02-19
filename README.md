@@ -112,6 +112,9 @@ You can configure your login strategy in the account settings after logging in.
 - [ ] Add project architecture documentation
 - [ ] Support "DISABLE_USER_REGISTRATION" Env variable to disable new user registrations in self-hosted mode
 - [ ] More SSO providers support
+- [ ] Support Redis as NoSQL database
+- [ ] Support DynamoDB as DB Backend
+- [ ] Support serverless mode to let ToolBake run on AWS Lambda
 
 
 ### Long Term
@@ -126,35 +129,59 @@ Thanks to the characteristics of Golang, self-hosting ToolBake is extremely simp
 
 You just need to download the binary and run it directly — that's all it takes to self-host. No runtime environment configuration, no complex setup required.
 
-### Install
+### Execute the Binary
 
 Visit the [Release page](https://github.com/WonderfulSoap/ToolBake/releases), download the corresponding ToolBake version, then:
 
+Here's an example of downloading the Linux x64 version:
+
 ```bash
-chmod +x xxxxxx
-./xxxxxx
+chmod +x toolbake-linux-amd64-v0.1.0
+./toolbake-linux-amd64-v0.1.0
 
 ```
 
-All done.
-
-<!-- ### Docker
-
-If you prefer running software via Docker, you can also use the Docker configuration.
-
-// todo: complete docker
+All done. After successful execution, you can access ToolBake at `http://localhost:8080`.
 
 
-### k8s
+### Use Docker
 
-// todo: complete k8s deployment yaml
+ToolBake also provides a Docker image for users to run with Docker.
 
-### Advanced Configuration
+> Note: Since ToolBake runs with UID 1000 in Docker, if you want to mount a data volume with the `-v` parameter, you need to ensure the volume permissions are set to 1000:1000, otherwise permission issues may occur.
 
-// todo:
-All ToolBake configurations can be set through environment variables. Refer to the documentation to learn how to configure SSO and other settings.
+```bash
+mkdir ./data
+chown 1000:1000 ./data
+docker run -p 8080:8080 -v ./data:/app/data -d wondersoap/toolbake 
+```
 
+After successful execution, you can access ToolBake at `http://localhost:8080`.
 
-## More Information
+### Use Docker Compose
 
-Please refer to the official documentation to learn about ToolBake's execution mechanism and how to create your own tools. -->
+If you prefer to use Docker Compose, you can use the following configuration.
+
+Of course, you also need to pay attention to the data volume permission issue:
+
+```bash
+mkdir ./data
+chown 1000:1000 ./data
+```
+
+Then run with the following Docker Compose configuration:
+
+```yaml
+services:
+  toolbake:
+    image: wondersoap/toolbake
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+    restart: on-failure
+```
+
+### Configuration
+
+For detailed configuration information, please refer to the documentation.

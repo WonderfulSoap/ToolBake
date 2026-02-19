@@ -71,4 +71,4 @@ Whenever a user modifies the value of a UI component or interacts with the tool,
 
 In the `handler` function, you can define and implement the logic and various rich interactive features of your tool.
 
-For information on how to use edit mode and how to define `uiWidgets` and `handler`, please refer to [Edit Mode UI](./edit-modeui.md) and [A Simple Tool Sample](./a-simple-sample.md).
+For information on how to use edit mode and how to define `uiWidgets` and `handler`, please refer to  [A Simple Tool Sample](./a-simple-sample.md) and [Edit Mode UI](./edit-modeui.md)

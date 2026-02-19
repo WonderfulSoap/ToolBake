@@ -74,97 +74,10 @@ Visit the [ToolBake Demo website](https://toolbake.com) now to try out the vario
 
 Custom tools are the core feature of ToolBake and the biggest differentiator from other toolboxes.
 
-// todo:
-Visit the documentation to learn about ToolBake's execution mechanism and how to create custom tools.
+Visit the [documentation](./tutorial/baseic-concepts.md) to learn about ToolBake's execution mechanism and how to create custom tools.
 
 ### Use AI Assistant to Create Tools
 
 Creating custom tools requires writing `handler` code, defining UI components, and constant debugging — too much hassle?
 
-// todo:
-No problem. Visit the documentation to learn how to use the AI Assistant to quickly create tools that meet your needs.
-
-## Log In to Sync Tools
-
-By default, ToolBake only saves the tools you create and all related information locally in the browser.
-
-While your information never leaves your device, this is quite inconvenient, so ToolBake also supports syncing your tool information after logging in.
-
-Click the user avatar in the top-right corner to log in via SSO and enter login mode. When logged in, the following information will be saved to the server:
-
-- Your custom tool `handler` code, UI definitions, and tool metadata
-
-The following information will NOT be saved to the server:
-
-- Your OpenAI endpoint and OpenAI API Key
-
-
-### Secure Account Login System
-
-The official ToolBake website has password login disabled by default. You can only log in via SSO, with optional 2FA authentication support.
-
-For even more secure and convenient login, ToolBake also supports Passkey login.
-
-You can configure your login strategy in the account settings after logging in.
-
-> Want username/password login? Refer to the Self-Hosted section below and enable username/password login.
-
-![account](/img/account.png)
-
-
-
-## Roadmap
-
-### Short Term
-
-- [ ] Developer-facing documentation is incomplete; improve the development documentation
-- [ ] Add project architecture documentation
-- [ ] Support "DISABLE_USER_REGISTRATION" Env variable to disable new user registrations in self-hosted mode
-- [ ] More SSO providers support
-
-
-### Long Term
-
-- [ ] i18n support
-- [ ] Add [webvm](https://github.com/leaningtech/webvm) support, enabling `handler` to execute Linux virtual machine commands in the browser, expanding the capabilities of `handler` (e.g., calling the `openssl` command to generate keys, etc.)
-
-
-## Self-Hosted
-
-Thanks to the characteristics of Golang, self-hosting ToolBake is extremely simple.
-
-You just need to download the binary and run it directly — that's all it takes to self-host. No runtime environment configuration, no complex setup required.
-
-### Install
-
-// todo: complete links
-Visit the Release page, download the corresponding ToolBake version, then:
-
-```bash
-chmod +x xxxxxx
-./xxxxxx
-
-```
-
-All done.
-
-### Docker
-
-If you prefer running software via Docker, you can also use the Docker configuration.
-
-// todo: complete docker
-
-
-### k8s
-
-// todo: complete k8s
-
-### Advanced Configuration
-
-// todo:
-All ToolBake configurations can be set through environment variables. Refer to the documentation to learn how to configure SSO and other settings.
-
-
-## More Information
-
-Please refer to the official documentation to learn about ToolBake's execution mechanism and how to create your own tools.
+No problem. Visit the [documentation](./tutorial/use-ai-to-create-tool.md) to learn how to use the AI Assistant to quickly create tools that meet your needs.
