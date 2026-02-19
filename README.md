@@ -60,7 +60,7 @@ Visit the [ToolBake Demo website](https://toolbake.com) now to try out the vario
 
 Custom tools are the core feature of ToolBake and the biggest differentiator from other toolboxes.
 
-Visit the [documentation](https://wonderfulsoap.github.io/ToolBake-docs/) to learn about ToolBake's execution mechanism and how to create custom tools.
+Visit the [documentation](https://docs.toolbake.com/) to learn about ToolBake's execution mechanism and how to create custom tools.
 
 ---
 
@@ -68,7 +68,7 @@ Visit the [documentation](https://wonderfulsoap.github.io/ToolBake-docs/) to lea
 
 Creating custom tools requires writing `handler` code, defining UI components, and constant debugging — too much hassle?
 
-No problem. Visit the [documentation](https://wonderfulsoap.github.io/ToolBake-docs/docs/tutorial/use-ai-to-create-tool) to learn how to use the AI Assistant to quickly create tools that meet your needs.
+No problem. Visit the [documentation](https://docs.toolbake.com/docs/tutorial/use-ai-to-create-tool) to learn how to use the AI Assistant to quickly create tools that meet your needs.
 
 ---
 
@@ -125,9 +125,12 @@ You can configure your login strategy in the account settings after logging in.
 
 ## Self-Hosted
 
+Full self-hosted documentation can be found in the [documentation](https://docs.toolbake.com/docs/category/self-hosted).
+
 Thanks to the characteristics of Golang, self-hosting ToolBake is extremely simple.
 
 You just need to download the binary and run it directly — that's all it takes to self-host. No runtime environment configuration, no complex setup required.
+
 
 ### Execute the Binary
 
@@ -184,4 +187,4 @@ services:
 
 ### Configuration
 
-For detailed configuration information, please refer to the documentation.
+For detailed configuration information, please refer to the [documentation](https://docs.toolbake.com/docs/selfhosted/configuration).
