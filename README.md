@@ -11,6 +11,24 @@
 
 ---
 
+- [What is ToolBake](#what-is-toolbake)
+- [How is ToolBake Different from Other Toolboxes?](#how-is-toolbake-different-from-other-toolboxes)
+- [Getting Started](#getting-started)
+  - [Try the Official Tools](#try-the-official-tools)
+  - [Create Custom Tools](#create-custom-tools)
+  - [Use AI Assistant to Create Tools](#use-ai-assistant-to-create-tools)
+- [Log In to Sync Tools](#log-in-to-sync-tools)
+  - [Secure Account Login System](#secure-account-login-system)
+- [Roadmap](#roadmap)
+  - [Short Term](#short-term)
+  - [Long Term](#long-term)
+- [Self-Hosted](#self-hosted)
+  - [Execute the Binary](#execute-the-binary)
+  - [Use Docker](#use-docker)
+  - [Use Docker Compose](#use-docker-compose)
+  - [Configuration](#configuration)
+
+
 ## What is ToolBake
 
 ToolBake is a platform for creating your own tools. It provides a rich set of UI components and a powerful editor to help you create your own tools.
