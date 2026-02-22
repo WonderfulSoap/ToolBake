@@ -10,5 +10,6 @@ window.__SSR_CONFIG__ = {
             redirect_uri: "http://localhost:5173/sso/google/callback",
         }
     },
-    password_login: false,
+    password_login: true,
+    enable_register: true,
 };

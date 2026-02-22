@@ -1,5 +1,5 @@
 import type { Client } from "~/data/generated-http-client/client";
-import { getApiV1User, postApiV1UserCheck, deleteApiV1UserDelete, putApiV1UserInfo, type UserUserInfoResponseDto } from "~/data/generated-http-client";
+import { getApiV1User, postApiV1UserCheck, postApiV1UserCreate, deleteApiV1UserDelete, putApiV1UserInfo, type UserUserInfoResponseDto } from "~/data/generated-http-client";
 import type { IUserRepository, UpdateUserInput } from "~/data/interface/i-user-repository";
 import type { User } from "~/entity/user";
 import type { IAuthHelper } from "~/data/interface/i-auth-helper";
@@ -23,6 +23,14 @@ export class HttpUserRepository implements IUserRepository {
       if (!payload) logAndThrow("Invalid user info response.");
       return mapDtoToUser(payload);
     });
+  }
+
+  /** Create a new user account. No auth required. */
+  async createUser(username: string, password: string): Promise<void> {
+    const normalizedUsername = username?.trim();
+    if (!normalizedUsername) logAndThrow("Username is required.");
+    if (!password?.trim()) logAndThrow("Password is required.");
+    await postApiV1UserCreate({ client: this.client, body: { username: normalizedUsername, password }, throwOnError: true });
   }
 
   /** Check if a username already exists. No auth required. */

@@ -57,6 +57,23 @@ export function useLogin() {
 }
 
 /**
+ * Mutation: Register
+ * Creates a new user account with username and password.
+ */
+export function useRegister() {
+  return useMutation({
+    mutationFn: async ({ username, password }: { username: string; password: string }) => {
+      try {
+        await globalDI.userRepository.createUser(username, password);
+      } catch (error) {
+        ErrorHandler.processError(error);
+        throw error;
+      }
+    },
+  });
+}
+
+/**
  * Mutation: Login with Passkey
  * Automatically updates mode in Context and invalidates user-related queries on success
  */

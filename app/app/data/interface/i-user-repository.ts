@@ -9,6 +9,9 @@ export interface IUserRepository {
   /** Fetch current user info based on access token. */
   getUserInfo(): Promise<User>;
 
+  /** Create a new user account with username and password. */
+  createUser(username: string, password: string): Promise<void>;
+
   /** Check if a username already exists. */
   checkUsernameExists(username: string): Promise<boolean>;
 
