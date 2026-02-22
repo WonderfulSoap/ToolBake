@@ -128,7 +128,8 @@ You can configure your login strategy in the account settings after logging in.
 
 - [ ] Developer-facing documentation is incomplete; improve the development documentation
 - [ ] Add project architecture documentation
-- [ ] Support "DISABLE_USER_REGISTRATION" Env variable to disable new user registrations in self-hosted mode
+- [x] Support "DISABLE_USER_REGISTRATION" Env variable to disable new user registrations in self-hosted mode
+  - [ ] DONE. Check [docs](https://docs.toolbake.com/docs/selfhosted/configuration#disable-user-registration)
 - [ ] More SSO providers support
 - [ ] Support Redis as NoSQL database
 - [ ] Support DynamoDB as DB Backend
