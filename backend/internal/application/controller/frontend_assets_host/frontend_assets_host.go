@@ -229,6 +229,7 @@ func buildRuntimeConfigScript(cfg config.Config) string {
 	runtimeConfig.SSO.Google.ClientID = cfg.SSO_GOOGLE_CLIENT_ID
 	runtimeConfig.SSO.Google.RedirectURI = cfg.SSO_GOOGLE_REDIRECT_URL
 	runtimeConfig.EnablePasswordLogin = cfg.ENABLE_PASSWORD_LOGIN
+	runtimeConfig.EnableRegister = cfg.ENABLE_USER_REGISTRATION
 
 	var dto ssrConfigDTO
 	dto.FromEntity(runtimeConfig)

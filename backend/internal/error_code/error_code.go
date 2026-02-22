@@ -27,6 +27,7 @@ var (
 	TokenNotFound                   = reg(ErrorCode{"TokenNotFound", "Token not found", 401})
 	OauthTokenUnavailable           = reg(ErrorCode{"OauthTokenUnavailable", "OAuth token unavailable", 400})
 	PasswordLoginIsNotEnabled       = reg(ErrorCode{"PasswordLoginIsNotEnabled", "Password login is not enabled", 403})
+	UserRegistrationIsNotEnabled    = reg(ErrorCode{"UserRegistrationIsNotEnabled", "User registration is not enabled", 403})
 	SSOProviderAccountAlreadyBinded = reg(ErrorCode{"SSOProviderAccountAlreadyBinded", "A SSO provider account is already binded to this user, please remove binding first", 409})
 	CannotDeleteLastSSOBinding      = reg(ErrorCode{"CannotDeleteLastSSOBinding", "Cannot delete the last SSO binding, user must have at least one login method", 400})
 	TwoFaAlreadyEnabled             = reg(ErrorCode{"TwoFaAlreadyEnabled", "Two-factor authentication is already enabled", 409})

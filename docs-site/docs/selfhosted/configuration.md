@@ -133,6 +133,15 @@ ToolBake does not enable password login by default. You can enable password logi
 | --- | --- | --- |
 | ENABLE_PASSWORD_LOGIN | Whether to enable password login, supports `true` and `false` | false |
 
+### Disable User Registration
+
+User registration is enabled by default. You can disable user registration by setting `ENABLE_USER_REGISTRATION=false`.
+
+| Environment Variable | Description | Default Value |
+| --- | --- | --- |
+| ENABLE_USER_REGISTRATION | Whether to enable user registration, supports `true` and `false` | true |
+
+
 ### WebAuthn (Passkey) Configuration
 
 ToolBake also supports Passkey login using the WebAuthn protocol. If you want to enable Passkey login, you need to configure the following environment variables.
@@ -174,6 +183,7 @@ Due to the hard requirements of Passkey, enabling Passkey login requires that yo
 | SSO_GOOGLE_CLIENT_SECRET |  |  |
 | SSO_GOOGLE_REDIRECT_URL |  |  |
 | ENABLE_PASSWORD_LOGIN | false |  |
+| ENABLE_USER_REGISTRATION | true |  |
 | WEBAUTHN_RP_NAME | ToolBake-localhost |  |
 | WEBAUTHN_RP_ID | localhost |  |
 | WEBAUTHN_RP_ORIGIN | http://localhost:8080 |  |

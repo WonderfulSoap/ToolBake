@@ -14,6 +14,7 @@ type ssrConfigDTO struct {
 		} `json:"google"`
 	} `json:"sso"`
 	EnablePasswordLogin bool `json:"password_login"`
+	EnableRegister      bool `json:"enable_register"`
 }
 
 func (d *ssrConfigDTO) FromEntity(cfg entity.FrontendRuntimeConfigEntity) {
@@ -22,4 +23,5 @@ func (d *ssrConfigDTO) FromEntity(cfg entity.FrontendRuntimeConfigEntity) {
 	d.SSO.Google.ClientID = cfg.SSO.Google.ClientID
 	d.SSO.Google.RedirectURI = cfg.SSO.Google.RedirectURI
 	d.EnablePasswordLogin = cfg.EnablePasswordLogin
+	d.EnableRegister = cfg.EnableRegister
 }

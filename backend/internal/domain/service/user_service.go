@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"ya-tool-craft/internal/config"
 	"ya-tool-craft/internal/core/logger"
 	"ya-tool-craft/internal/domain/entity"
 	"ya-tool-craft/internal/domain/repository"
@@ -14,11 +15,13 @@ func NewUserService(
 	userRepo repository.IUserRepository,
 	accessTokenRepo repository.IAuthAccessTokenRepository,
 	refreshTokenRepo repository.IAuthRefreshTokenRepository,
+	cfg config.Config,
 ) *UserService {
 	return &UserService{
 		userRepo:         userRepo,
 		accessTokenRepo:  accessTokenRepo,
 		refreshTokenRepo: refreshTokenRepo,
+		config:           cfg,
 	}
 }
 
@@ -26,9 +29,14 @@ type UserService struct {
 	userRepo         repository.IUserRepository
 	accessTokenRepo  repository.IAuthAccessTokenRepository
 	refreshTokenRepo repository.IAuthRefreshTokenRepository
+	config           config.Config
 }
 
 func (s *UserService) CreateUser(ctx context.Context, username string, password string) (entity.UserEntity, error) {
+	if !s.config.ENABLE_USER_REGISTRATION {
+		return entity.UserEntity{}, error_code.NewErrorWithErrorCodef(error_code.UserRegistrationIsNotEnabled, "user registration is not enabled, please set env: ENABLE_USER_REGISTRATION")
+	}
+
 	// Check if username already exists
 	_, exists, err := s.userRepo.GetByUsername(ctx, username)
 	if err != nil {

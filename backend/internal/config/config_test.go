@@ -52,6 +52,7 @@ func TestNewConfig(t *testing.T) {
 		assert.Equal(t, "", config.MysqlDB)
 		assert.Equal(t, uint64(15778463), config.RefreshTokenTTL)
 		assert.Equal(t, uint64(300), config.AccessTokenTTL)
+		assert.True(t, config.ENABLE_USER_REGISTRATION)
 	})
 
 	t.Run("should return error when config validation fails", func(t *testing.T) {

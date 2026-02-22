@@ -45,6 +45,11 @@ func (c CreateuserController) RouterInfo() []router.RouterInfo {
 // @Router			/api/v1/user/create [post]
 func (c *CreateuserController) Create(ctx *gin.Context) {
 	logger.Infof(ctx, "Create User")
+	if !c.config.ENABLE_USER_REGISTRATION {
+		logger.Warnf(ctx, "User registration is disabled in the configuration")
+		c.Error(ctx, error_code.NewErrorWithErrorCodef(error_code.UserRegistrationIsNotEnabled, "user registration is not enabled, please set env: ENABLE_USER_REGISTRATION"))
+		return
+	}
 
 	var req CreateUserRequestDto
 	if err := ctx.ShouldBindJSON(&req); err != nil {

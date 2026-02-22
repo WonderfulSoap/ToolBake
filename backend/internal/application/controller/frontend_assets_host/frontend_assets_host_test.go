@@ -78,6 +78,22 @@ func TestServeStatic_RejectsNonGET(t *testing.T) {
 	}
 }
 
+func TestBuildRuntimeConfigScript_EnableRegister(t *testing.T) {
+	scriptEnabled := buildRuntimeConfigScript(config.Config{
+		ENABLE_USER_REGISTRATION: true,
+	})
+	if !strings.Contains(scriptEnabled, `"enable_register":true`) {
+		t.Fatalf("expected enable_register=true in runtime config script, got %q", scriptEnabled)
+	}
+
+	scriptDisabled := buildRuntimeConfigScript(config.Config{
+		ENABLE_USER_REGISTRATION: false,
+	})
+	if !strings.Contains(scriptDisabled, `"enable_register":false`) {
+		t.Fatalf("expected enable_register=false in runtime config script, got %q", scriptDisabled)
+	}
+}
+
 type testController struct {
 	baseDir string
 	ctrl    *FrontendAssetsHostController

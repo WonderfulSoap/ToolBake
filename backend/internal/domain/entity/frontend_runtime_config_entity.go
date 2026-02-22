@@ -12,4 +12,5 @@ type FrontendRuntimeConfigEntity struct {
 		}
 	}
 	EnablePasswordLogin bool
+	EnableRegister      bool
 }

@@ -2036,7 +2036,8 @@
                 "TwoFaTotpIsRequiredForLogin",
                 "Unauthorized",
                 "UserAlreadyExists",
-                "UserNotFound"
+                "UserNotFound",
+                "UserRegistrationIsNotEnabled"
             ],
             "x-enum-varnames": [
                 "ErrorCodeCannotDeleteLastSSOBinding",
@@ -2065,7 +2066,8 @@
                 "ErrorCodeTwoFaTotpIsRequiredForLogin",
                 "ErrorCodeUnauthorized",
                 "ErrorCodeUserAlreadyExists",
-                "ErrorCodeUserNotFound"
+                "ErrorCodeUserNotFound",
+                "ErrorCodeUserRegistrationIsNotEnabled"
             ]
         },
         "global_script.GetGlobalScriptResponseDto": {
@@ -2735,7 +2737,6 @@
                 },
                 "description": {
                     "type": "string",
-                    "maxLength": 255,
                     "example": "Describe the tool briefly"
                 },
                 "extra_info": {
@@ -2973,6 +2974,7 @@
                 "password": {
                     "type": "string",
                     "maxLength": 32,
+                    "minLength": 8,
                     "example": "password"
                 },
                 "username": {

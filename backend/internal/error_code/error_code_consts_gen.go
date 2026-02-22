@@ -31,4 +31,5 @@ const (
 	ErrorCodeUnauthorized                    ErrorCodeConst = "Unauthorized"
 	ErrorCodeUserAlreadyExists               ErrorCodeConst = "UserAlreadyExists"
 	ErrorCodeUserNotFound                    ErrorCodeConst = "UserNotFound"
+	ErrorCodeUserRegistrationIsNotEnabled    ErrorCodeConst = "UserRegistrationIsNotEnabled"
 )

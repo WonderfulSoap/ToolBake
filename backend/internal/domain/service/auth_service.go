@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"ya-tool-craft/internal/config"
 	"ya-tool-craft/internal/core/logger"
 	"ya-tool-craft/internal/domain/client"
 	"ya-tool-craft/internal/domain/entity"
@@ -19,6 +20,7 @@ func NewAuthService(
 	userRepo repository.IUserRepository,
 	githubClient client.IGithubAuthClient,
 	googleClient client.IGoogleAuthClient,
+	cfg config.Config,
 	twoFAService *TwoFAService,
 ) *AuthService {
 	return &AuthService{
@@ -27,6 +29,7 @@ func NewAuthService(
 		userRepo:         userRepo,
 		githubClient:     githubClient,
 		googleClient:     googleClient,
+		config:           cfg,
 		twoFAService:     twoFAService,
 	}
 }
@@ -37,6 +40,7 @@ type AuthService struct {
 	userRepo         repository.IUserRepository
 	githubClient     client.IGithubAuthClient
 	googleClient     client.IGoogleAuthClient
+	config           config.Config
 	twoFAService     *TwoFAService
 }
 
@@ -98,6 +102,9 @@ func (s *AuthService) LoginOrCreateUserBySSO(ctx context.Context, provider strin
 	}
 	// if user does not exist, create a new user
 	if !userExists {
+		if !s.config.ENABLE_USER_REGISTRATION {
+			return AuthLoginResult{}, nil, error_code.NewErrorWithErrorCodef(error_code.UserRegistrationIsNotEnabled, "user registration is not enabled, please set env: ENABLE_USER_REGISTRATION")
+		}
 		// generate unique username: providerUsername_randomString
 		randomSuffix, err := gonanoid.New(8)
 		if err != nil {

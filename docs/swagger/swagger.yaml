@@ -497,6 +497,7 @@ definitions:
     - Unauthorized
     - UserAlreadyExists
     - UserNotFound
+    - UserRegistrationIsNotEnabled
     type: string
     x-enum-varnames:
     - ErrorCodeCannotDeleteLastSSOBinding
@@ -526,6 +527,7 @@ definitions:
     - ErrorCodeUnauthorized
     - ErrorCodeUserAlreadyExists
     - ErrorCodeUserNotFound
+    - ErrorCodeUserRegistrationIsNotEnabled
   global_script.GetGlobalScriptResponseDto:
     properties:
       global_script:
@@ -1003,7 +1005,6 @@ definitions:
         type: string
       description:
         example: Describe the tool briefly
-        maxLength: 255
         type: string
       extra_info:
         additionalProperties:
@@ -1191,6 +1192,7 @@ definitions:
       password:
         example: password
         maxLength: 32
+        minLength: 8
         type: string
       username:
         example: username

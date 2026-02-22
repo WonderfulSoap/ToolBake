@@ -72,7 +72,7 @@ func newTestAuthService(ctrl *gomock.Controller) (
 	cacheRepo := mockgen.NewMockICache(ctrl)
 
 	twoFAService, _ := NewTwoFaService(twoFARepo, userRepo, accessRepo, refreshRepo, cacheRepo, config.Config{})
-	svc := NewAuthService(accessRepo, refreshRepo, userRepo, nil, nil, twoFAService)
+	svc := NewAuthService(accessRepo, refreshRepo, userRepo, nil, nil, config.Config{ENABLE_USER_REGISTRATION: true}, twoFAService)
 
 	return svc, accessRepo, refreshRepo, userRepo, twoFARepo, cacheRepo
 }
@@ -89,6 +89,22 @@ func newTestAuthServiceWithSSOClients(
 	*mockgen.MockIAuth2FARepository,
 	*mockgen.MockICache,
 ) {
+	return newTestAuthServiceWithSSOClientsAndConfig(ctrl, githubClient, googleClient, config.Config{ENABLE_USER_REGISTRATION: true})
+}
+
+func newTestAuthServiceWithSSOClientsAndConfig(
+	ctrl *gomock.Controller,
+	githubClient domain_client.IGithubAuthClient,
+	googleClient domain_client.IGoogleAuthClient,
+	cfg config.Config,
+) (
+	*AuthService,
+	*mockgen.MockIAuthAccessTokenRepository,
+	*mockgen.MockIAuthRefreshTokenRepository,
+	*mockgen.MockIUserRepository,
+	*mockgen.MockIAuth2FARepository,
+	*mockgen.MockICache,
+) {
 	accessRepo := mockgen.NewMockIAuthAccessTokenRepository(ctrl)
 	refreshRepo := mockgen.NewMockIAuthRefreshTokenRepository(ctrl)
 	userRepo := mockgen.NewMockIUserRepository(ctrl)
@@ -96,7 +112,7 @@ func newTestAuthServiceWithSSOClients(
 	cacheRepo := mockgen.NewMockICache(ctrl)
 
 	twoFAService, _ := NewTwoFaService(twoFARepo, userRepo, accessRepo, refreshRepo, cacheRepo, config.Config{})
-	svc := NewAuthService(accessRepo, refreshRepo, userRepo, githubClient, googleClient, twoFAService)
+	svc := NewAuthService(accessRepo, refreshRepo, userRepo, githubClient, googleClient, cfg, twoFAService)
 
 	return svc, accessRepo, refreshRepo, userRepo, twoFARepo, cacheRepo
 }
@@ -756,9 +772,10 @@ func TestAuthService_LoginOrCreateUserBySSO(t *testing.T) {
 	userInfoEmail := "octo@example.com"
 
 	tests := []struct {
-		name       string
-		provider   string
-		setupMocks func(
+		name                   string
+		provider               string
+		enableUserRegistration *bool
+		setupMocks             func(
 			ctx context.Context,
 			accessRepo *mockgen.MockIAuthAccessTokenRepository,
 			refreshRepo *mockgen.MockIAuthRefreshTokenRepository,
@@ -769,6 +786,7 @@ func TestAuthService_LoginOrCreateUserBySSO(t *testing.T) {
 			googleClient *fakeGoogleAuthClient,
 		)
 		wantErrSub     string
+		wantErrCode    *error_code.ErrorCode
 		wantTwoFAToken bool
 		wantResult     AuthLoginResult
 	}{
@@ -803,6 +821,30 @@ func TestAuthService_LoginOrCreateUserBySSO(t *testing.T) {
 					Return(entity.UserEntity{}, false, errors.New("db unavailable"))
 			},
 			wantErrSub: "fail to get user by SSO info",
+		},
+		{
+			name:     "registration disabled returns coded error when sso user does not exist",
+			provider: providerGithub,
+			enableUserRegistration: func() *bool {
+				enabled := false
+				return &enabled
+			}(),
+			setupMocks: func(ctx context.Context, accessRepo *mockgen.MockIAuthAccessTokenRepository, refreshRepo *mockgen.MockIAuthRefreshTokenRepository, userRepo *mockgen.MockIUserRepository, twoFARepo *mockgen.MockIAuth2FARepository, cacheRepo *mockgen.MockICache, githubClient *fakeGithubAuthClient, googleClient *fakeGoogleAuthClient) {
+				githubClient.oauthTokenToAccessTokenFunc = func(oauthToken string) (string, error) {
+					return "github-access-token", nil
+				}
+				githubClient.getUserInfoFunc = func(accessToken string) (entity.GithubUserInfoEntity, error) {
+					return entity.NewGithubUserInfoEntity(6, "octo-disabled", "Octo Disabled", &userInfoEmail, ""), nil
+				}
+				userRepo.EXPECT().
+					GetUserBySSO(ctx, providerGithub, "6").
+					Return(entity.UserEntity{}, false, nil)
+				userRepo.EXPECT().
+					CreateUserBySSO(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).
+					Times(0)
+			},
+			wantErrSub:  "user registration is not enabled",
+			wantErrCode: &error_code.UserRegistrationIsNotEnabled,
 		},
 		{
 			name:     "create user by sso error is wrapped",
@@ -975,7 +1017,11 @@ func TestAuthService_LoginOrCreateUserBySSO(t *testing.T) {
 			githubClient := &fakeGithubAuthClient{}
 			googleClient := &fakeGoogleAuthClient{}
 
-			svc, accessRepo, refreshRepo, userRepo, twoFARepo, cacheRepo := newTestAuthServiceWithSSOClients(ctrl, githubClient, googleClient)
+			cfg := config.Config{ENABLE_USER_REGISTRATION: true}
+			if tt.enableUserRegistration != nil {
+				cfg.ENABLE_USER_REGISTRATION = *tt.enableUserRegistration
+			}
+			svc, accessRepo, refreshRepo, userRepo, twoFARepo, cacheRepo := newTestAuthServiceWithSSOClientsAndConfig(ctrl, githubClient, googleClient, cfg)
 			if tt.setupMocks != nil {
 				tt.setupMocks(ctx, accessRepo, refreshRepo, userRepo, twoFARepo, cacheRepo, githubClient, googleClient)
 			}
@@ -985,6 +1031,11 @@ func TestAuthService_LoginOrCreateUserBySSO(t *testing.T) {
 			if tt.wantErrSub != "" {
 				require.Error(t, err)
 				require.Contains(t, err.Error(), tt.wantErrSub)
+				if tt.wantErrCode != nil {
+					var ecErr error_code.ErrorWithErrorCode
+					require.True(t, errors.As(err, &ecErr))
+					require.Equal(t, tt.wantErrCode.Code, ecErr.ErrorCode.Code)
+				}
 				return
 			}
 

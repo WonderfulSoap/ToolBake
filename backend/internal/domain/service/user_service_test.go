@@ -26,11 +26,22 @@ func TestUserService_CreateUser(t *testing.T) {
 	)
 
 	tests := []struct {
-		name       string
-		setupMocks func(ctx context.Context, userRepo *mockgen.MockIUserRepository)
-		wantUser   entity.UserEntity
-		wantErrSub string
+		name                   string
+		enableUserRegistration *bool
+		setupMocks             func(ctx context.Context, userRepo *mockgen.MockIUserRepository)
+		wantUser               entity.UserEntity
+		wantErrSub             string
+		wantErrCode            *error_code.ErrorCode
 	}{
+		{
+			name: "registration disabled returns coded error",
+			enableUserRegistration: func() *bool {
+				enabled := false
+				return &enabled
+			}(),
+			wantErrSub:  "user registration is not enabled",
+			wantErrCode: &error_code.UserRegistrationIsNotEnabled,
+		},
 		{
 			name: "GetByUsername error is wrapped",
 			setupMocks: func(ctx context.Context, userRepo *mockgen.MockIUserRepository) {
@@ -110,13 +121,22 @@ func TestUserService_CreateUser(t *testing.T) {
 				tt.setupMocks(ctx, userRepo)
 			}
 
-			svc := NewUserService(userRepo, accessRepo, refreshRepo)
+			cfg := config.Config{ENABLE_USER_REGISTRATION: true}
+			if tt.enableUserRegistration != nil {
+				cfg.ENABLE_USER_REGISTRATION = *tt.enableUserRegistration
+			}
+			svc := NewUserService(userRepo, accessRepo, refreshRepo, cfg)
 
 			user, err := svc.CreateUser(ctx, username, password)
 
 			if tt.wantErrSub != "" {
 				require.Error(t, err)
 				require.Contains(t, err.Error(), tt.wantErrSub)
+				if tt.wantErrCode != nil {
+					var ecErr error_code.ErrorWithErrorCode
+					require.True(t, errors.As(err, &ecErr))
+					require.Equal(t, tt.wantErrCode.Code, ecErr.ErrorCode.Code)
+				}
 				require.Equal(t, entity.UserEntity{}, user)
 			} else {
 				require.NoError(t, err)
@@ -183,7 +203,7 @@ func TestUserService_CheckUsernameExists(t *testing.T) {
 				tt.setupMocks(ctx, userRepo)
 			}
 
-			svc := NewUserService(userRepo, accessRepo, refreshRepo)
+			svc := NewUserService(userRepo, accessRepo, refreshRepo, config.Config{ENABLE_USER_REGISTRATION: true})
 
 			exists, err := svc.CheckUsernameExists(ctx, username)
 
@@ -206,10 +226,10 @@ func TestUserService_UpdateUser(t *testing.T) {
 	const userID = entity.UserIDEntity("user-1")
 
 	tests := []struct {
-		name       string
-		params     struct{ Username *string }
-		setupMocks func(ctx context.Context, userRepo *mockgen.MockIUserRepository)
-		wantErrSub string
+		name        string
+		params      struct{ Username *string }
+		setupMocks  func(ctx context.Context, userRepo *mockgen.MockIUserRepository)
+		wantErrSub  string
 		wantErrCode *error_code.ErrorCode
 	}{
 		{
@@ -335,7 +355,7 @@ func TestUserService_UpdateUser(t *testing.T) {
 				tt.setupMocks(ctx, userRepo)
 			}
 
-			svc := NewUserService(userRepo, accessRepo, refreshRepo)
+			svc := NewUserService(userRepo, accessRepo, refreshRepo, config.Config{ENABLE_USER_REGISTRATION: true})
 
 			err := svc.UpdateUser(ctx, userID, struct{ Username *string }{Username: tt.params.Username})
 
@@ -362,8 +382,8 @@ func TestUserService_DeleteUser(t *testing.T) {
 	const userID = entity.UserIDEntity("user-1")
 
 	tests := []struct {
-		name       string
-		setupMocks func(ctx context.Context, userRepo *mockgen.MockIUserRepository, accessRepo *mockgen.MockIAuthAccessTokenRepository, refreshRepo *mockgen.MockIAuthRefreshTokenRepository)
+		name        string
+		setupMocks  func(ctx context.Context, userRepo *mockgen.MockIUserRepository, accessRepo *mockgen.MockIAuthAccessTokenRepository, refreshRepo *mockgen.MockIAuthRefreshTokenRepository)
 		wantErrSub  string
 		wantErrCode *error_code.ErrorCode
 	}{
@@ -465,7 +485,7 @@ func TestUserService_DeleteUser(t *testing.T) {
 				tt.setupMocks(ctx, userRepo, accessRepo, refreshRepo)
 			}
 
-			svc := NewUserService(userRepo, accessRepo, refreshRepo)
+			svc := NewUserService(userRepo, accessRepo, refreshRepo, config.Config{ENABLE_USER_REGISTRATION: true})
 
 			err := svc.DeleteUser(ctx, userID)
 
