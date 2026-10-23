@@ -121,6 +121,8 @@ async function fetchRatesForProvider(providerId) {
   const payload = await response.json();
 
   if (provider.id === "open-er-api") return parseOpenErApiRates(payload, provider, endpoint);
+  // AllRatesToday's open endpoint returns the same response shape as open.er-api.com.
+  if (provider.id === "allratestoday") return parseOpenErApiRates(payload, provider, endpoint);
   throw new Error(`Unknown rate provider: '${providerId}'`);
 }
 
@@ -132,6 +134,16 @@ function getProviderConfig(providerId) {
       name         : "open.er-api.com",
       buildEndpoint: function buildEndpoint() {
         return "https://open.er-api.com/v6/latest/USD";
+      },
+    };
+  }
+  // Keyless ECB reference rates (about 30 currencies, daily). Codes it does not publish (e.g. AED) show "Missing rate".
+  if (providerId === "allratestoday") {
+    return {
+      id           : "allratestoday",
+      name         : "allratestoday.com",
+      buildEndpoint: function buildEndpoint() {
+        return "https://allratestoday.com/api/open/latest/USD";
       },
     };
   }

@@ -25,6 +25,10 @@
           {
             "value": "open-er-api",
             "label": "open.er-api.com (free)"
+          },
+          {
+            "value": "allratestoday",
+            "label": "allratestoday.com (free, ECB rates)"
           }
         ]
       }
