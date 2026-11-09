@@ -1,0 +1,70 @@
+[
+  [
+    {
+      "id": "barcode_image",
+      "type": "FileUploadInput",
+      "title": "Barcode Image",
+      "mode": "input",
+      "props": { "description": "Upload or drop an image, or hover here and paste a screenshot. Scans one 1D barcode per image locally in your browser.", "mini": false }
+    }
+  ],
+  [
+    {
+      "id": "barcode_preview",
+      "type": "LabelInput",
+      "title": "Image Preview",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">No image selected.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "barcode_format",
+      "type": "SelectListInput",
+      "title": "Barcode Format",
+      "mode": "input",
+      "props": {
+        "defaultValue": "auto",
+        "options": [
+          { "value": "auto", "label": "Auto (All Supported 1D Formats)" },
+          { "value": "CODE_128", "label": "Code 128" },
+          { "value": "CODE_39", "label": "Code 39" },
+          { "value": "CODE_93", "label": "Code 93" },
+          { "value": "EAN_13", "label": "EAN-13" },
+          { "value": "EAN_8", "label": "EAN-8" },
+          { "value": "UPC_A", "label": "UPC-A" },
+          { "value": "UPC_E", "label": "UPC-E" },
+          { "value": "ITF", "label": "ITF / ITF-14" },
+          { "value": "CODABAR", "label": "Codabar" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "barcode_status",
+      "type": "LabelInput",
+      "title": "Scan Result",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">Upload or paste an image to scan a barcode.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "barcode_text",
+      "type": "TextareaInput",
+      "title": "Decoded Text (Control Characters Escaped)",
+      "mode": "output",
+      "props": { "rows": 5, "placeholder": "Decoded content appears here. Leading zeros are preserved." }
+    }
+  ],
+  [
+    {
+      "id": "barcode_details",
+      "type": "TextareaInput",
+      "title": "Scan Details (JSON)",
+      "mode": "output",
+      "props": { "rows": 8, "highlight": "highlight:json" }
+    }
+  ]
+]

@@ -1,0 +1,82 @@
+[
+  [
+    {
+      "id": "qr_image",
+      "type": "FileUploadInput",
+      "title": "QR Code Image",
+      "mode": "input",
+      "props": { "description": "Upload or drop an image, or hover here and paste a screenshot. Scans one QR code per image locally in your browser.", "mini": false }
+    }
+  ],
+  [
+    {
+      "id": "qr_preview",
+      "type": "LabelInput",
+      "title": "Image Preview",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">No image selected.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "qr_encoding",
+      "type": "SelectListInput",
+      "title": "Byte Segment Encoding",
+      "mode": "input",
+      "props": {
+        "defaultValue": "auto",
+        "options": [
+          { "value": "auto", "label": "Auto (ECI or UTF-8)" },
+          { "value": "utf-8", "label": "UTF-8" },
+          { "value": "gb18030", "label": "GB18030 / GBK" },
+          { "value": "shift_jis", "label": "Shift-JIS" },
+          { "value": "big5", "label": "Big5" },
+          { "value": "iso-8859-1", "label": "ISO-8859-1 (Latin-1)" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "qr_status",
+      "type": "LabelInput",
+      "title": "Scan Result",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">Upload or paste an image to scan a QR code.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "qr_text",
+      "type": "TextareaInput",
+      "title": "Decoded Text (Binary Segments and Control Characters Are Escaped)",
+      "mode": "output",
+      "props": { "rows": 6, "placeholder": "Decoded text appears here. Hex, Base64, and the binary download always preserve the payload bytes." }
+    }
+  ],
+  [
+    {
+      "id": "qr_hex",
+      "type": "TextareaInput",
+      "title": "Hex",
+      "mode": "output",
+      "props": { "rows": 4 }
+    },
+    {
+      "id": "qr_base64",
+      "type": "TextareaInput",
+      "title": "Base64",
+      "mode": "output",
+      "props": { "rows": 4 }
+    }
+  ],
+  [
+    {
+      "id": "qr_details",
+      "type": "TextareaInput",
+      "title": "Details / Bytes / Segments (JSON)",
+      "mode": "output",
+      "props": { "rows": 8, "highlight": "highlight:json" }
+    }
+  ]
+]

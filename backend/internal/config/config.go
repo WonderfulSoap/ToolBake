@@ -42,7 +42,7 @@ type Config struct {
 	SSO_GOOGLE_CLIENT_SECRET string `env:"SSO_GOOGLE_CLIENT_SECRET" envDefault:""`
 	SSO_GOOGLE_REDIRECT_URL  string `env:"SSO_GOOGLE_REDIRECT_URL" envDefault:""`
 
-	ENABLE_PASSWORD_LOGIN     bool `env:"ENABLE_PASSWORD_LOGIN" envDefault:"false"`
+	ENABLE_PASSWORD_LOGIN    bool `env:"ENABLE_PASSWORD_LOGIN" envDefault:"false"`
 	ENABLE_USER_REGISTRATION bool `env:"ENABLE_USER_REGISTRATION" envDefault:"true"`
 
 	// WebAuthn Configuration

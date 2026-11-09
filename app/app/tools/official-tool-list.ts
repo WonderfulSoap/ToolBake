@@ -62,6 +62,9 @@ import { OfficialToolDeviceScreenInfo } from "./official/device-screen-info/def"
 import { OfficialToolClipboardPreviewDownloader } from "./official/clipboard-preview-downloader/def";
 import { OfficialToolHttpBasicAuthGenerator } from "./official/http-basic-auth-generator/def";
 import { OfficialToolQrcodeGenerator } from "./official/qrcode-generator/def";
+import { OfficialToolQrcodeScanner } from "./official/qrcode-scanner/def";
+import { OfficialToolBarcodeScanner } from "./official/barcode-scanner/def";
+import { OfficialToolBarcodeGenerator } from "./official/barcode-generator/def";
 import { OfficialToolRandomPortGenerator } from "./official/random-port-generator/def";
 import { OfficialToolIpv4SubnetCidrCalculator } from "./official/ipv4-cidr-subnet-toolkit/def";
 import { OfficialToolIpv6SubnetToolkit } from "./official/ipv6-subnet-toolkit/def";
@@ -163,6 +166,9 @@ export const officialTools: Tool[] = [
   OfficialToolFileBinaryEncoderDecoder,
   OfficialToolUnicodeTextEncoderDecoder,
   OfficialToolQrcodeGenerator,
+  OfficialToolQrcodeScanner,
+  OfficialToolBarcodeGenerator,
+  OfficialToolBarcodeScanner,
   OfficialToolEscapedTextEncoderDecoder,
   OfficialToolEscapedJsonItemDecoder,
   OfficialToolJsonStringEscaper,

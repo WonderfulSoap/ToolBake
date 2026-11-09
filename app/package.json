@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-router build && vite-node scripts/generate-sitemap.ts && vite-node scripts/compress-build.ts",
     "build-compress": "vite-node scripts/compress-build.ts",
-    "dev": "VITE_BACKEND_HOST=http://localhost:8080 react-router dev --host 0.0.0.0",
+    "dev": "VITE_BACKEND_HOST=http://localhost:8989 react-router dev --host 0.0.0.0",
     "start": "react-router-serve ./build/server/index.js",
     "test": "vitest",
     "typecheck": "react-router typegen && tsc",
@@ -53,8 +53,10 @@
     "ip-address": "^10.1.0",
     "isbot": "^5.1.31",
     "js-yaml": "^4.1.1",
+    "jsbarcode": "^3.12.3",
     "jsonata": "^2.1.0",
     "jsonpath-plus": "^10.3.0",
+    "jsqr": "^1.4.0",
     "lucide-react": "^0.555.0",
     "markdown-it": "^14.1.0",
     "monaco-editor": "^0.55.1",
@@ -75,7 +77,8 @@
     "tone": "^15.1.22",
     "ulid": "^3.0.2",
     "uuid": "^13.0.0",
-    "zod": "^4.1.13"
+    "zod": "^4.1.13",
+    "zxing-wasm": "^3.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

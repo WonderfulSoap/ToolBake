@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "id": "barcode_value",
+      "type": "TextInput",
+      "title": "Barcode Value",
+      "mode": "input",
+      "props": { "placeholder": "Enter text or digits, preserving any leading zeros..." }
+    }
+  ],
+  [
+    {
+      "id": "barcode_format",
+      "type": "SelectListInput",
+      "title": "Barcode Format",
+      "mode": "input",
+      "props": {
+        "defaultValue": "CODE128",
+        "options": [
+          { "value": "CODE128", "label": "Code 128 (Automatic A/B/C)" },
+          { "value": "CODE39", "label": "Code 39" },
+          { "value": "CODE93", "label": "Code 93" },
+          { "value": "EAN13", "label": "EAN-13" },
+          { "value": "EAN8", "label": "EAN-8" },
+          { "value": "UPC", "label": "UPC-A" },
+          { "value": "UPCE", "label": "UPC-E" },
+          { "value": "ITF", "label": "ITF" },
+          { "value": "ITF14", "label": "ITF-14" },
+          { "value": "codabar", "label": "Codabar" }
+        ]
+      }
+    }
+  ],
+  [
+    {
+      "id": "barcode_width",
+      "type": "NumberInput",
+      "title": "Bar Width (px)",
+      "mode": "input",
+      "props": { "defaultValue": 2, "min": 1, "max": 4, "step": 1 }
+    },
+    {
+      "id": "barcode_height",
+      "type": "NumberInput",
+      "title": "Bar Height (px)",
+      "mode": "input",
+      "props": { "defaultValue": 100, "min": 30, "max": 300, "step": 10 }
+    }
+  ],
+  [
+    {
+      "id": "barcode_display_value",
+      "type": "ToggleInput",
+      "title": "Caption",
+      "mode": "input",
+      "props": { "defaultValue": true, "onLabel": "Show Value", "description": "Display the encoded value below the bars." }
+    }
+  ],
+  [
+    {
+      "id": "barcode_help",
+      "type": "LabelInput",
+      "title": "Format Requirements",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">Code 128 supports ASCII text and digits. Use the QR Code Generator for Unicode text.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "barcode_preview",
+      "type": "LabelInput",
+      "title": "Barcode Preview",
+      "mode": "output",
+      "props": { "content": "<div class=\"text-sm text-muted-foreground\">Enter a value to generate a barcode.</div>", "autoHeight": true }
+    }
+  ],
+  [
+    {
+      "id": "barcode_download",
+      "type": "LabelInput",
+      "title": "Download",
+      "mode": "output",
+      "props": { "content": "", "autoHeight": true }
+    }
+  ]
+]

@@ -24,6 +24,9 @@ export const EMBEDDED_PACKAGES: Record<string, EmbeddedPackageConfig> = {
   "jsonata"                  : { load: () => import("jsonata"), url: "https://www.npmjs.com/package/jsonata" },
   "csv-parse"                : { load: () => import("csv-parse/browser/esm"), url: "https://www.npmjs.com/package/csv-parse" },
   "qrcode"                   : { load: () => import("qrcode"), url: "https://www.npmjs.com/package/qrcode" },
+  "jsqr"                     : { load: () => import("jsqr"), url: "https://www.npmjs.com/package/jsqr" },
+  "zxing-wasm/reader"         : { load: loadZxingReader, url: "https://www.npmjs.com/package/zxing-wasm" },
+  "jsbarcode"                : { load: () => import("jsbarcode"), url: "https://www.npmjs.com/package/jsbarcode" },
   "sql-formatter"            : { load: () => import("sql-formatter"), url: "https://www.npmjs.com/package/sql-formatter" },
   "ip-address"               : { load: () => import("ip-address"), url: "https://www.npmjs.com/package/ip-address" },
   "node-forge"               : { load: () => import("node-forge"), url: "https://www.npmjs.com/package/node-forge" },
@@ -35,6 +38,13 @@ export const EMBEDDED_PACKAGES: Record<string, EmbeddedPackageConfig> = {
   "@imagemagick/magick-wasm" : { load: () => import("@imagemagick/magick-wasm"), url: "https://www.npmjs.com/package/@imagemagick/magick-wasm" },
   "handlebars"               : { load: () => import("handlebars"), url: "https://www.npmjs.com/package/handlebars" },
 };
+
+/** Resolve the WASM binary through Vite so scans use a bundled asset instead of a CDN. */
+async function loadZxingReader() {
+  const [reader, wasmAsset] = await Promise.all([import("zxing-wasm/reader"), import("zxing-wasm/reader/zxing_reader.wasm?url")]);
+  reader.prepareZXingModule({ overrides: { locateFile: (path: string, prefix: string) => path.endsWith(".wasm") ? wasmAsset.default : prefix + path } });
+  return reader;
+}
 
 
 /** Generate a markdown table summarizing all embedded packages */

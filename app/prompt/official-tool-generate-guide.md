@@ -771,7 +771,7 @@ async function handler(inputWidgets, changedWidgetIds) {
 The complete list of packages supported by requirePackage() is as follows:
 
 ```ts
-declare type SupportedEmbedPkg = "crypto-js" | "uuid" | "ulid" | "dayjs" | "dayjs/plugin/relativeTime" | "dayjs/plugin/duration" | "colorjs.io" | "change-case" | "chardet" | "fast-xml-parser" | "iconv-lite" | "js-yaml" | "toml" | "markdown-it" | "jsonpath-plus" | "jsonata" | "csv-parse" | "qrcode" | "sql-formatter" | "ip-address" | "node-forge" | "ffmpeg" | "7z-wasm" | "7z-worker" | "decimal.js" | "image-magick" | "@imagemagick/magick-wasm" | "handlebars";
+declare type SupportedEmbedPkg = "crypto-js" | "uuid" | "ulid" | "dayjs" | "dayjs/plugin/relativeTime" | "dayjs/plugin/duration" | "colorjs.io" | "change-case" | "chardet" | "fast-xml-parser" | "iconv-lite" | "js-yaml" | "toml" | "markdown-it" | "jsonpath-plus" | "jsonata" | "csv-parse" | "qrcode" | "jsqr" | "zxing-wasm/reader" | "jsbarcode" | "sql-formatter" | "ip-address" | "node-forge" | "ffmpeg" | "7z-wasm" | "7z-worker" | "decimal.js" | "image-magick" | "@imagemagick/magick-wasm" | "handlebars";
 /**
  * Dynamically load a package at runtime.
  *
