@@ -44,7 +44,8 @@ export function Header({
   const projectGithubUrl = (import.meta.env.VITE_PROJECT_GITHUB_URL as string | undefined)?.trim() || "https://github.com/WonderfulSoap/ToolBake";
   const projectDocsUrl = (import.meta.env.VITE_PROJECT_DOCS_URL as string | undefined)?.trim() || "https://docs.toolbake.com";
   const { theme, setTheme, themeColor, setThemeColor } = useThemeContext();
-  const selectedPreset = themeColor ? themeColorPresets[themeColor] : undefined;
+  const [hasHydrated, setHasHydrated] = useState(false);
+  const selectedPreset = hasHydrated && themeColor ? themeColorPresets[themeColor] : undefined;
   const themeColorOptions = Object.entries(themeColorPresets);
   const groupingLabel = toolMeta
     ? [toolMeta.namespace, toolMeta.category].filter(Boolean).join(" / ") || "Unassigned"
@@ -66,6 +67,9 @@ export function Header({
   const maxVisibleResults = 14;
   const resultRowHeight = 32; // Keep scroll window aligned with result limit.
   const resultListMaxHeight = Math.max(1, maxVisibleResults) * resultRowHeight;
+
+  // The prerender has no browser theme data; show its placeholder until hydration finishes.
+  useEffect(() => { setHasHydrated(true); }, []);
 
   const toggleTheme = () => {
     logThemeDebug("toggle:clicked", { currentTheme: theme, nextTheme: theme === "dark" ? "light" : "dark" });

@@ -77,8 +77,10 @@ export function TextInput(
     getValue: () => valueRef.current,
     // Allow parent to set value without triggering onChange.
     setValue: (newValue: string) => {
-      valueRef.current = newValue;
-      setWidgetValue(newValue);
+      // Missing defaults must keep the input controlled when tools initialize or reset.
+      const nextValue = newValue ?? "";
+      valueRef.current = nextValue;
+      setWidgetValue(nextValue);
     },
   }), []);
 

@@ -1,0 +1,9 @@
+{
+  "name": "deepmerge",
+  "version": "4.3.1-toolbake.1",
+  "private": true,
+  "description": "deepmerge 4.3.1 with a local prototype-poisoning fix",
+  "main": "index.cjs",
+  "types": "index.d.ts",
+  "license": "MIT"
+}

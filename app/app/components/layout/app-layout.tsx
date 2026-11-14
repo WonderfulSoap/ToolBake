@@ -33,7 +33,8 @@ export function AppLayout({
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   // Desktop sidebar visibility state
   const [isDesktopSidebarVisible, setIsDesktopSidebarVisible] = useState(true);
-  const [isDesktopViewport, setIsDesktopViewport] = useState(() => typeof window !== "undefined" && window.innerWidth >= MOBILE_BREAKPOINT);
+  // Match prerendered markup on the first client render; the effect reads the viewport after hydration.
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
 
   // Close mobile sidebar when window resizes to desktop
   useEffect(() => {

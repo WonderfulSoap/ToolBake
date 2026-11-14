@@ -4,12 +4,17 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { mkdir, copyFile, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 import path from "node:path";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
+import inject from "@rollup/plugin-inject";
 import { VitePWA } from "vite-plugin-pwa";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 import { EMBEDDED_PACKAGES } from "./app/config/embedded-packages";
+
+// Resolve only the browser shims used by embedded tools, avoiding unused crypto polyfills.
+const require = createRequire(import.meta.url);
+const bufferShimPath = path.resolve("app/lib/browser-buffer.ts");
 
 /** Compute a short content hash for a file, similar to Vite/Webpack build hashes (8 chars by default) */
 async function computeFileHash(filePath: string, length = 8): Promise<string> {
@@ -346,15 +351,10 @@ function copyWasmAssetsPlugin() {
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     // Inject window polyfill first, before other plugins that might need it
     injectWindowPolyfillPlugin(),
-    nodePolyfills({
-      include        : ["buffer", "string_decoder"],
-      globals        : { Buffer: true, process: false, global: false },
-      protocolImports: true,
-    }),
     tailwindcss(),
     reactRouter(),
     tsconfigPaths(),
@@ -395,6 +395,17 @@ export default defineConfig({
     }),
   ],
 
+  resolve: {
+    alias: [
+      { find: /^(?:node:)?buffer$/, replacement: require.resolve("buffer/") },
+      { find: /^(?:node:)?string_decoder$/, replacement: require.resolve("string_decoder/") },
+    ],
+  },
+
+  // Keep Buffer available in app modules and optimized dependencies during development.
+  esbuild: { banner: command === "serve" ? 'import "/@fs' + bufferShimPath + '";' : undefined },
+  optimizeDeps: { esbuildOptions: { inject: [bufferShimPath] } },
+
   server: {
     middlewareMode: false,
   },
@@ -406,6 +417,7 @@ export default defineConfig({
 
   build: {
     rollupOptions: {
+      plugins: [inject({ Buffer: [bufferShimPath, "Buffer"] })],
       // Externalize monaco-editor so Rollup doesn't process its 5000+ ESM modules (causes OOM).
       // The pre-built bundle in public/assets/monacoeditorwork/monaco.js is loaded at runtime instead.
       external: ["monaco-editor"],
@@ -432,4 +444,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

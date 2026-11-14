@@ -279,6 +279,16 @@ describe("TextInput Component", () => {
   });
 
   describe("collectValueRef Interface", () => {
+    it("keeps missing defaults controlled when a tool resets its value", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      const collectValueRef = createRef<WidgetValueCollectorInf<string> | undefined>() as RefObject<WidgetValueCollectorInf<string> | undefined>;
+      const { rerender } = render(<TextInputWrapper {...defaultProps} value="initial" collectValueRef={collectValueRef} />);
+      rerender(<TextInputWrapper {...defaultProps} value={undefined as unknown as string} collectValueRef={collectValueRef} />);
+      await waitFor(() => expect((screen.getByRole("textbox") as HTMLInputElement).value).toBe(""));
+      expect(collectValueRef.current?.getValue()).toBe("");
+      expect(consoleError).not.toHaveBeenCalled();
+    });
+
     it("exposes getValue through collectValueRef", () => {
       const collectValueRef = createRef<WidgetValueCollectorInf<string> | undefined>() as RefObject<WidgetValueCollectorInf<string> | undefined>;
 

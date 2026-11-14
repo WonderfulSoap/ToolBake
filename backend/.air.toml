@@ -4,8 +4,8 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-# Just plain old shell command. You could use `make` as well.
-cmd = "go generate ./... && go build -o ./tmp/main ."
+# Generate once in `task dev`; regenerating watched mocks here causes rebuild loops.
+cmd = "go build -o ./tmp/main ."
 # Binary file yields from `cmd`.
 bin = "tmp/main"
 # Customize binary.
