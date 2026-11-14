@@ -237,6 +237,33 @@ describe("FileUploadInput Component", () => {
   });
 
   describe("User Interaction", () => {
+    it("focuses an editable paste target on hover and receives clipboard items", async () => {
+      const user = userEvent.setup();
+      const onChange = vi.fn();
+      render(<FileUploadInputWrapper {...defaultProps} onChange={onChange} />);
+      await user.hover(screen.getByLabelText("Test Upload"));
+      const target = screen.getByLabelText("Clipboard paste target");
+      expect(document.activeElement).toBe(target);
+      const file = createTestFile("clipboard.png", "image", "image/png");
+      fireEvent.paste(target, {
+        clipboardData: {
+          files: [],
+          items: [{ kind: "file", getAsFile: () => file }],
+          getData: () => "fallback text must not override the image",
+        },
+      });
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith("test-file", file);
+    });
+
+    it("focuses the paste target through keyboard navigation without opening the picker", () => {
+      render(<FileUploadInputWrapper {...defaultProps} />);
+      const click = vi.spyOn(HTMLInputElement.prototype, "click");
+      fireEvent.focus(screen.getByLabelText("Test Upload"));
+      expect(document.activeElement).toBe(screen.getByLabelText("Clipboard paste target"));
+      expect(click).not.toHaveBeenCalled();
+    });
+
     it("calls onChange when user selects a file", async () => {
       const user = userEvent.setup();
       const onChange = vi.fn();

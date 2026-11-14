@@ -65,7 +65,7 @@ export function FileUploadInput(
   const [widgetValue, setWidgetValue] = useState<File | null>(null);
   // Use ref to keep the latest value for getValue().
   const widgetValueRef = useRef<File | null>(null);
-  const pasteTargetRef = useRef<HTMLLabelElement | null>(null);
+  const pasteTargetRef = useRef<HTMLTextAreaElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -84,9 +84,10 @@ export function FileUploadInput(
     },
   }), []);
 
+  // Use a native editing target so Firefox can dispatch image paste on hover too.
   function focusPasteTarget() {
     if (isReadOnly) return;
-    pasteTargetRef.current?.focus();
+    pasteTargetRef.current?.focus({ preventScroll: true });
   }
 
   function buildTimestampedName(name: string) {
@@ -115,13 +116,20 @@ export function FileUploadInput(
     onChange(id, nextFile);
   }
 
-  function handlePaste(event: ClipboardEvent<HTMLLabelElement>) {
+  function handlePaste(event: ClipboardEvent<HTMLElement>) {
     if (isReadOnly) {
       event.preventDefault();
       return;
     }
     const clipboard = event.clipboardData;
-    const nextFile = clipboard?.files?.[0] ?? null;
+    let nextFile: File | null = clipboard?.files?.[0] ?? null;
+    // Clipboard file exposure differs between browsers and clipboard sources.
+    if (!nextFile && clipboard?.items) {
+      for (const item of Array.from(clipboard.items)) {
+        if (item.kind === "file") nextFile = item.getAsFile();
+        if (nextFile) break;
+      }
+    }
     if (!nextFile && clipboard) {
       const text = clipboard.getData("text/plain");
       if (text) {
@@ -194,7 +202,6 @@ export function FileUploadInput(
         </label>
       </div>
       <label
-        ref={pasteTargetRef}
         className={cn(
           mini
             ? "border border-dashed border-border rounded-md h-8 px-2 inline-flex items-center justify-center gap-1 transition-all text-[11px] text-muted-foreground bg-card/30"
@@ -208,6 +215,7 @@ export function FileUploadInput(
         title={mini ? helperText ?? description : undefined}
         onPaste={handlePaste}
         onMouseEnter={focusPasteTarget}
+        onFocus={focusPasteTarget}
         onClick={(event) => {
           if (isReadOnly) event.preventDefault();
           else inputRef.current?.click();
@@ -227,6 +235,15 @@ export function FileUploadInput(
           </>
         )}
       </label>
+      <textarea
+        ref={pasteTargetRef}
+        className="sr-only"
+        tabIndex={-1}
+        aria-label="Clipboard paste target"
+        disabled={isReadOnly}
+        onPaste={handlePaste}
+        onChange={(event) => { event.currentTarget.value = ""; }}
+      />
       <input
         type="file"
         className="sr-only"

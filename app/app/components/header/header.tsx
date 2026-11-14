@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { Link } from "react-router";
+import { logThemeDebug } from "~/contexts/theme-debug";
 import { BookOpen, ChevronLeft, Github, Menu, Moon, MoreHorizontal, Palette, Search, Sun, X } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -67,6 +68,7 @@ export function Header({
   const resultListMaxHeight = Math.max(1, maxVisibleResults) * resultRowHeight;
 
   const toggleTheme = () => {
+    logThemeDebug("toggle:clicked", { currentTheme: theme, nextTheme: theme === "dark" ? "light" : "dark" });
     setTheme(theme === "dark" ? "light" : "dark");
   };
 

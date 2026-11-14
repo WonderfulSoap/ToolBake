@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { logThemeDebug } from "./theme-debug";
 
 export type ThemeMode = "dark" | "light";
 
@@ -161,6 +162,11 @@ export function ThemeProvider({
 
   const transitionResetRef = useRef<number | null>(null);
 
+  // Record the browser and theme inputs once, including production-only reports.
+  useEffect(() => {
+    logThemeDebug("initialized", { theme, themeColor, userAgent: navigator.userAgent, storageKey, cookieTheme: getCookie(storageKey) });
+  }, []);
+
   function disableThemeTransitions() {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
@@ -187,10 +193,31 @@ export function ThemeProvider({
       disableThemeTransitions();
       root.classList.remove("light", "dark");
       root.classList.add(nextTheme);
+      root.dataset.theme = nextTheme;
     };
 
+    logThemeDebug("apply:start", { requestedTheme: theme });
     applyTheme(theme);
-  }, [theme]);
+    logThemeDebug("apply:complete", { requestedTheme: theme, cookieTheme: getCookie(storageKey) });
+    const frame = requestAnimationFrame(() => {
+      logThemeDebug("apply:next-frame", { requestedTheme: theme });
+    });
+    // Detect another script or a React render overwriting the selected theme later.
+    const observer = new MutationObserver((mutations) => {
+      if (!mutations.some(mutation => mutation.attributeName !== "class" ||
+        (mutation.oldValue || "").split(/\s+/).filter(name => name !== "theme-switching").join(" ") !==
+        root.className.split(/\s+/).filter(name => name !== "theme-switching").join(" "))) return;
+      logThemeDebug("root:changed", { expectedTheme: theme });
+      if (!root.classList.contains(theme) || root.classList.contains(theme === "dark" ? "light" : "dark")) {
+        console.warn("[ThemeDebug] Root classes no longer match the selected theme", { expectedTheme: theme, classes: root.className });
+      }
+    });
+    observer.observe(root, { attributes: true, attributeOldValue: true, attributeFilter: ["class", "data-theme", "data-theme-color"] });
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [theme, storageKey]);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -220,7 +247,16 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (nextTheme: Theme) => {
-      setCookie(storageKey, nextTheme);
+      logThemeDebug("change:requested", { previousTheme: theme, requestedTheme: nextTheme });
+      try {
+        setCookie(storageKey, nextTheme);
+        const persistedTheme = getCookie(storageKey);
+        logThemeDebug("cookie:written", { requestedTheme: nextTheme, persistedTheme, storageKey });
+        if (persistedTheme !== nextTheme) console.warn("[ThemeDebug] Theme cookie was not persisted", { requestedTheme: nextTheme, persistedTheme });
+      } catch (error) {
+        console.error("[ThemeDebug] Theme cookie write failed before state update", error);
+        throw error;
+      }
       setThemeState(nextTheme);
     },
     themeColor,

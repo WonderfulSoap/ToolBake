@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Theme mode is explicit; dark utilities must follow the selected root class. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Prefer native Apple emoji on Apple platforms, then fall back to Twemoji. */
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Twemoji Mozilla", "Segoe UI Emoji", "Noto Color Emoji";
@@ -39,29 +42,9 @@
   font-display: swap;
 }
 
-/* Dark mode color overrides using media query */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #fafafa;
-    --color-card: #171717;
-    --color-card-foreground: #fafafa;
-    --color-popover: #262626;
-    --color-popover-foreground: #fafafa;
-    --color-primary: #e5e5e5;
-    --color-primary-foreground: #171717;
-    --color-secondary: #262626;
-    --color-secondary-foreground: #fafafa;
-    --color-muted: #262626;
-    --color-muted-foreground: #a1a1a1;
-    --color-accent: #404040;
-    --color-accent-foreground: #fafafa;
-    --color-destructive: #ff6467;
-    --color-destructive-foreground: #fafafa;
-    --color-border: #282828;
-    --color-input: #343434;
-    --color-ring: #737373;
-  }
+/* Native controls follow the same explicit mode as the application. */
+:root.dark {
+  color-scheme: dark;
 }
 
 /* Dark mode when manually toggled with .dark class */
@@ -88,6 +71,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: var(--color-background);
   --foreground: var(--color-foreground);
   --card: var(--color-card);
@@ -952,18 +936,6 @@ body {
   );
   background-size: 14px 14px;
   background-color: color-mix(in oklch, var(--color-muted) 40%, var(--color-background));
-}
-
-/* Dark mode adjustment for dot pattern */
-@media (prefers-color-scheme: dark) {
-  .bg-dotted-pattern {
-    background-image: radial-gradient(
-      circle,
-      color-mix(in oklch, var(--color-foreground) 10%, transparent) 1px,
-      transparent 1px
-    );
-    background-color: color-mix(in oklch, var(--color-muted) 30%, var(--color-background));
-  }
 }
 
 .dark .bg-dotted-pattern {
